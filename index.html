@@ -16,7 +16,10 @@
 </head>
 <body class="">
 	<header class="container-fluid">
-		<nav class="navbar navbar-expand-lg navbar-lightd">
+    <div class="col-sm-12 repon-ipad">
+      <center><a class="navbar-brand" href="#"><img src="images/logo/logow.png" width="250px" height="70px"></a></center>
+    </div>
+		<nav class="navbar navbar-expand-lg navbar-lightd text-repon">
 	  	<a class="navbar-brand" href="#"><img src="images/logo/logow.png" width="250px" height="70px"></a>
 	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     	<span class="navbar-toggler-icon"></span>
@@ -287,13 +290,13 @@
     <!-- end slide -->
     <section class="container-fluid">
       <div>
-        <div class="owl-carousel owl-theme">
-          <div class="item"><img src="images/slide-quang-cao/slide1.jpg" alt="" width="100%" height="150px"></div>
-          <div class="item"><img src="images/slide-quang-cao/slide2.jpg" alt="" width="100%" height="150px"></div>
-          <div class="item"><img src="images/slide-quang-cao/slide3.jpg" alt="" width="100%" height="150px"></div>
-          <div class="item"><img src="images/slide-quang-cao/slide4.jpg" alt="" width="100%" height="150px"></div>
-          <div class="item"><img src="images/slide-quang-cao/slide5.jpg" alt="" width="100%" height="150px"></div>
-          <div class="item"><img src="images/slide-quang-cao/slide6.jpg" alt="" width="100%" height="150px"></div>
+        <div class="owl_plugin owl-carousel owl-theme">
+          <div class="item"><img src="images/slide-quang-cao/slide1.jpg" alt="slide" height="150px" width="100%"></div>
+          <div class="item"><img src="images/slide-quang-cao/slide2.jpg" alt="slide" height="150px" width="100%"></div>
+          <div class="item"><img src="images/slide-quang-cao/slide3.jpg" alt="slide" height="150px" width="100%"></div>
+          <div class="item"><img src="images/slide-quang-cao/slide4.jpg" alt="slide" height="150px" width="100%"></div>
+          <div class="item"><img src="images/slide-quang-cao/slide5.jpg" alt="slide" height="150px" width="100%"></div>
+          <div class="item"><img src="images/slide-quang-cao/slide6.jpg" alt="slide" height="150px" width="100%"></div>
         </div>
       <hr>
       </div>
@@ -734,6 +737,7 @@
     <section class="container">
       <div class="col-sm-12">
         <h2 class="txt-title" style="text-align: center;">Cẩm nang thú cưng</h2>
+        <hr>
       </div>
       <div class="row">
         <div class="col-sm-4">
@@ -750,7 +754,7 @@
               </div>
           </div>
           </div>
-        </div>
+
         <div class="col-sm-4">
           <div class="card t-tin">
             <img class="card-img-top card-img" src="images/hinh-sp-cho/alaska-cho1.jpg" width="100%">
@@ -781,7 +785,7 @@
         </div>
       </div>
     </section>
- 
+ <hr>
     <!-- end main -->
     <!-- footer -->
     <footer class="container-fluid">
@@ -814,6 +818,29 @@
             </div>
         </div>
     </footer>
+    <section class="container-fluid header-repon">
+      <div class="row">
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-paw icon-rp"></i></a></center>
+        </div>
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-user-shield icon-rp"></i></a></center>
+        </div>
+        <div class="box-rp">
+          <center class="box-rp-item">
+            <a href="#" class="a-dangtin">
+            <i class="fas fa-file-alt icon-rp" style="margin-top: 30px;"></i>
+            <br> Đăng bài</a>
+          </center>
+        </div>
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-newspaper icon-rp"></i></a></center>
+        </div>
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-align-justify icon-rp"></i></a></center>
+        </div>
+      </div>
+    </section>
 
 </body>
 </html>
@@ -827,7 +854,7 @@ var owl = $('.owl-carousel');
 owl.owlCarousel({
     items:1,
     loop:true,
-    margin:0,
+    margin:10,
     autoPlay: true,
     slideSpeed : 1000,
 });
