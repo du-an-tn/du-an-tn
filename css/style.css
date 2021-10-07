@@ -577,4 +577,194 @@ footer{
 }
 .t-tin{
     border-radius: 10px;
+<<<<<<< Updated upstream
+=======
+}
+.repon-ipad{
+    display: none;
+}
+.owl-item{
+    width: none !important;
+}
+.header-repon{
+    display: none;
+}
+/* reponsive ipad và ipad pro */
+@media only screen and (max-width: 1024px){
+    .text-repon{
+        display: none;
+    }
+    .repon-ipad{
+        display: block;
+    }
+    .repon-ipad .img{
+        text-align: center;
+    }
+    .owl_plugin{
+        display: none !important;
+    }
+    .header-repon{
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        display: block;
+        position: fixed;
+        bottom: 0;
+        height: 50px;
+        background-color: #fff;
+    }
+    .header-repon .icon-rp{
+        font-size: 25px;
+        color: #fd7e14;
+    }
+    .header-repon .box-rp{
+        margin-top: 10px;
+        width: 20%;
+        position: relative;
+    }
+    .header-repon .box-rp-item{
+        border:1px solid rgb(151, 151, 151);
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: -60px;
+        left: 20%;
+        width: 100px;
+        height: 100px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .header-repon .a-dangtin{
+        color: #000;
+        font-size: 15px;
+        font-weight: bold;
+        position: absolute;
+        left: 20%;
+        top: 0%;
+        text-decoration: none;
+    }
+    footer{
+        margin-top: 10px;
+        background-color: #3B8BEB;
+        min-height: 350px;
+    }
+    .the-a{
+        display: none;
+    }
+    .box-tin-rao{
+        position: relative;
+        width: 24%;
+        margin:5px 0.5%;
+    }
+    .box-tin-rao .ft-link{
+        margin-left: 5px;
+    }
+    .tinrao-container{
+        width: 90%;
+    }
+    .dm-thucung p{
+        margin: 0 20%;
+    }
+    .bg-span{
+        display: none;
+    }
+}
+/* reponsive ipad */
+@media only screen and (max-width: 768px){
+    .header-repon{
+        height: 40px;
+    }
+    .header-repon .icon-rp{
+        font-size: 20px;
+        color: #fd7e14;
+    }
+    .header-repon .box-rp{
+        margin-top: 10px;
+        width: 20%;
+        position: relative;
+    }
+    .header-repon .box-rp-item{
+        border:1px solid rgb(151, 151, 151);
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: -40px;
+        left: 20%;
+        width: 70px;
+        height: 70px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .header-repon .a-dangtin{
+        color: #000;
+        font-size: 10px;
+        font-weight: bold;
+        position: absolute;
+        left: 20%;
+        top: -20%;
+    }
+    .box-tin-rao{
+        position: relative;
+        width: 32%;
+        margin:5px 0.5%;
+    }
+    
+    .dm-thucung .img-danhmuc{
+        margin: 0 0%;
+    }
+   .bg-cuahang{
+    height: 170px;
+    }
+   .bg-chu>h3{
+    font-size: 30px;
+    }
+    .bg-chu>p{
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+    .bg-cuahang .bg-chu{
+        top: 15px;
+    }
+    .the-a{
+        display: none;
+    }
+    .dm-thucung {
+        width: 33%;
+    }
+    .dm-thucung .img-danhmuc{
+        margin: 0px 16%;
+    }
+}
+@media only screen and (max-width: 558px){
+    .box-top{
+        display: none;
+    }
+    .dntc h3{
+        text-align: center;
+    }
+    .dntc .bg-span{
+        visibility: hidden;
+    }
+    .dm-thucung{
+        width: 50%;
+    }
+    .dm-thucung .img-danhmuc{
+        margin: 0px 16%;
+    }
+    .box-tin-rao{
+        position: relative;
+        width: 49%;
+        margin:5px 0.5%;
+    }
+    .danhmuc-tinrao{
+        width: 100%;
+    }
+    .bg-chu>h3{
+        font-size: 20px;
+    }
+    .bg-chu>p{
+        font-size: 13px;
+        margin-left:50px;
+    }
+    .bg-chu>a{
+        font-size: 13px;
+    }
+>>>>>>> Stashed changes
 }
