@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PETSHOP.VN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <!-- CDN fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <!--end CDN fontawesome -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-shop.css">
+</head>
+<body>
+    <header class="container-fluid">
+		<nav class="navbar navbar-expand-lg navbar-lightd">
+	  	<a class="navbar-brand" href="#"><img src="images/logo/logow.png" width="250px" height="70px"></a>
+	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+        <div class="collapse navbar-collapse khung-timkiem" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 box-search" type="search" placeholder="Tìm kiếm trên petshop.vn" aria-label="Search">
+                    <div class="testdrop">
+                        <p onclick="hamDropdown()" class="my-2 my-sm-0 timkiem btn">thú cưng <i class="fas fa-angle-down"></i></p>
+                        <div class="box-chon">
+                                <a href="#">Thú cưng</a>
+                                <a href="#">sản phẩm</a>
+                        </div>
+                    </div>
+                    </form>
+                </ul>
+                <span class="navbar-text">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item khung-li">
+                            <a class="nav-link mn-text mt-1" href="#">
+                                <i class="far fa-newspaper" style="font-size:17px; color:#FFAE19"></i>
+                            </a>
+                            <a href="" class="a-tin">Tin tức</a>
+                        </li>
+                        <li class="nav-item khung-li">
+                            <a class="nav-link mn-text mt-1" href="#">
+                                <i class="far fa-clipboard" style="font-size:17px; color:#FFAE19; margin-left: 3px;"></i>
+                            </a>
+                            <a href="" class="a-tin">Đăng bài</a>
+                            <ul class="hover-bd">
+                                <li><a class="hv-a" href="">Đăng tin thú cưng</a></li>
+                                <li><a class="hv-a" href="">Đăng tin sản phẩm</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item khung-li">
+                            <a class="nav-link hd-msg mn-text mt-1" href="#">
+                                <img src="images/avatar/dog1.jpg" alt="" width="35px" height="35px">
+                            </a>
+                            <a href="" class="a-tin">Khánh Duy</a>
+                            <ul class="hover-user">
+                                <li>
+                                    <i class="far fa-address-card"></i>
+                                    <a class="hv-a" href="">Thông tin tài khoản</a>
+                                
+                                </li>
+                                <li>
+                                    <i class="far fa-clone"></i>
+                                    <a class="hv-a" href="">Lịch sử giao dịch</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paw"></i>
+                                    <a class="hv-a" href="">Tin đăng thú cưng</a>
+                                </li>
+                                <li>
+                                    <i class="far fa-clipboard"></i>
+                                    <a class="hv-a" href="">Tin đăng sản phẩm</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <a class="hv-a" href="">Giỏ hàng của bạn</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <a class="hv-a" href="">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link navdn active" href="#"><i class="far fa-user" style="font-size:17px"></i> Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navdk active" href="#"><i class="fas fa-user-plus" style="font-size:17px"></i> Đăng ký</a>
+                        </li> -->
+                    </ul>
+                </span>
+            </div>
+        </nav>
+    <div class="col-lg-12">
+        <ul class="nav menu-title">
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Chó<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                <li class="hrv-img">
+                    <img src="images/hinh-menu/dog.8d179361.gif" alt="" width="100%" height="200px">
+                </li>
+                <ul class="ul-hrcon">
+                  <li><a href="">Chó pug</a></li>
+                  <li><a href="">Chó poodle</a></li>
+                  <li><a href="">Chó husky</a></li>
+                  <li><a href="">Chó alaska</a></li>
+                  <li><a href="">Chó golden</a></li>
+                  <li><a href="">Chó chihuahua</a></li>
+                  <li><a href="">Chó pull</a></li>
+                  <li><a href="">Chó phú quốc</a></li>
+                  <li><a href="">Chó corgi</a></li>
+                  <li><a href="">Chó shiba</a></li>
+                  <li><a href="">Chó becgie</a></li>
+                  <li><a href="">Chó chó đốm</a></li>
+                  <li><a href="">dòng chó khác</a></li>
+                </ul>
+            </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Mèo<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                  <li class="hrv-img">
+                      <img src="images/hinh-menu/cat.862fddc4.gif" alt="" width="100%" height="200px">
+                  </li>
+                  <ul class="ul-hrcon">
+                    <li><a href="">Mèo Sphynx</a></li>
+                    <li><a href="">Mèo Ragdoll</a></li>
+                    <li><a href="">Mèo xiêm</a></li>
+                    <li><a href="">Mèo Anh lông dài</a></li>
+                    <li><a href="">Mèo Anh lông ngắn</a></li>
+                    <li><a href="">Mèo ba tư</a></li>
+                    <li><a href="">Mèo Scottish fold</a></li>
+                    <li><a href="">Mèo Mainecoon</a></li>
+                    <li><a href="">Mèo Nga</a></li>
+                    <li><a href="">Mèo Munckin</a></li>
+                    <li><a href="">Giống mèo khác</a></li>
+                  </ul>
+              </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Chim cảnh<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                <li class="hrv-img">
+                    <img src="images/hinh-menu/bird.01a45ffa.gif" alt="" width="100%" height="200px">
+                </li>
+                <ul class="ul-hrcon">
+                  <li><a href="">Vẹt - Yến phụng</a></li>
+                  <li><a href="">Chích chòe</a></li>
+                  <li><a href="">Chào mào</a></li>
+                  <li><a href="">Bìm bịp</a></li>
+                  <li><a href="">Chim cảnh khác</a></li>
+                </ul>
+            </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Cá cảnh<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                <li class="hrv-img">
+                    <img src="images/hinh-menu/fish.6c4bafb9.gif" alt="" width="100%" height="200px">
+                </li>
+                <ul class="ul-hrcon">
+                  <li><a href="">Cá Rồng</a></li>
+                  <li><a href="">Cá koi</a></li>
+                  <li><a href="">Cá la hán</a></li>
+                  <li><a href="">Cá cảnh khác</a></li>
+                </ul>
+            </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+                <a class="nav-link" href="#">thú cưng khác<i class="fas fa-angle-down"></i></a>
+                <ul class="hrv-menu">
+                    <li class="hrv-img">
+                        <img src="images/hinh-menu/rabbit.46db3c99.gif" alt="" width="100%" height="200px">
+                    </li>
+                    <ul class="ul-hrcon">
+                      <li><a href="">Bò sát</a></li>
+                      <li><a href="">hamster</a></li>
+                      <li><a href="">nhím</a></li>
+                      <li><a href="">Thỏ cảnh</a></li>
+                      <li><a href="">Thú cưng khác</a></li>
+                    </ul>
+                </ul>
+              </li>
+          </ul>
+    </div>
+	</header>
+    <section class="container-fluid s-shop">
+        <div class="row row-st-2">
+            <div class="col-lg-6 col-xl-7 col-12">
+                <div class="new-pet-post step-1 option">
+                    <h3 class="option-title">Bạn muốn đăng tin gì?</h3>
+                    <div class="content">
+                        <form action="" class="av-form">
+                            <div class="post_style_1">
+                                <label for="" class="label-style-1">Loại Tin</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                     <small>Đăng tin cần bán</small>
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    <small>Đăng tin cần mua </small>
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                   <small> Đăng tin phối giống </small>
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                   <small> Đăng tin cho tặng </small>
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    <small>Đăng tin tìm thú cưng thất lạc </small>
+                                </label>
+                              </div>
+                              <div class="mb-3" style="justify-content: center;
+                              align-items: center;
+                              display: flex;">
+                                <button type="button" class="btn btn-primary" onclick="onlick_1()" >Primary</button>
+                              </div>
+                             
+                            </div>
+                            <div class="post_style_2" style="display:none;">
+                                <div class="form-group">
+                                    <label for="" class="label-style-1">Loại Tin:</label>
+                                    <input type="text" class="form-control" id="" placeholder="Tiêu Đề">
+                                  </div>
+                                  <div class="note">
+                                    <p class="example-label">Ví dụ</p>
+                                    <p class="example-label">* Chó Husky đực 1 tuổi màu nâu đen</p>
+                                    <p class="example-label">Nên viết tiếng Việt có dấu</p>
+                                    <p class="example-label">Không dùng</p>
+                                    <p class="example-label">* Không thêm số điện thoại, thông tin cá nhân và giá mua bán</p>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="address" class="label-style-1">Khu vực</label>
+                                    <select class="custom-select" id="inputGroupSelect01">
+                                      <option selected>Choose...</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="address" class="label-style-1">Khu vực</label>
+                                    <select class="custom-select" id="inputGroupSelect01">
+                                      <option selected>Choose...</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                  </div>
+                                  <div class="mb-3" style="justify-content: center;
+                                  align-items: center;
+                                  display: flex;">
+                                    <button type="button" class="btn btn-primary" onclick="onlick_2()" >Primary</button>
+                                  </div>
+
+                            </div>
+                            <div class="post_style_3" style="display:none;">
+                                    <div class="mb-3">
+                                        <label for="" class="label-style-1">Giới Tính</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Đực</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Cái</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3">Không Rõ</label>
+                                          </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="label-style-1">Tình Trạng Tiêm Chủng</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Không</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Có</label>
+                                          </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="label-style-1">Bảo Hành Sức Khỏe</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Không</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Có</label>
+                                          </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address" class="label-style-1">Độ Tuổi Thú Cưng</label>
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                          <option selected>Choose...</option>
+                                          <option value="1">One</option>
+                                          <option value="2">Two</option>
+                                          <option value="3">Three</option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                      <div class="note">
+                                        <p class="example-label">Ví dụ</p>
+                                        <p class="example-label">* Đã từng đoạt giải trong cuộc thi sắc đẹp thú cưng</p>
+                                        <p class="example-label">* Có bố mẹ thuần chủng</p>
+                                        <p class="example-label">Nên viết tiếng Việt có dấu</p>
+                                        <p class="example-label">Không nên</p>
+                                        <p class="example-label">* Không thêm số điện thoại, thông tin cá nhân và giá mua bán</p>
+                                      </div>
+                                  <div class="mb-3" style="justify-content: center;
+                                  align-items: center;
+                                  display: flex;">
+                                    <button type="button" class="btn btn-primary" onclick="onlick_3()" >Primary</button>
+                                  </div>
+                                  
+                            </div>
+                            <div class="post_style_4" style="display:none;">
+                                <div class="mb-3">
+                                    <label for="" class="label-style-1">Giá:</label>
+                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <label for="address" class="label-style-1">Thời Gian Đăng Bài</label>
+                                    <select class="custom-select" id="inputGroupSelect01">
+                                      <option selected>Choose...</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                  </div>
+                              <div class="mb-3" style="justify-content: center;
+                              align-items: center;
+                              display: flex;">
+                                <button type="button" class="btn btn-primary" onclick="onlick_4()" >Primary</button>
+                              </div>
+                              
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-5 col-12">
+                <div class="preview-pet-post-view">
+                    <div class="preview-screen">
+                        <div class="preview-wrap">
+                            <div class="container-st">
+                                <div class="row">
+                                    <div class="col-12 gallery-container">
+                                        <div class="rect-shape">
+                                            
+                                        </div>
+                                        <div class="col-12 gallery-container">
+                                            <div class="pet-post-detail-view">
+                                                <div class="text-box" style="width: 100%; margin-bottom: 10px;">
+                                                    <div class="text-row" style="max-height: 33.3333%; width: 97%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0px;">
+
+                                                    </div>
+                                                    <div class="text-row" style="max-height: 33.3333%; width: 100%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em;">
+
+                                                    </div>
+                                                    <div class="text-row" style="width: 45%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em; margin-bottom: 10px;">
+
+                                                    </div>
+                                                    <div class="text-row" style="width: 100%; height: 36px; background-color: rgb(248, 248, 248); margin-top: 0.7em; border-radius: 3px;">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="user-wrapper">
+                                            <div class="avatar-wrap">
+                                                <img src="https://img.icons8.com/external-bearicons-blue-bearicons/64/000000/external-user-essential-collection-bearicons-blue-bearicons.png"/>
+                                                <div class="text-row" style="width: 30%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em; margin-left: 10px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="location-wrapper location-wrapper-skeleton">
+                                            <div class="text-block" style="width: 45%; margin-top: 0px;">
+                                                <div class="text-row" style="max-height: 100%; width: 97%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="description-wrapper">
+                                            <p class="description-title">Thông tin chi tiết</p>
+                                            <div class="text-row" style="width: 65%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em;"></div>
+                                            <div class="text-row" style="width: 52%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em;"></div>
+                                            <div class="text-row" style="width: 79%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em;"></div>
+                                            <div class="text-row" style="width: 42%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em;"></div>
+                                            <div class="text-row" style="width: 45%; height: 1em; background-color: rgb(248, 248, 248); margin-top: 0.7em;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+<script src="js/dropdown.js"></script>
+<script src="js/post.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</html>
