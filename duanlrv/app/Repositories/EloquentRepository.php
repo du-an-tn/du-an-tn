@@ -48,7 +48,6 @@ abstract class EloquentRepository implements EloquentInterface
     {
         return $this->_model::orderBy('id', 'ASC')->where('type_post', 1)->search()->paginate(10);
     }
-
     public function create(array $attributes)
     {
         return $this->_model->create($attributes);
