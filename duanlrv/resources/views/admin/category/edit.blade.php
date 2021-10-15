@@ -29,15 +29,6 @@
             <label for="exampleInputEmail1">Tên slug</label>
             <input type="text" class="form-control" value="{{$category->slug}}" name="slug" id="slug" placeholder="Nhập Tên menu">
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hidden" id="radio0" value="0">
-            <label class="form-check-label" for="inlineRadio1">Ẩn</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hidden" id="radio1" value="1">
-            <label class="form-check-label" >Hiện</label>
-        </div>
-        <br>
         <br>
         <div class="form-group">
             <button type="submit" class="btn btn-outline-success btn-sm form-control"><i class="fa fa-magic"></i>&nbsp; submit</button>

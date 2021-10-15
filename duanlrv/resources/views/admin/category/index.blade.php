@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $dt)
+                        @foreach($data as  $dt)
                             <tr>
                                 <td class="serial">{{$dt->id}}</td>
                                 <td class="avatar">
@@ -51,9 +51,9 @@
                                 </td>
                                 <td>
                                     @if($dt->hidden == 0)
-                                        <span class="badge badge-danger">Danh mục Ẩn</span>
+                                    <a href="{{URL::to('/active-category-product/'.$dt->id)}}"><span class="badge badge-danger">Danh mục Ẩn</span></a>
                                     @else
-                                        <span class="badge badge-complete">Danh mục Hiện</span>
+                                    <a href="{{URL::to('/unactive-category-product/'.$dt->id)}}"><span class="badge badge-complete">Danh mục Hiện</span></a>
                                     @endif
                                 </td>
                                 <td>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\categoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', 'HomeController@index')->name('home.index');
-
+Route::get('/active-category-product/{category_product_id}', [categoryController::class, 'active_category_product']);
+Route::get('/unactive-category-product/{category_product_id}', [categoryController::class, 'unactive_category_product']);
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
