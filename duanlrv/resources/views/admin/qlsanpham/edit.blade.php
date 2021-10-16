@@ -5,12 +5,40 @@
         <div class="card-header">
             <center><strong class="card-title">xét duyệt thú cưng</strong></center>
         </div>
-        <form action="{{route('qlthucung.update',$qlthucung->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('qlsanpham.update',$qlsanpham->id)}}" method="POST" enctype="multipart/form-data">
          @csrf @method('PUT')
-        <div class="form-group">
-            <label for="exampleInputEmail1">Tên thú cưng</label>
-            <input type="text" class="form-control" name="title" value="{{$qlthucung->title}}" placeholder="Nhập Tên menu" disabled>
+        <div class="row">
+            <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tên sản phẩm</label>
+                <input type="text" class="form-control" name="title" value="{{$qlthucung->title}}" placeholder="Nhập Tên menu" disabled>
+            </div>
+            </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="form-group">
             <label>__xét duyệt trạng thái__</label>
             <select class="form-control" name="id_trang_thai">

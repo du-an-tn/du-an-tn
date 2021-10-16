@@ -50,8 +50,8 @@ return [
         ]
     ],
     [
-        'label' => 'Quản lý',
-        'route' => 'admin.dashboard',
+        'label' => 'QL sản phẩm',
+        'route' => 'qlsanpham.index',
         'icon' => 'fa fa-tasks',
         'items' =>
         [
@@ -62,42 +62,47 @@ return [
             ],
             [
                 'iconnew' => 'fa fa-indent',
-                'label' => 'QL thú cưng',
+                'label' => 'Thêm sản phẩm',
                 'route' => 'qlthucung.index'
             ],
+            // [
+            //     'iconnew' => 'fa fa-pagelines',
+            //     'label' => 'QL phối giống',
+            //     'route' => 'qlthucung.index'
+            // ],
+        ]
+    ],
+    [
+        'label' => 'QL Thú cưng',
+        'route' => 'qlthucung.index',
+        'icon' => 'fa fa-pagelines',
+        'items' =>
+        [
             [
-                'iconnew' => 'fa fa-pagelines',
-                'label' => 'QL phối giống',
-                'route' => 'qlthucung.index'
+            'iconnew' => 'fa fa-indent',
+            'label' => 'Danh sách thú cưng',
+            'route' => 'qlthucung.index'
+            ],
+            [
+                'iconnew' => 'fa fa-indent',
+                'label' => 'Thêm thú cưng',
+                'route' => 'qlthucung.create'
+                ],
+        ]
+    ],
+    [
+        'label' => 'QL phối giống',
+        'route' => 'qlthucung.index',
+        'icon' => 'fa fa-pagelines',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-indent',
+            'label' => 'Danh sách Phối giống',
+            'route' => 'qlthucung.index'
             ],
         ]
     ],
-    // [
-    //     'label' => 'QL Thú cưng',
-    //     'route' => 'qlthucung.index',
-    //     'icon' => 'fa fa-pagelines',
-    //     'items' =>
-    //     [
-    //         [
-    //         'iconnew' => 'fa fa-indent',
-    //         'label' => 'Danh sách thú cưng',
-    //         'route' => 'qlthucung.index'
-    //         ],
-    //     ]
-    // ],
-    // [
-    //     'label' => 'QL phối giống',
-    //     'route' => 'qlthucung.index',
-    //     'icon' => 'fa fa-pagelines',
-    //     'items' =>
-    //     [
-    //         [
-    //         'iconnew' => 'fa fa-indent',
-    //         'label' => 'Danh sách thú cưng',
-    //         'route' => 'qlthucung.index'
-    //         ],
-    //     ]
-    // ],
     [
         'label' => 'Tin Tức',
         'route' => 'admin.dashboard',

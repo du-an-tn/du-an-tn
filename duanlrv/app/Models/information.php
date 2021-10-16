@@ -26,11 +26,15 @@ class information extends Model
     }
     public function trangthai()
     {
-       return $this->hasOne(trangthai::class,'id','id_trang_thai');
+       return $this->hasOne(trangthai::class,'id','id_status');
     }
     public function xetduyet()
     {
-       return $this->hasMany(trangthai::class,'id_trang_thai','id');
+       return $this->hasMany(trangthai::class,'id_status','id');
+    }
+    public function danhmuc()
+    {
+       return $this->hasMany(category::class,'id_category','id');
     }
     public function scopeSearch($query)
     {

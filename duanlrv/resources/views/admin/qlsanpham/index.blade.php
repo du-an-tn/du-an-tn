@@ -40,7 +40,7 @@
                             <th>slug</th>
                             <th>Trạng thái bài đăng</th>
                             <th>xem chi tiết</th>
-                            <th>Action</th>
+                            <th style="width:100px;">Action</th>
                             <!-- <th>Quantity</th> -->
                             <!-- <th>Status</th> -->
                         </tr>
@@ -59,7 +59,7 @@
                                     @if($dt->id_trang_thai == 1)
                                         <span class="badge badge-complete">thành công</span>
                                     @elseif ($dt->id_trang_thai == 2)
-                                        <span class="badge badge-warning">chưa xét duyệt</span>
+                                        <span class="badge badge-warning">đợi xét duyệt</span>
                                     @else
                                         <span class="badge badge-danger">đã hủy</span>
                                     @endif

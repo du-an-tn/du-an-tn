@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\trangthai;
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -34,7 +35,6 @@ class infoController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -45,7 +45,21 @@ class infoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->has('file_upload'))
+        {
+            $file= $request->file_upload;
+            $ext = $request->file_upload->extension();
+            $file_name = time().'-'.'phim.'.$ext;
+            $file->move(public_path('uploads'), $file_name);
+        }
+        $request->merge(['image'=>$file_name]);
+        if($this->qlthucung->create($request->all()))
+        {
+            return redirect()->route('qlthucung.index')->with('success', 'xét duyệt thành công');
+        }
+        else{
+            return redirect()->route('qlthucung.index')->with('error', 'xét duyệt thất bại');
+        }
     }
 
     /**
@@ -69,7 +83,8 @@ class infoController extends Controller
     {
         $qlthucung = $this->qlthucung->find($id);
         $xetduyet = trangthai::orderBy('id', 'ASC')->select('id','name_type')->get();
-        return view('admin.qlthucung.edit', compact('qlthucung','xetduyet'));
+        $danhmuc = category::orderBy('id', 'ASC')->select('id','name')->get();
+        return view('admin.qlthucung.edit', compact('qlthucung','xetduyet','danhmuc'));
     }
 
     /**
@@ -81,8 +96,15 @@ class infoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        if($this->qlthucung->update($id,$data))
+        if($request->has('file_upload'))
+        {
+            $file= $request->file_upload;
+            $ext = $request->file_upload->extension();
+            $file_name = time().'-'.'phim.'.$ext;
+            $file->move(public_path('uploads'), $file_name);
+        }
+        $request->merge(['image'=>$file_name]);
+        if($this->qlthucung->update($id,$request->all()))
         {
             return redirect()->route('qlthucung.index')->with('success', 'xét duyệt thành công');
         }
