@@ -35,6 +35,9 @@ class infoController extends Controller
      */
     public function create()
     {
+        $xetduyet = trangthai::orderBy('id', 'ASC')->select('id','name_type')->get();
+        $danhmuc = category::orderBy('id', 'ASC')->select('id','name')->get();
+        return view('admin.qlthucung.create', compact('xetduyet','danhmuc'));
     }
 
     /**
