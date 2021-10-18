@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Tên danh mục</label>
-                    <input type="text" class="form-control" value="{{$category->name_category}}" name="name_category" id="name" placeholder="Nhập Tên danh mục">
+                    <input type="text" class="form-control" value="{{$category->name}}" name="name_category" id="name" placeholder="Nhập Tên danh mục">
                 </div>
             </div>
             <div class="col-sm-6">

@@ -9,17 +9,21 @@ class category extends Model
 {
     use HasFactory;
     protected $table = 'categories';
-    protected $fillable = ['id','name_category','id_nav','slug','hidden'];
+    protected $fillable = ['id','name','id_nav','slug','hidden'];
     public $timestamps = FALSE;
 
     public function cat()
     {
       return $this->hasOne(navmenu::class, 'id', 'id_nav');
     }
+    public function danhmuc()
+    {
+       return $this->hasMany(navmenu::class,'id_nav','id');
+    }
     public function scopeSearch($query)
     {
         if($key = request()->key){
-            $query = $query->where('name_category','like','%'.$key.'%');
+            $query = $query->where('name','like','%'.$key.'%');
         }
         return $query;
     }

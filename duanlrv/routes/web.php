@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
+    Route::post("/select-delivery", "infoController@select_delivery");
+
     Route::resources([
         'menu' => 'menuController',
         'category' => 'categoryController',

@@ -303,6 +303,7 @@
 
     <!--Local Stuff-->
     @yield('js')
+
     <script>
         jQuery(document).ready(function($) {
             "use strict";
