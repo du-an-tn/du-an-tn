@@ -30,18 +30,18 @@
 <div class="content" style="background:#fff;">
     <div class="col-sm-12 form-nhap" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius:15px">
         <div class="card-header">
-            <center><strong class="card-title"><h3>Nhập thú cưng</h3></strong></center>
+            <center><strong class="card-title"><h3>FORM NHẬP SẢN PHẨM</h3></strong></center>
         </div>
         <form action="{{route('qlthucung.store')}}" method="POST" enctype="multipart/form-data">
          @csrf
         <div class="form-group">
-            <label for="exampleInputEmail1">Tên thú cưng *</label>
+            <label for="exampleInputEmail1">tiêu đề sản phẩm*</label>
             <input type="text" class="form-text" name="title" id="name"  placeholder="Nhập Tên thú cưng...">
         </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputEmail4">slug thú cưng</label>
-            <input type="text" class="form-text" name="slug"   placeholder="Nhập Tên menu...">
+            <label for="inputEmail4">slug sản phẩm</label>
+            <input type="text" class="form-text" name="slug" id="slug"  placeholder="Nhập Tên menu...">
         </div>
         <div class="form-group col-md-6">
                 <label for="exampleFormControlFile1">images</label>
@@ -57,25 +57,13 @@
         <input type="text" class="form-text" name="discount" placeholder="nhập giá giảm...">
     </div>
     <div class="form-row">
-            <div class="form-group col-md-12">
-                <label>Menu</label>
-                <!-- <select class="form-control input-sm m-bot15 atison city" name="city" id="city"  >
-                    <option value="">-----{{__('Chọn Thành Phố')}}-----</option>
-                    @foreach($text as $key => $ci)
-                    <option value="{{$ci->id}}">{{$ci->name_nav}}</option>
-                    @endforeach
-                </select> -->
-                <select class="form-text choose input-sm city" name="id_menu" id="city">
-                  <option value="">-----{{__('Chọn menu')}}-----</option>
-                    @foreach($text as $t)
-                    <option class="op-text" value="{{$t->id}}">{{$t->name_nav}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
                 <label>Danh mục đăng tin</label>
-                <select class="form-text input-sm choose province" name="id_category" id="province">
-                    <option class="op-text">-----{{__('Chọn danh mục')}}-----</option>
+                <select class="form-text" name="id_category">
+
+                    @foreach($danhmuc as $muc)
+                    <option class="op-text" value="{{$muc->id}}">{{$muc->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -88,17 +76,17 @@
             <label>Tình trạng sức khỏe</label>
             <input type="text" class="form-text" name="status" placeholder="nhập tình trạng sức khỏe...">
         </div>
-        <div class="form-group col-md-3">
+        <!-- <div class="form-group col-md-4">
             <label>Xét duyệt trạng thái</label>
-            <select class="form-text" name="id_status">
+            <select class="form-text" name="id_trang_thai">
                 @foreach($xetduyet as $xet)
                 <option class="op-text" value="{{$xet->id}}">{{$xet->name_type}}</option>
                 @endforeach
             </select>
-        </div>
-        <div class="form-group col-md-3">
+        </div> -->
+        <div class="form-group col-md-6">
             <label>Giống thú cưng</label>
-            <input type="text" class="form-text" name="render"  placeholder="Đực, cái..." >
+            <input type="text" class="form-text" name="render"  placeholder="chó,mèo..." >
         </div>
     </div>
     <div class="form-group col-md-12" style="background-color: #fff; color: #000;">
@@ -126,9 +114,8 @@
 @section('js')
 <script src="{{asset('adm/assets/js/slug.js')}}"></script>
 
-
   <!--summernote-->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
 <script>
     jQuery(document).ready(function($) {
         // Summernote
@@ -136,40 +123,5 @@
             height:200,
         });
     });
-    
 </script>
-
-<script type="">
-jQuery(document).ready(function($) {
-
-    $('.choose').on('change', function() {
-        var action = $(this).attr('id');
-        var ma_id = $(this).val();
-        var _token = $('input[name="_token"]').val();
-
-        // alert(action);
-        // alert(ma_id);
-        // alert(_token);
-        var result = '';
-
-        if (action == 'city') {
-            result = 'province';
-        }
-        //  else {
-        //     result = 'wards';
-        // }
-        $.ajax({
-            url: '{{url('/admin/select-delivery')}}',
-            method: 'post',
-            data: {action: action, ma_id: ma_id, _token: _token},
-            success: function(data) {
-                $('#' + result).html(data);
-            }
-        });
-    });
-});
-</script>
-
-
-
 @stop()

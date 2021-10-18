@@ -1,7 +1,28 @@
 @extends('layouts.admin')
+@section('css')
+ <style>
+     .pagination{
+         padding: 0;
+     }
+ </style>
+@endsection
 @section('main')
     <div class="content">
-        <div class="card">
+    <div class="col-md-12">
+        <form action="">
+            @csrf
+        <div class="form-group">
+            <label><strong>lọc danh sách</strong></label>
+            <select name="sort" id="sort" class="form-control">
+                <option value="">lọc danh sách</option>
+            @foreach($danhmuc as $loc)
+            <option value="{{Request::url()}}?sort_by={{$loc->slug}}">{{$loc->name_nav}}</option>
+            @endforeach
+            </select>
+        </div>
+        </form>
+    </div>
+        <div class="card cart-bg">
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-6">
@@ -41,7 +62,7 @@
                             <tr>
                                 <td class="serial">{{$dt->id}}</td>
                                 <td class="avatar">
-                                    <span>{{$dt->name_category}}</span>
+                                    <span>{{$dt->name}}</span>
                                 </td>
                                 <td>
                                     <span>{{$dt->cat->name_nav}}</span>
@@ -86,6 +107,21 @@
                     $('form#form-delete').submit();
                 }
             });
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function($) {
+            $('#sort').on('change', function() {
+                var url = $(this).val();
+                // alert(url);
+                if(url){
+                    window.location = url;
+                }
+                return false;
+            });
+
+
+
         });
     </script>
 @stop()

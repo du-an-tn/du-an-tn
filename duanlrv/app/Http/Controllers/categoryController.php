@@ -23,7 +23,22 @@ class categoryController extends Controller
     public function index()
     {
         $data = $this->category->getAll();
-        return view('admin.category.index', compact('data'));
+        $danhmuc = navmenu::orderBy('id', 'ASC')->select('id','name_nav','slug')->get();
+
+        if(isset($_GET['sort_by'])){
+            $sort_by = $_GET['sort_by'];
+        }
+
+
+
+
+
+
+
+
+
+
+        return view('admin.category.index', compact('data','danhmuc'));
     }
 
     /**

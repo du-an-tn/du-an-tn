@@ -2503,3 +2503,41 @@ footer.site-footer {
     right: 20px !important; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+
+
+
+
+
+.cart-bg{
+  background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
+}
+.namedm{
+   font-size:15px;
+   font-weight: bold;
+   color: blue;
+}
+.model-ct{
+  background: linear-gradient(45deg, #abe 0%, #7062f0 100%);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  font-weight: bold;
+  color: #fff;
+}
+.model-ct p{
+  color: #fff; 
+}
+.form-gr-img{
+   background-color: #fff;
+   width: 100%;
+   height: 200px;
+   overflow: hidden;
+}
+.form-gr-img img:hover{
+  transition: 1s;
+  transform: scale(1.2);
+}
+.text-info{
+   color: #002661 !important;
+   font-weight: bold;
+}

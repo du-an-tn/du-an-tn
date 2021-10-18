@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\trangthai;
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -34,7 +35,9 @@ class productController extends Controller
      */
     public function create()
     {
-        //
+        $xetduyet = trangthai::orderBy('id', 'ASC')->select('id','name_type')->get();
+        $danhmuc = category::orderBy('id', 'ASC')->select('id','name')->get();
+        return view('admin.qlsanpham.create', compact('xetduyet','danhmuc'));
     }
 
     /**

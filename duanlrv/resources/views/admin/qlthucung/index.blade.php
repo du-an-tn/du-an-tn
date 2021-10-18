@@ -1,38 +1,6 @@
 @extends('layouts.admin')
 @section('css')
- <style>
-     .cart-bg{
-        background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
-     }
-     .namedm{
-         font-size:15px;
-         font-weight: bold;
-         color: blue;
-     }
-     .model-ct{
-        background: linear-gradient(45deg, #abe 0%, #7062f0 100%);
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        font-weight: bold;
-        color: #fff;
-     }
-     .model-ct p{
-        color: #fff; 
-     }
-     .form-gr-img{
-         background-color: #fff;
-         width: 100%;
-         height: 200px;
-         overflow: hidden;
-     }
-     .form-gr-img img:hover{
-        transition: 1s;
-        transform: scale(1.2);
-     }
-     .text-info{
-         color: #002661 !important;
-         font-weight: bold;
-     }
- </style>
+ 
 @endsection
 @section('main')
     <div class="content">
@@ -82,9 +50,9 @@
                                     <span>{{$dt->slug}}</span>
                                 </td>
                                 <td>
-                                    @if($dt->id_trang_thai == 1)
+                                    @if($dt->id_id_status == 1)
                                         <span class="badge badge-complete">thành công</span>
-                                    @elseif ($dt->id_trang_thai == 2)
+                                    @elseif ($dt->id_status == 2)
                                         <span class="badge badge-warning">chưa xét duyệt</span>
                                     @else
                                         <span class="badge badge-danger">đã hủy</span>
@@ -113,7 +81,7 @@
                                                         <div class="col-6">
                                                             <p><span class="text-info">Danh mục đăng :</span> {{$dt->typepost->name_type}}</p>
                                                             <p><span class="text-info">Thuộc menu :</span> {{$dt->navmenu->name_nav}}</p>
-                                                            <p><span class="text-info">loại :</span> {{$dt->category->name_category}}</p>
+                                                            <p><span class="text-info">loại :</span> {{$dt->category->name}}</p>
                                                         </div>
                                                         <div class="col-6">
                                                             <p><span class="text-info">người đăng :</span> {{$dt->price}}</p>
@@ -128,12 +96,12 @@
                                                     <div class="col-6">
                                                         <p><span class="text-info">Giá :</span> {{$dt->price}}</p>
                                                         <p><span class="text-info">giá giảm :</span> {{$dt->navmenu->name_nav}}</p>
-                                                        <p><span class="text-info">trạng thái đăng :</span> {{$dt->trangthai->name_type}}</p>
+                                                        <p><span class="text-info">trạng thái đăng :</span> {{$dt->hastrangthai->name_type}}</p>
                                                     </div>
                                                     <div class="col-6">
                                                         <p><span class="text-info">Tình trạng :</span> {{$dt->status}}</p>
-                                                        <p><span class="text-info">Độ tuổi :</span> {{$dt->navmenu->age}}</p>
-                                                        <p><span class="text-info">Giống:</span> {{$dt->category->name_category}}</p>
+                                                        <p><span class="text-info">Độ tuổi :</span> {{$dt->age}}</p>
+                                                        <p><span class="text-info">Giống:</span> {{$dt->render}}</p>
                                                     </div>
                                                     </div>
                                                 </div>

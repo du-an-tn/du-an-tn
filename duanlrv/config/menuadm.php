@@ -63,7 +63,7 @@ return [
             [
                 'iconnew' => 'fa fa-indent',
                 'label' => 'Thêm sản phẩm',
-                'route' => 'qlthucung.index'
+                'route' => 'qlsanpham.create'
             ],
             // [
             //     'iconnew' => 'fa fa-pagelines',
@@ -90,19 +90,19 @@ return [
                 ],
         ]
     ],
-    [
-        'label' => 'QL phối giống',
-        'route' => 'qlthucung.index',
-        'icon' => 'fa fa-pagelines',
-        'items' =>
-        [
-            [
-            'iconnew' => 'fa fa-indent',
-            'label' => 'Danh sách Phối giống',
-            'route' => 'qlthucung.index'
-            ],
-        ]
-    ],
+    // [
+    //     'label' => 'QL phối giống',
+    //     'route' => 'qlthucung.index',
+    //     'icon' => 'fa fa-pagelines',
+    //     'items' =>
+    //     [
+    //         [
+    //         'iconnew' => 'fa fa-indent',
+    //         'label' => 'Danh sách Phối giống',
+    //         'route' => 'qlthucung.index'
+    //         ],
+    //     ]
+    // ],
     [
         'label' => 'Tin Tức',
         'route' => 'admin.dashboard',
