@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PETSHOP.VN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- carousel -->
+    <link rel="stylesheet" href="{{asset('/font-end/css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('/font-end/css/owl.theme.default.min.css')}}">
 
+<<<<<<< HEAD
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -20,7 +29,7 @@
             }
         </style>
     </head>
-    <body class="antialiased">sdasdasdsadqwe
+    <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -55,7 +64,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                    sadeqweqwrqweLaravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
                                 </div>
                             </div>
                         </div>
@@ -97,36 +106,257 @@
                                     Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
                                 </div>
                             </div>
+=======
+    <link rel="stylesheet" href="{{asset('/font-end/css/style.css')}}">
+</head>
+<body class="">
+	<header class="container-fluid">
+    <div class="col-sm-12 repon-ipad">
+      <center><a class="navbar-brand" href="#"><img src="{{asset('/font-end/images/logo/logow.png')}}" width="250px" height="70px"></a></center>
+    </div>
+		<nav class="navbar navbar-expand-lg navbar-lightd text-repon">
+	  	<a class="navbar-brand" href="#"><img src="images/logo/logow.png" width="250px" height="70px"></a>
+	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+        <div class="collapse navbar-collapse khung-timkiem" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 box-search" type="search" placeholder="Tìm kiếm trên petshop.vn" aria-label="Search">
+                    <div class="testdrop">
+                        <p onclick="hamDropdown()" class="my-2 my-sm-0 timkiem btn">thú cưng <i class="fas fa-angle-down"></i></p>
+                        <div class="box-chon">
+                                <a href="#">Thú cưng</a>
+                                <a href="#">sản phẩm</a>
+>>>>>>> 8ecadfde497657c1d05128e5b0955d16b679f9fe
                         </div>
                     </div>
+                    </form>
+                </ul>
+                <span class="navbar-text">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item khung-li">
+                            <a class="nav-link mn-text mt-1" href="#">
+                                <i class="far fa-newspaper" style="font-size:17px; color:#FFAE19"></i>
+                            </a>
+                            <a href="" class="a-tin">Tin tức</a>
+                        </li>
+                        <li class="nav-item khung-li">
+                            <a class="nav-link mn-text mt-1" href="#">
+                                <i class="far fa-clipboard" style="font-size:17px; color:#FFAE19; margin-left: 3px;"></i>
+                            </a>
+                            <a href="" class="a-tin">Đăng bài</a>
+                            <ul class="hover-bd">
+                                <li><a class="hv-a" href="">Đăng tin thú cưng</a></li>
+                                <li><a class="hv-a" href="">Đăng tin sản phẩm</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item khung-li">
+                            <a class="nav-link hd-msg mn-text mt-1" href="#">
+                                <img src="images/avatar/dog1.jpg" alt="" width="35px" height="35px">
+                            </a>
+                            <a href="" class="a-tin">Khánh Duy</a>
+                            <ul class="hover-user">
+                                <li>
+                                    <i class="far fa-address-card"></i>
+                                    <a class="hv-a" href="">Thông tin tài khoản</a>
+                                
+                                </li>
+                                <li>
+                                    <i class="far fa-clone"></i>
+                                    <a class="hv-a" href="">Lịch sử giao dịch</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paw"></i>
+                                    <a class="hv-a" href="">Tin đăng thú cưng</a>
+                                </li>
+                                <li>
+                                    <i class="far fa-clipboard"></i>
+                                    <a class="hv-a" href="">Tin đăng sản phẩm</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <a class="hv-a" href="">Giỏ hàng của bạn</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <a class="hv-a" href="">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link navdn active" href="#"><i class="far fa-user" style="font-size:17px"></i> Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navdk active" href="#"><i class="fas fa-user-plus" style="font-size:17px"></i> Đăng ký</a>
+                        </li> -->
+                    </ul>
+                </span>
+            </div>
+        </nav>
+    <div class="col-lg-12">
+        <ul class="nav menu-title">
+
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Chó<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                <li class="hrv-img">
+                    <img src="{{asset('/font-end/images/hinh-menu/dog.8d179361.gif')}}" alt="" width="100%" height="200px">
+                </li>
+                <ul class="ul-hrcon">
+                @foreach($category as $key => $category)
+                  <li><a href="">{{$category->name_category}}</a></li>
+                @endforeach
+                </ul>
+            </ul>
+            </li>
+            
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Mèo<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                  <li class="hrv-img">
+                      <img src="{{asset('/font-end/images/hinh-menu/cat.862fddc4.gif')}}" alt="" width="100%" height="200px">
+                  </li>
+                  <ul class="ul-hrcon">
+                    <li><a href="">Mèo Sphynx</a></li>
+                    <li><a href="">Mèo Ragdoll</a></li>
+                    <li><a href="">Mèo xiêm</a></li>
+                    <li><a href="">Mèo Anh lông dài</a></li>
+                    <li><a href="">Mèo Anh lông ngắn</a></li>
+                    <li><a href="">Mèo ba tư</a></li>
+                    <li><a href="">Mèo Scottish fold</a></li>
+                    <li><a href="">Mèo Mainecoon</a></li>
+                    <li><a href="">Mèo Nga</a></li>
+                    <li><a href="">Mèo Munckin</a></li>
+                    <li><a href="">Giống mèo khác</a></li>
+                  </ul>
+              </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Chim cảnh<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                <li class="hrv-img">
+                    <img src="{{asset('/font-end/images/hinh-menu/bird.01a45ffa.gif')}}" alt="" width="100%" height="200px">
+                </li>
+                <ul class="ul-hrcon">
+                  <li><a href="">Vẹt - Yến phụng</a></li>
+                  <li><a href="">Chích chòe</a></li>
+                  <li><a href="">Chào mào</a></li>
+                  <li><a href="">Bìm bịp</a></li>
+                  <li><a href="">Chim cảnh khác</a></li>
+                </ul>
+            </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+              <a class="nav-link" href="#">Cá cảnh<i class="fas fa-angle-down"></i></a>
+              <ul class="hrv-menu">
+                <li class="hrv-img">
+                    <img src="{{asset('/font-end/images/hinh-menu/fish.6c4bafb9.gif')}}" alt="" width="100%" height="200px">
+                </li>
+                <ul class="ul-hrcon">
+                  <li><a href="">Cá Rồng</a></li>
+                  <li><a href="">Cá koi</a></li>
+                  <li><a href="">Cá la hán</a></li>
+                  <li><a href="">Cá cảnh khác</a></li>
+                </ul>
+            </ul>
+            </li>
+            <li class="nav-item mm-chinh">
+                <a class="nav-link" href="#">thú cưng khác<i class="fas fa-angle-down"></i></a>
+                <ul class="hrv-menu">
+                    <li class="hrv-img">
+                        <img src="{{asset('/font-end/images/hinh-menu/rabbit.46db3c99.gif')}}" alt="" width="100%" height="200px">
+                    </li>
+                    <ul class="ul-hrcon">
+                      <li><a href="">Bò sát</a></li>
+                      <li><a href="">hamster</a></li>
+                      <li><a href="">nhím</a></li>
+                      <li><a href="">Thỏ cảnh</a></li>
+                      <li><a href="">Thú cưng khác</a></li>
+                    </ul>
+                </ul>
+              </li>
+          </ul>
+    </div>
+	</header>
+
+    <!-- end header -->
+    <!-- slide -->
+    @yield('content')
+    <!-- footer -->
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-sm-4">
+                <div class="ft-hinh">
+                    <img src="images/logo/logow.png" alt="" width="200px" height="80px">
                 </div>
-
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Shop
-                            </a>
-
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                                Sponsor
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </div>
+                <div class="vct">
+                    <h3>Về chúng tôi</h3>
+                    <ul>
+                        <li><a href="">giới thiệu</a></li>
+                        <li><a href="">Tuyển dụng</a></li>
+                        <li><a href="">quy chế hoạt động</a></li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>Hỗ trợ khách hàng</h3>
+                <ul>
+                    <li><a href="">Liên hệ hỗ trợ</a></li>
+                    <li><a href="">những câu hỏi thường gặp</a></li>
+                    <li><a href="">Chính sách bảo mật</a></li>
+                    <li><a href="">Cơ chế giải quyết khiếu nại</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>fanpage</h3>
+                
+            </div>
         </div>
-    </body>
+    </footer>
+    <section class="container-fluid header-repon">
+      <div class="row">
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-paw icon-rp"></i></a></center>
+        </div>
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-user-shield icon-rp"></i></a></center>
+        </div>
+        <div class="box-rp">
+          <center class="box-rp-item">
+            <a href="#" class="a-dangtin">
+            <i class="fas fa-file-alt icon-rp" style="margin-top: 30px;"></i>
+            <br> Đăng bài</a>
+          </center>
+        </div>
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-newspaper icon-rp"></i></a></center>
+        </div>
+        <div class="box-rp">
+          <center><a href="#"><i class="fas fa-align-justify icon-rp"></i></a></center>
+        </div>
+      </div>
+    </section>
+
+</body>
 </html>
+
+<script src="{{asset('/font-end/js/dropdown.js')}}"></script>
+
+<script src="{{asset('/font-end/js/jquery.min.js')}}"></script>
+<script src="{{asset('/font-end/js/owl.carousel.js')}}"></script>
+<script>
+var owl = $('.owl-carousel');
+owl.owlCarousel({
+    items:1,
+    loop:true,
+    margin:10,
+    autoPlay: true,
+    slideSpeed : 1000,
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
