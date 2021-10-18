@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Repositories\danhmuc\categoryInterface;
+use Session;
 
 class categoryController extends Controller
 {
@@ -62,7 +63,18 @@ class categoryController extends Controller
     {
         //
     }
+    public function active_category_product($category_product_id){
 
+        DB::table('category')->where('id',$category_product_id)->update(['hidden' => 1]);
+        Session::put('message','Kích hoạt danh mục thành công');
+        return redirect()->route('category.index')->with('success', 'Kích hoạt danh mục thành công');
+    }
+    public function unactive_category_product($category_product_id){
+
+        DB::table('category')->where('id',$category_product_id)->update(['hidden' => 0]);
+        Session::put('message','Không kích hoạt danh mục thành công');
+        return redirect()->route('category.index')->with('error', 'Không kích hoạt danh mục thành công');
+    }
     /**
      * Show the form for editing the specified resource.
      *
