@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\navmenu;
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -24,18 +25,19 @@ class categoryController extends Controller
     {
         $data = $this->category->getAll();
         $danhmuc = navmenu::orderBy('id', 'ASC')->select('id','name_nav','slug')->get();
+        foreach($danhmuc as $key => $dm) {
+            $nav_id = $dm->id;
+        
 
-        if(isset($_GET['sort_by'])){
-            $sort_by = $_GET['sort_by'];
+            if(isset($_GET['sort_by'])){
+                $sort_by = $_GET['sort_by'];
+
+
+                if($sort_by == $dm->slug){
+                    $data = category::with('phandanhmuc')->where('id_nav', $dm->id)->orderBy('id', 'ASC')->search()->paginate(10);
+                }
+            }
         }
-
-
-
-
-
-
-
-
 
 
         return view('admin.category.index', compact('data','danhmuc'));

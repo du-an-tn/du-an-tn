@@ -1,0 +1,118 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    font-family:  Roboto, sans-serif;
+}
+.text1{
+    text-align: center;
+    font-size: 48px;
+    color: orange;
+    font-weight: 700;
+}
+.text2{
+    padding: 10px;
+    font-size: 1.2vw;
+    text-align: justify;
+}
+.text3{
+    font-size: 1.4vw;
+    padding: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+.text4{
+    text-align: center;
+    font-size: 1vw;
+}
+.boder{
+    border-right: orange dotted 2px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.box{
+    min-height: 160px;
+    margin-top: 20px;
+    width: 100%;
+}
+.color{
+    color: orange;
+}
+.mt{
+    margin-top: 40px;
+}
+.mb{
+    margin-bottom: 40px;
+}
+.center{
+    margin-left: 50%;
+}
+.box-form{
+    padding: 10px 10px 0px 10px;
+    border-radius: 2px;
+    box-shadow: 0 10px 35px 0 rgb(0 0 0 / 10%);
+}
+.option{
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.fa-phone-alt, .fa-envelope,.fa-clock,.fa-map-marker-alt{
+    color: orange;
+    font-size: 50px;
+    
+}
+.fas{
+    text-align: center;
+}
+.col-md-12{
+    display: table-cell;
+  
+}
+.map{
+    height: 670px;
+}
+@media only screen and (max-width:480px) {
+    .text4{
+        text-align: center;
+        font-size: 18px;
+    }
+    .text3{
+        font-size:20px;
+        padding: 10px;
+        font-weight: 500;
+        text-align: center;
+    }
+    .text1{
+        text-align: center;
+        font-size: 25px;
+        color: orange;
+        font-weight: 700;
+    }
+    .text2{
+        padding: 10px;
+        font-size: 18px;
+        text-align: justify;
+    }
+    .h5{
+        padding: 10px;
+    }
+    .boder{
+        border-right: none ;
+        border-bottom: orange dotted 2px;
+    }
+    .map{
+        width: 100%;
+        height: 400px;
+        display: block;
+        margin-bottom: 40px;
+    }
+    .center{
+        margin:0 auto;
+        text-align: center;
+    }
+}

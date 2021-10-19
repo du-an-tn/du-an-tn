@@ -1,9 +1,30 @@
 @extends('layouts.admin')
 @section('css')
- 
+ <style>
+     .form-trum{
+        background-image: linear-gradient( 135deg, #CE9FFC 10%, #7367F0 100%);
+         padding:10px 0px;
+         border-radius:10px;
+         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+     }
+ </style>
 @endsection
 @section('main')
     <div class="content">
+    <div class="col-md-12">
+        <form action="">
+            @csrf
+        <div class="form-group">
+            <label><strong>quản lý danh sách</strong></label>
+            <select name="sort" id="sort" class="form-control">
+                <option value="{{Request::url()}}">Tất cả danh sách</option>
+            @foreach($danhmuc as $loc)
+            <option value="{{Request::url()}}?sort_by={{$loc->slug}}">{{$loc->name_nav}}</option>
+            @endforeach
+            </select>
+        </div>
+        </form>
+    </div>
         <div class="card cart-bg">
             <div class="card-header">
                 <div class="row">
@@ -32,7 +53,7 @@
                             <th class="serial">#</th>
                             <th class="avatar">Tên bài đăng</th>
                             <th>slug</th>
-                            <th>Trạng thái bài đăng</th>
+                            <th>Trạng thái</th>
                             <th>xem chi tiết</th>
                             <th>Action</th>
                             <!-- <th>Quantity</th> -->
@@ -50,7 +71,7 @@
                                     <span>{{$dt->slug}}</span>
                                 </td>
                                 <td>
-                                    @if($dt->id_id_status == 1)
+                                    @if($dt->id_status == 1)
                                         <span class="badge badge-complete">thành công</span>
                                     @elseif ($dt->id_status == 2)
                                         <span class="badge badge-warning">chưa xét duyệt</span>
@@ -59,7 +80,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="badge badge-warning" data-toggle="modal" data-target=".bd-example-modal-lg{{$dt->id}}">chi tiết <i class="fa fa-mail-reply"></i></span>
+                                    <span class="badge badge-pending" data-toggle="modal" data-target=".bd-example-modal-lg{{$dt->id}}">chi tiết <i class="fa fa-mail-reply"></i></span>
                                 </td>
                                 <td>
                                     <a href="{{route('qlthucung.edit',$dt->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
@@ -77,32 +98,28 @@
                                                     <div class="form-group form-gr-img">
                                                         <img src="{{asset('uploads/'.$dt->image)}}" alt="" width="100%" height="200px">
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
+                                                    <div class="form-group">
+                                                    <textarea class="description_t" name="" cols="43" rows="9" disabled>{{$dt->description}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group form-trum">
+                                                        <div class="col-12">
                                                             <p><span class="text-info">Danh mục đăng :</span> {{$dt->typepost->name_type}}</p>
                                                             <p><span class="text-info">Thuộc menu :</span> {{$dt->navmenu->name_nav}}</p>
                                                             <p><span class="text-info">loại :</span> {{$dt->category->name}}</p>
                                                         </div>
-                                                        <div class="col-6">
-                                                            <p><span class="text-info">người đăng :</span> {{$dt->price}}</p>
-                                                            <p><span class="text-info">thời gian đăng :</span> {{$dt->time}} ngày</p>
-                                                            <p><span class="text-info">lượt xem :</span> {{$dt->view}}</p>
+                                                        <div class="col-12">
+                                                            <p><span class="text-info">Giá :</span> {{number_format($dt->price, 0, '.', '.')}} VNĐ</p>
+                                                            <p><span class="text-info">giá giảm :</span> {{number_format($dt->discount, 0, '.', '.')}} VNĐ</p>
+                                                            <p><span class="text-info">trạng thái đăng :</span> {{$dt->hastrangthai->name_type}}</p>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <textarea name="" cols="40" rows="8" disabled>{{$dt->description}}</textarea>
-                                                    <div class="row">
-                                                    <div class="col-6">
-                                                        <p><span class="text-info">Giá :</span> {{$dt->price}}</p>
-                                                        <p><span class="text-info">giá giảm :</span> {{$dt->navmenu->name_nav}}</p>
-                                                        <p><span class="text-info">trạng thái đăng :</span> {{$dt->hastrangthai->name_type}}</p>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <p><span class="text-info">Tình trạng :</span> {{$dt->status}}</p>
-                                                        <p><span class="text-info">Độ tuổi :</span> {{$dt->age}}</p>
-                                                        <p><span class="text-info">Giống:</span> {{$dt->render}}</p>
-                                                    </div>
+                                                        <div class="col-12">
+                                                            <p><span class="text-info">Tình trạng :</span> {{$dt->status}}</p>
+                                                            <p><span class="text-info">Độ tuổi :</span> {{$dt->age}}</p>
+                                                            <p><span class="text-info">Giống:</span> {{$dt->render}}</p>
+                                                            <p><span class="text-info">lượt xem :</span> {{$dt->view}}</p>                                                        
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,6 +147,9 @@
 
 
 @section('js')
+<script src="{{asset('adm/assets/js/danhsach.js')}}"></script>
+
+
     <script>
         jQuery(document).ready(function($) {
             $('.btndelete').click(function(ev) {
