@@ -38,6 +38,7 @@
             <label for="exampleInputEmail1">Tên thú cưng *</label>
             <input type="text" class="form-text" name="title" id="name"  placeholder="Nhập Tên thú cưng...">
         </div>
+        12321321321
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">slug thú cưng</label>
