@@ -36,6 +36,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\qlsanpham\qlsanphamInterface::class,
             \App\Repositories\qlsanpham\qlsanphamReponsitory::class,
         );
+        $this->app->singleton(
+            // tin tức
+            \App\Repositories\news\newsInterface::class,
+            \App\Repositories\news\newsReponsitory::class,
+        );
     }
 
     /**

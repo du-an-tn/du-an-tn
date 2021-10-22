@@ -173,7 +173,6 @@ class productController extends Controller
     {
         $delete = $this->qlsanpham->find($id);
         $delete->delete();
-        dd($delete);
-        // return redirect()->route('qlsanpham.index')->with('success', 'xóa thành công');
+        return redirect()->route('qlsanpham.index')->with('success', 'xóa thành công');
     }
 }
