@@ -9,7 +9,7 @@ class information extends Model
 {
     use HasFactory;
     protected $table = 'information_post';
-    protected $fillable = ['id','type_post','title','id_menu','slug','id_category','age','status','render','price','discount','quantity','description','image','id_status','hidden'];
+    protected $fillable = ['id','type_post','title','id_menu','slug_product','id_category','age','status','render','price','discount','quantity','description','image','id_status','hidden'];
     public $timestamps = FALSE;
 
     public function typepost()

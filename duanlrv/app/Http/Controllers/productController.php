@@ -175,4 +175,17 @@ class productController extends Controller
         $delete->delete();
         return redirect()->route('qlsanpham.index')->with('success', 'xóa thành công');
     }
+
+    //font-end
+    public function chi_tiet_san_pham($slug){
+        $category = DB::table('categories')->where('hidden','1')->where('id_nav','1')->orderby('id','desc')->get();
+        $category_meo= DB::table('categories')->where('hidden','1')->where('id_nav','6')->orderby('id','desc')->get();
+        $category_ca= DB::table('categories')->where('hidden','1')->where('id_nav','3')->orderby('id','desc')->get();
+        $category_chim= DB::table('categories')->where('hidden','1')->where('id_nav','4')->orderby('id','desc')->get();
+        $category_khac= DB::table('categories')->where('hidden','1')->where('id_nav','5')->orderby('id','desc')->get();
+        $detail_product = DB::table('information_post')
+        ->join('categories','categories.id','information_post.id_category')
+        ->where('slug_product',$slug)->get();
+        return view('pages.sanpham.detail')->with(compact('category','category_meo','category_ca','category_chim','category_khac','detail_product'));
+    }
 }
