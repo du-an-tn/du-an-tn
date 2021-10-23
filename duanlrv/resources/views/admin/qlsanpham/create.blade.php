@@ -40,8 +40,8 @@
         </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputEmail4">slug sản phẩm</label>
-            <input type="text" class="form-text" name="slug" id="slug"  placeholder="Nhập Tên menu...">
+            <label for="inputEmail4">slug sản phẩm <span style="color:red">slug được nhập tự động</span></label>
+            <input type="text" class="form-text" name="slug"  placeholder="Nhập Tên menu..." disabled>
         </div>
         <div class="form-group col-md-6">
                 <label for="exampleFormControlFile1">images</label>
@@ -56,37 +56,43 @@
         <label for="inputAddress2">giá giảm (nếu có)</label>
         <input type="text" class="form-text" name="discount" placeholder="nhập giá giảm...">
     </div>
+    <div class="form-group">
+        <label for="inputZip">tình trạng sản phẩm</label>
+        <input type="text" class="form-text" name="quantity"  placeholder="Còn hàng | hết hàng..." >
+    </div>
     <div class="form-row">
-            <div class="form-group col-md-3">
-                <label>Danh mục đăng tin</label>
-                <select class="form-text" name="id_category">
-
-                    @foreach($danhmuc as $muc)
-                    <option class="op-text" value="{{$muc->id}}">{{$muc->name}}</option>
+            <div class="form-group col-md-6">
+                <label>Menu</label>
+                <select class="form-text choose input-sm city" name="id_menu" id="city">
+                  <option value="">-----{{__('Chọn menu')}}-----</option>
+                    @foreach($text as $t)
+                    <option class="op-text" value="{{$t->id}}">{{$t->name_nav}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputZip">Độ tuổi</label>
-                <input type="text" class="form-text" name="age"  placeholder="nhập độ tuổi..." >
+                <label>Danh mục đăng tin <span style="color:red">(vui lòng chọn menu trước)</span></label>
+                <select class="form-text input-sm choose province" name="id_category" id="province">
+                    <option class="op-text">-----{{__('Chọn danh mục')}}-----</option>
+                </select>
             </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Tình trạng sức khỏe</label>
-            <input type="text" class="form-text" name="status" placeholder="nhập tình trạng sức khỏe...">
+        <div class="form-group col-md-4">
+            <label>nhãn hiệu</label>
+            <input type="text" class="form-text" name="brand" placeholder="nhập nhãn hiệu sản phẩm">
         </div>
-        <!-- <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
+            <label for="inputZip">Số lượng sản phẩm</label>
+            <input type="text" class="form-text" name="quantity"  placeholder="nhập số lượng sản phẩm..." >
+        </div>
+        <div class="form-group col-md-4">
             <label>Xét duyệt trạng thái</label>
-            <select class="form-text" name="id_trang_thai">
+            <select class="form-text" name="id_status">
                 @foreach($xetduyet as $xet)
                 <option class="op-text" value="{{$xet->id}}">{{$xet->name_type}}</option>
                 @endforeach
             </select>
-        </div> -->
-        <div class="form-group col-md-6">
-            <label>Giống thú cưng</label>
-            <input type="text" class="form-text" name="render"  placeholder="chó,mèo..." >
         </div>
     </div>
     <div class="form-group col-md-12" style="background-color: #fff; color: #000;">
@@ -124,4 +130,36 @@
         });
     });
 </script>
+
+<script type="">
+jQuery(document).ready(function($) {
+
+    $('.choose').on('change', function() {
+        var action = $(this).attr('id');
+        var ma_id = $(this).val();
+        var _token = $('input[name="_token"]').val();
+
+        // alert(action);
+        // alert(ma_id);
+        // alert(_token);
+        var result = '';
+
+        if (action == 'city') {
+            result = 'province';
+        }
+        //  else {
+        //     result = 'wards';
+        // }
+        $.ajax({
+            url: '{{url('/admin/select-delivery')}}',
+            method: 'post',
+            data: {action: action, ma_id: ma_id, _token: _token},
+            success: function(data) {
+                $('#' + result).html(data);
+            }
+        });
+    });
+});
+</script>
+
 @stop()

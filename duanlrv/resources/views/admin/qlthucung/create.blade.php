@@ -60,12 +60,6 @@
     <div class="form-row">
             <div class="form-group col-md-12">
                 <label>Menu</label>
-                <!-- <select class="form-control input-sm m-bot15 atison city" name="city" id="city"  >
-                    <option value="">-----{{__('Chọn Thành Phố')}}-----</option>
-                    @foreach($text as $key => $ci)
-                    <option value="{{$ci->id}}">{{$ci->name_nav}}</option>
-                    @endforeach
-                </select> -->
                 <select class="form-text choose input-sm city" name="id_menu" id="city">
                   <option value="">-----{{__('Chọn menu')}}-----</option>
                     @foreach($text as $t)

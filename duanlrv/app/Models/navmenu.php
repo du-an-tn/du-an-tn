@@ -16,6 +16,14 @@ class navmenu extends Model
     {
        return $this->hasMany(category::class,'id_nav','id');
     }
+    public function category()
+    {
+        return $this->hasMany('App\Models\category');
+    }
+    public function thucung()
+    {
+        return $this->hasMany('App\Models\qlthucung');
+    }
 
     public function scopeSearch($query)
     {

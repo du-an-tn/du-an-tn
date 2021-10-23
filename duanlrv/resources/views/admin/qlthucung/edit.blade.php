@@ -40,8 +40,8 @@
         </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputEmail4">slug thú cưng</label>
-            <input type="text" class="form-text" name="slug" id="slug" value="{{$qlthucung->slug}}" placeholder="Nhập Tên menu...">
+            <label for="inputEmail4">slug thú cưng <span style="color:red">Bỏ trống tự động nhập</span></label>
+            <input type="text" class="form-text" name="slug" id="" value="{{$qlthucung->slug}}" placeholder="nhập slug">
         </div>
         <div class="form-group col-md-6">
                 <label for="exampleFormControlFile1">images {{$qlthucung->image}}</label>
@@ -56,14 +56,20 @@
         <label for="inputAddress2">giá giảm (nếu có)</label>
         <input type="text" class="form-text" name="discount" value="{{$qlthucung->discount}}" placeholder="nhập giá giảm...">
     </div>
+    <div class="form-group">
+        <label>Menu</label>
+        <select class="form-text choose input-sm city" name="id_menu" id="city">
+            <option value="">-----{{__('Chọn menu')}}-----</option>
+            @foreach($text as $t)
+            <option class="op-text" value="{{$t->id}}">{{$t->name_nav}}</option>
+            @endforeach
+        </select>
+    </div>
     <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Danh mục đăng tin</label>
-                <select class="form-text" name="id_category">
-
-                    @foreach($danhmuc as $muc)
-                    <option class="op-text" value="{{$muc->id}}">{{$muc->name}}</option>
-                    @endforeach
+                <select class="form-text input-sm choose province" id="province" name="id_category">
+                    <option class="op-text" value="">-- chọn danh mục --</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -72,19 +78,19 @@
             </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label>Tình trạng sức khỏe</label>
             <input type="text" class="form-text" name="status" value="{{$qlthucung->status}}" placeholder="nhập tình trạng sức khỏe...">
         </div>
-        <!-- <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
             <label>Xét duyệt trạng thái</label>
-            <select class="form-text" name="id_trang_thai">
+            <select class="form-text" name="id_status">
                 @foreach($xetduyet as $xet)
                 <option class="op-text" value="{{$xet->id}}">{{$xet->name_type}}</option>
                 @endforeach
             </select>
-        </div> -->
-        <div class="form-group col-md-6">
+        </div>
+        <div class="form-group col-md-4">
             <label>Giống thú cưng</label>
             <input type="text" class="form-text" name="render" value="{{$qlthucung->render}}" placeholder="chó,mèo..." >
         </div>
@@ -123,5 +129,36 @@
             height:200,
         });
     });
+</script>
+
+<script type="">
+jQuery(document).ready(function($) {
+
+    $('.choose').on('change', function() {
+        var action = $(this).attr('id');
+        var ma_id = $(this).val();
+        var _token = $('input[name="_token"]').val();
+
+        // alert(action);
+        // alert(ma_id);
+        // alert(_token);
+        var result = '';
+
+        if (action == 'city') {
+            result = 'province';
+        }
+        //  else {
+        //     result = 'wards';
+        // }
+        $.ajax({
+            url: '{{url('/admin/select-delivery')}}',
+            method: 'post',
+            data: {action: action, ma_id: ma_id, _token: _token},
+            success: function(data) {
+                $('#' + result).html(data);
+            }
+        });
+    });
+});
 </script>
 @stop()

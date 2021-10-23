@@ -111,14 +111,14 @@ return [
         [
             [
             'iconnew' => 'fa fa-rss',
-            'label' => 'Xem Tin tức',
-            'route' => 'admin.dashboard'
+            'label' => 'QL Tin tức',
+            'route' => 'news.index'
             ],
             [
-            'iconnew' => 'fa fa-puzzle-piece',
-            'label' => 'Thêm tin tức',
-            'route' => 'admin.dashboard'
-            ],
+                'iconnew' => 'fa fa-rss',
+                'label' => 'Thêm Tin tức',
+                'route' => 'news.create'
+                ],
         ]
     ],
     [
