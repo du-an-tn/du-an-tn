@@ -28,7 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $category = DB::table('category')->where('hidden','1')->orderby('id','desc')->get();
-        return view('pages.home')->with('category',$category);
+        $category= DB::table('categories')->where('hidden','1')->where('id_nav','1')->orderby('id','desc')->get();
+        $category_meo= DB::table('categories')->where('hidden','1')->where('id_nav','6')->orderby('id','desc')->get();
+        $category_ca= DB::table('categories')->where('hidden','1')->where('id_nav','3')->orderby('id','desc')->get();
+        $category_chim= DB::table('categories')->where('hidden','1')->where('id_nav','4')->orderby('id','desc')->get();
+        $category_khac= DB::table('categories')->where('hidden','1')->where('id_nav','5')->orderby('id','desc')->get();
+        return view('pages.home')->with(compact('category','category_meo','category_ca','category_chim','category_khac'));
     }
 }

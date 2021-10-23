@@ -82,13 +82,13 @@ class categoryController extends Controller
     }
     public function active_category_product($category_product_id){
 
-        DB::table('category')->where('id',$category_product_id)->update(['hidden' => 1]);
+        DB::table('category')->where('id',$category_product_id)->update(['hidden' => 0]);
         Session::put('message','Kích hoạt danh mục thành công');
         return redirect()->route('category.index')->with('success', 'Kích hoạt danh mục thành công');
     }
     public function unactive_category_product($category_product_id){
 
-        DB::table('category')->where('id',$category_product_id)->update(['hidden' => 0]);
+        DB::table('category')->where('id',$category_product_id)->update(['hidden' => 1]);
         Session::put('message','Không kích hoạt danh mục thành công');
         return redirect()->route('category.index')->with('error', 'Không kích hoạt danh mục thành công');
     }
@@ -139,5 +139,29 @@ class categoryController extends Controller
             $oke->delete();
             return redirect()->route('category.index')->with('success', 'xóa thành công !!!');
         // }
+    }
+
+    //fontend
+    public function show_category_home($slug_category_product){
+        $category = DB::table('categories')->where('hidden','1')->where('id_nav','1')->orderby('id','desc')->get();
+        $category_meo= DB::table('categories')->where('hidden','1')->where('id_nav','6')->orderby('id','desc')->get();
+        $category_ca= DB::table('categories')->where('hidden','1')->where('id_nav','3')->orderby('id','desc')->get();
+        $category_chim= DB::table('categories')->where('hidden','1')->where('id_nav','4')->orderby('id','desc')->get();
+        $category_khac= DB::table('categories')->where('hidden','1')->where('id_nav','5')->orderby('id','desc')->get();
+        $category_by_id = DB::table('information_post')
+        ->join('categories','categories.id','information_post.id_category')->where('categories.slug',$slug_category_product)
+        ->where('information_post.hidden','1')->where('type_post','2')->get();
+        return view('pages.category.show_category')->with(compact('category','category_meo','category_ca','category_chim','category_khac','category_by_id'));
+    }
+    public function show_category_phukien(){
+        $category = DB::table('categories')->where('hidden','1')->where('id_nav','1')->orderby('id','desc')->get();
+        $category_meo= DB::table('categories')->where('hidden','1')->where('id_nav','6')->orderby('id','desc')->get();
+        $category_ca= DB::table('categories')->where('hidden','1')->where('id_nav','3')->orderby('id','desc')->get();
+        $category_chim= DB::table('categories')->where('hidden','1')->where('id_nav','4')->orderby('id','desc')->get();
+        $category_khac= DB::table('categories')->where('hidden','1')->where('id_nav','5')->orderby('id','desc')->get();
+        $category_by_id = DB::table('information_post')
+        
+        ->where('hidden','1')->where('type_post','1')->get();
+        return view('pages.category.show_category')->with(compact('category','category_meo','category_ca','category_chim','category_khac','category_by_id'));
     }
 }

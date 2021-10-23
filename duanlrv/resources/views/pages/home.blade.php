@@ -78,8 +78,8 @@
                         <p style="text-align: center;"><a class="danhmuc-a" href="">Cẩm nang thú cưng</a></p>
                     </div>
                     <div class="col-sm-3 dm-thucung">
-                        <img class="img-danhmuc" src="{{asset('/font-end/images/hinh-danh-muc/san-pham-phu-kien.jpg')}}" alt="" width="150px" height="150px">
-                        <p style="text-align: center;"><a class="danhmuc-a" href="">Sản phẩm phụ kiện</a></p>
+                        <a href="{{URL::to('/danh-muc-phu-kien/')}}"><img class="img-danhmuc" src="{{asset('/font-end/images/hinh-danh-muc/san-pham-phu-kien.jpg')}}" alt="" width="150px" height="150px"></a>
+                        <p style="text-align: center;"><a class="danhmuc-a" href="{{URL::to('/danh-muc-phu-kien/')}}">Sản phẩm phụ kiện</a></p>
                     </div>
                     <div class="col-sm-3 dm-thucung">
                         <img class="img-danhmuc" src="{{asset('/font-end/images/hinh-danh-muc/dich-vu-thu-cung.jpg')}}" alt="" width="150px" height="150px">
