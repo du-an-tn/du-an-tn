@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
     Route::post("/select-delivery", "infoController@select_delivery");
+    Route::get('/chi-tiet-don-hang/{slug}', 'donhangController@chitietdh');
 
     Route::resources([
         'menu' => 'menuController',
@@ -32,6 +33,8 @@ Route::group(['prefix' => 'admin'], function(){
         'qlthucung' => 'infoController',
         'qlsanpham' => 'productController',
         'news' => 'newsController',
+        'donhang' => 'donhangController',
+        'chitietdh' => 'shipingController',
         'slide' => 'slideController',
         'slide-quangcao' => 'sliquangcaoController',
         'account' => 'accountController',

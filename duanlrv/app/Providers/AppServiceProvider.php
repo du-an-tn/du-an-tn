@@ -41,6 +41,16 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\news\newsInterface::class,
             \App\Repositories\news\newsReponsitory::class,
         );
+        $this->app->singleton(
+            // đơn hàng
+            \App\Repositories\donhang\donhangInterface::class,
+            \App\Repositories\donhang\donhangReponsitory::class,
+        );
+        $this->app->singleton(
+            // đơn hàng chi tiết
+            \App\Repositories\chitietdonhang\chitietdhInterface::class,
+            \App\Repositories\chitietdonhang\chitietdhReponsitory::class,
+        );
     }
 
     /**

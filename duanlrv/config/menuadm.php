@@ -122,6 +122,19 @@ return [
         ]
     ],
     [
+        'label' => 'QL đơn hàng',
+        'route' => 'donhang.index',
+        'icon' => 'fa fa-signal',
+        'items' =>
+        [
+            [
+                'iconnew' => 'fa fa-rss',
+                'label' => 'DS đơn hàng',
+                'route' => 'donhang.index'
+                ],
+        ]
+    ],
+    [
         'label' => 'account',
         'route' => 'admin.dashboard',
         'icon' => 'fa fa-user',
