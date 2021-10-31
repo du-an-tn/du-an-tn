@@ -21,4 +21,8 @@ class shiping extends Model
         'phuongthuc_giaohang','status'
     ];
     public $timestamps = FALSE;
+    public function donhang()
+    {
+       return $this->hasOne(donhang::class,'product_id','order_id');
+    }
 }

@@ -21,6 +21,10 @@ class donhang extends Model
     {
        return $this->hasOne(information::class,'id','product_id');
     }
+    public function dsuser()
+    {
+       return $this->hasOne(account::class,'id','id_user');
+    }
     public function scopeSearch($query)
     {
         if($key = request()->key){

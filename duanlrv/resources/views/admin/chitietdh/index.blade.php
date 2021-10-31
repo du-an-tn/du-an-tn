@@ -14,8 +14,73 @@
         <div class="card cart-bg">
             <div class="card-header">
                 <div class="row">
+                    <div class="col-sm-12">
+                    <center><strong class="card-title mt-3">Thông tin vận chuyển</strong></center>
+                    </div>
+                </div>
+            </div>
+            <x-alert></x-alert>
+            <div class="table-stats order-table ov-h">
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>ghi chú</th>
+                            <th>hình thức thanh toán</th>
+                            <th>hình thức giao hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($chitiet as $dt)
+                            <tr>
+                                <td>
+                                    <span>{{$dt->shiping_name}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$dt->shiping_phone}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$dt->shiping_email}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$dt->shiping_address}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$dt->shiping_note}}</span>
+                                </td>
+                                <td>
+                                    @if($dt->phuongthuc_thanhtoan = 1)
+                                        <span>chuyển khoản</span>
+                                    @else
+                                        <span>thanh toán trực tiếp</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($dt->phuongthuc_giaohang = 1)
+                                        <span>Giao hàng nhanh</span>
+                                    @elseif($dt->phuongthuc_giaohang = 2)
+                                        <span>Giao hàng tiết kiệm</span>
+                                    @elseif($dt->phuongthuc_giaohang = 3)
+                                        <span>VIETEL POST</span>
+                                    @else
+                                        <span>ninja Vận</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div> <!-- /.table-stats -->
+        </div>
+
+        <div class="card cart-bg">
+            <div class="card-header">
+                <div class="row">
                     <div class="col-sm-6">
-                    <strong class="card-title mt-3">quản lý đơn hàng</strong>
+                    <strong class="card-title mt-3">danh sách đơn hàng</strong>
                     </div>
                     <div class="col-sm-6">
                         <form class="form-inline justify-content-end" action="" method="GET" role="form">
@@ -31,102 +96,66 @@
                     </div>
                 </div>
             </div>
-            <x-alert></x-alert>
             <div class="table-stats order-table ov-h">
                 <table class="table ">
                     <thead>
                         <tr>
-                            <th class="serial">#</th>
-                            <th class="avatar">mã đơn hàng</th>
-                            <th>Thời gian đặt hàng</th>
-                            <th>Thời gian giao hàng</th>
-                            <th>Trạng thái</th>
-                            <th>xem chi tiết</th>
-                            <th>Action</th>
-                            <!-- <th>Quantity</th> -->
-                            <!-- <th>Status</th> -->
+                            <th>#</th>
+                            <th>mã đơn hàng</th>
+                            <th>coupon</th>
+                            <th>Tên sản phẩm</th>
+                            <th>giá sản phẩm</th>
+                            <th>số lượng</th>
+                            <th>Tổng tiền</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($chitiet as $dt)
+                    @php
+                      $i = 1;
+                      $total = 0;  
+                    @endphp
+
+                        @foreach($sanpham as $hd)
+
+                        @php
+                                $subtotal = $hd->product_price*$hd->product_quantity;
+                                $total += $subtotal;
+                        @endphp
                             <tr>
-                                <td>{{$dt->id}}</td>
+                                <td>{{$i++}}</td>
                                 <td>
-                                    <span>{{$dt->order_code}}</span>
+                                    <span>{{$hd->order_code}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->time_order}}</span>
+                                    <span>
+                                        @if($hd->product_coupon != null)
+                                            {{$hd->product_coupon}}
+                                        @else
+                                            không có coupon
+                                        @endif
+                                    </span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->delivery_time}}</span>
+                                    <span>{{$hd->product_name}}</span>
                                 </td>
                                 <td>
-                                    @if($dt->status == 1)
-                                        <span class="badge badge-complete">thành công</span>
-                                    @elseif ($dt->status == 2)
-                                        <span class="badge badge-warning">chưa xét duyệt</span>
-                                    @else
-                                        <span class="badge badge-danger">đã hủy</span>
-                                    @endif
+                                    <span>{{number_format($hd->product_price, 0, '.', '.')}} VNĐ</span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-pending" data-toggle="modal" data-target=".bd-example-modal-lg{{$dt->id}}">chi tiết <i class="fa fa-mail-reply"></i></span>
+                                    <span>{{$hd->product_quantity}}</span>
                                 </td>
                                 <td>
-                                    <a href="{{route('donhang.edit',$dt->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                    <a href="{{route('donhang.destroy',$dt->id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
+                                    <span>{{number_format($hd->product_price * $hd->product_quantity, 0, '.', '.')}}</span>
                                 </td>
-                                <div class="modal fade bd-example-modal-lg{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content model-ct">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">chi tiết : {{$dt->id}} - {{$dt->order_code}}</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group form-gr-img">
-                                                        <img src="{{asset('uploads/'.$dt->image)}}" alt="" width="100%" height="200px">
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <label for="">ghi chú của khách hàng</label>
-                                                    <textarea class="description_t" name="" cols="43" rows="9" disabled>{{$dt->shiping_note}}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group form-trum">
-                                                        <div class="col-12">
-                                                            <p><span class="text-info">Tên sản phẩm<span> {{$dt->title}}</p>
-                                                            <p><span class="text-info">số lượng</span> {{$dt->quantity}}</p>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <p><span class="text-info">Giá :</span> {{number_format($dt->price, 0, '.', '.')}} VNĐ</p>
-                                                            <p><span class="text-info">giá giảm :</span>{{number_format($dt->discount, 0, '.', '.')}} VNĐ</p>
-                                                            <p><span class="text-info">Thành Tiền :</span> {{$dt->total_money}}</p>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="col-12">
-                                                            <p><span class="text-info">Tên người nhận</span> {{$dt->shiping_name}}</p>
-                                                            <p><span class="text-info">Địa chỉ</span> {{$dt->shiping_address}}</p>
-                                                            <p><span class="text-info">Số điện thoại:</span> {{$dt->shiping_phone}}</p>
-                                                            <p><span class="text-info">Email :</span> {{$dt->shiping_email}}</p>                                                        
-                                                            <p><span class="text-info">giao hàng :</span> {{$dt->phuongthuc_giaohang}}</p>                                                        
-                                                            <p><span class="text-info">thanh toán :</span> {{$dt->phuongthuc_thanhtoan}}</p>                                                        
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <strong>Tổng tiền thanh toán: <span style="color:#fff">{{number_format($total, 0, '.', '.')}} VNĐ</span></strong>
+                    </div>
+                </div>
                 <form method="POST" action="" id="form-delete">
                 @method('DELETE')
                 @csrf

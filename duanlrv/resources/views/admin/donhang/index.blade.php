@@ -39,7 +39,6 @@
                             <th class="serial">#</th>
                             <th class="avatar">mã đơn hàng</th>
                             <th>Thời gian đặt hàng</th>
-                            <th>Thời gian giao hàng</th>
                             <th>Trạng thái</th>
                             <th>xem chi tiết</th>
                             <th>Action</th>
@@ -55,10 +54,7 @@
                                     <span>{{$dt->order_code}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->shiping->time_order}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$dt->shiping->delivery_time}}</span>
+                                    <span>{{$dt->order_date}}</span>
                                 </td>
                                 <td>
                                     @if($dt->status == 1)
@@ -70,11 +66,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('/admin/chi-tiet-don-hang/'.$dt->id)}}" class="badge badge-pending">chi tiết <i class="fa fa-mail-reply"></i></a>
+                                    <a href="{{url('/admin/chi-tiet-don-hang/'.$dt->order_id)}}" class="badge badge-pending">chi tiết <i class="fa fa-mail-reply"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{route('donhang.edit',$dt->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                    <a href="{{route('donhang.destroy',$dt->id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('donhang.edit',$dt->order_id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('donhang.destroy',$dt->order_id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

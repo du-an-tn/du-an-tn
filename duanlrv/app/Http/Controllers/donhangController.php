@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\shiping;
 use App\Models\donhang;
+use App\Models\orderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -28,9 +29,11 @@ class donhangController extends Controller
     }
 
     public function chitietdh($slug){
-        $donhangid = donhang::where('id', $slug)->first();
-        $chitiet = shiping::orderBy('id','ASC')->where('order_id', $donhangid->id)->paginate(8);
-        return view('admin.chitietdh.index', compact('chitiet'));
+        $donhangid = donhang::where('order_id', $slug)->first();
+        $chitiet = shiping::orderBy('shiping_id','ASC')->where('order_id', $donhangid->order_id)->paginate(10);
+        $sanpham = orderDetail::orderBy('id','ASC')->where('order_id', $donhangid->order_id)->paginate(10);
+        $hdonhang = donhang::orderBy('order_id','ASC')->where('order_id')->paginate(10);
+        return view('admin.chitietdh.index', compact('chitiet','hdonhang','sanpham'));
     }
 
     /**
