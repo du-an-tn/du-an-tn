@@ -51,6 +51,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\chitietdonhang\chitietdhInterface::class,
             \App\Repositories\chitietdonhang\chitietdhReponsitory::class,
         );
+        $this->app->singleton(
+            // mã giảm giá
+            \App\Repositories\coupon\couponInterface::class,
+            \App\Repositories\coupon\couponReponsitory::class,
+        );
     }
 
     /**

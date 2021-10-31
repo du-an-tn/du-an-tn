@@ -97,7 +97,7 @@ class productController extends Controller
             $file->move(public_path('uploads'), $file_name);
         }
         $request->merge(['image'=>$file_name]);
-        $request->merge(['slug' => \Str::slug($request->title).'-'. \Carbon\Carbon::now()->timestamp]);
+        $request->merge(['slug_product' => \Str::slug($request->title).'-'. \Carbon\Carbon::now()->timestamp]);
         $request->merge(['type_post' => 1]);
         if($this->qlthucung->create($request->all()))
         {
@@ -152,7 +152,7 @@ class productController extends Controller
         }
         $request->merge(['image'=>$file_name]);
         $dataslug = \Str::slug($request->title).'-'.\Carbon\Carbon::now()->timestamp;
-        $request->merge(['slug' => $dataslug]);
+        $request->merge(['slug_product' => $dataslug]);
         $request->merge(['type_post' => 1]);
         if($this->qlsanpham->update($id,$request->all()))
         {

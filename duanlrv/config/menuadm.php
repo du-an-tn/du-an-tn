@@ -50,6 +50,24 @@ return [
         ]
     ],
     [
+        'label' => 'Mã giảm giá',
+        'route' => 'coupon.index',
+        'icon' => 'fa fa-outdent',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-table',
+            'label' => 'Ds mã giảm giá',
+            'route' => 'coupon.index',
+            ],
+            [
+            'iconnew' => 'fa fa-clipboard',
+            'label' => 'Thêm mã giảm giá',
+            'route' => 'category.create'
+            ],
+        ]
+    ],
+    [
         'label' => 'QL sản phẩm',
         'route' => 'qlsanpham.index',
         'icon' => 'fa fa-tasks',

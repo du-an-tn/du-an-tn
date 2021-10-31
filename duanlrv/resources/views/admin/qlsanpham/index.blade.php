@@ -60,14 +60,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $i = 1;
+                        @endphp
                         @foreach($data as $dt)
                             <tr>
-                                <td class="serial">{{$dt->id}}</td>
+                                <td class="serial">{{$i++}}</td>
                                 <td class="avatar">
                                     <span>{{$dt->title}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->slug}}</span>
+                                    <span>{{$dt->slug_product}}</span>
                                 </td>
                                 <td>
                                     @if($dt->id_status == 1)

@@ -41,7 +41,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">slug sản phẩm <span style="color:red">Bỏ trống tự động nhập</span></label>
-            <input type="text" class="form-text" name="slug" id="" value="{{$qlsanpham->slug}}" placeholder="nhập slug">
+            <input type="text" class="form-text" name="slug_product" id="" value="{{$qlsanpham->slug_product}}" placeholder="nhập slug">
         </div>
         <div class="form-group col-md-6">
                 <label for="exampleFormControlFile1">images {{$qlsanpham->image}}</label>

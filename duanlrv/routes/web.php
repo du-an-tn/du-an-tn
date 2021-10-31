@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resources([
         'menu' => 'menuController',
         'category' => 'categoryController',
+        'coupon' => 'couponController',
         'qlthucung' => 'infoController',
         'qlsanpham' => 'productController',
         'news' => 'newsController',

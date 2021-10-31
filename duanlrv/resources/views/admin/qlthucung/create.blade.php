@@ -42,7 +42,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">slug thú cưng</label>
-            <input type="text" class="form-text" name="slug"   placeholder="Nhập Tên menu...">
+            <input type="text" class="form-text" name="slug_product"   placeholder="Nhập Tên menu...">
         </div>
         <div class="form-group col-md-6">
                 <label for="exampleFormControlFile1">images</label>
