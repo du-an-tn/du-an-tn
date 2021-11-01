@@ -240,7 +240,22 @@
       <div class="col-md-6 col-sm-6 col-12 mt-2">
         <div class=" card product-text">
           <h4 class="card-text">{{$value->title}}</h4>
-          <p class="card-text">30/11/2021</p><span>0 lượt xem</span>
+          @if(auth()->guard('cus')->check())
+          <div id="rateYo"></div>
+          <form action="{{URL::to('/account-rating')}}" method="post" class="form-inline" role="form" id="formRating">
+            @csrf
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="rating_star" id="rating_star">
+                <input type="hidden" class="form-control" name="product_id" value="{{$value->id_product}}">
+                <input type="hidden" class="form-control" name="account_id" value="{{auth()->guard('cus')->user()->id}}">
+              </div>
+            </form>
+          @else
+          <div id="rateYo1"></div>
+          @endif
+            
+
+          <p class="card-text">30/11/2021</p><span>{{$value->view}} lượt xem</span>
           <h3 class="card-text">Thông tin chi tiết</h3>
           <p class="card-text">Giống: {{$value->name}}</p>
           <?php
@@ -263,7 +278,7 @@
           <p class="card-text">Vận chuyển: có phí</p>
           
           <p class="card-text">Mô tả thêm: {{$value->description}}</p>
-
+         
           <div class=" card  mt-2">
             <div class="card-body card-product">
               <h4 class="price-product"><span>{{number_format($value->price,0,',','.')}} VND</span></h4>
@@ -315,11 +330,13 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
+        
       </div>
     </div>
   </div>
 </div>
 @endforeach
+
 <!-- end slide -->
 </body>
 </html>
@@ -354,5 +371,24 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
+</script>
+<script>
+    $(function () {
+ 
+        $("#rateYo").rateYo({
+        rating: {{$rating}}
+        }).on("rateyo.set", function (e, data) {
+            $('#rating_star').val(data.rating);
+            //alert("The rating is set to " + data.rating + "!");
+            $('#formRating').submit();
+        });
+        $("#rateYo1").rateYo({
+            rating: {{$rating}}
+            }).on("rateyo.set", function (e, data) {
+               
+                alert("Bạn chưa đăng nhập, vui lòng đăng nhập để đánh giá!");
+        });
+
+});
 </script>
 @endsection

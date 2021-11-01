@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{asset('/font-end/css/owl.theme.default.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('/font-end/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 </head>
 <body class="">
 	<header class="container-fluid">
@@ -55,15 +56,16 @@
                                 <li><a class="hv-a" href="">Đăng tin sản phẩm</a></li>
                             </ul>
                         </li>
+                        @if(auth()->guard('cus')->check())
                         <li class="nav-item khung-li">
                             <a class="nav-link hd-msg mn-text mt-1" href="#">
                                 <img src="images/avatar/dog1.jpg" alt="" width="35px" height="35px">
                             </a>
-                            <a href="" class="a-tin">Khánh Duy</a>
+                            <a href="" class="a-tin">Hi {{auth()->guard('cus')->user()->name}}</a>
                             <ul class="hover-user">
                                 <li>
                                     <i class="far fa-address-card"></i>
-                                    <a class="hv-a" href="">Thông tin tài khoản</a>
+                                    <a class="hv-a" href="{{URL::to('/show-profile')}}">Thông tin tài khoản</a>
                                 
                                 </li>
                                 <li>
@@ -84,14 +86,18 @@
                                 </li>
                                 <li>
                                     <i class="fas fa-sign-out-alt"></i>
-                                    <a class="hv-a" href="">Đăng xuất</a>
+                                    <a class="hv-a" href="{{URL::to('logout')}}">Đăng xuất</a>
                                 </li>
                             </ul>
                         </li>
+                        @else
+                        <li class="nav-item khung-li">
+                        <li class="nav-item" >
+                            <a class="nav-link navdn active" href="{{URL::to('/login-customer')}}"><i class="far fa-user" style="font-size:17px"></i> Đăng nhập</a>
+                        </li>    
+                        @endif
+                       
                         <!-- <li class="nav-item">
-                            <a class="nav-link navdn active" href="#"><i class="far fa-user" style="font-size:17px"></i> Đăng nhập</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link navdk active" href="#"><i class="fas fa-user-plus" style="font-size:17px"></i> Đăng ký</a>
                         </li> -->
                     </ul>
@@ -236,6 +242,7 @@
 
 <script src="{{asset('/font-end/js/jquery.min.js')}}"></script>
 <script src="{{asset('/font-end/js/owl.carousel.js')}}"></script>
+<!--  -->
 <script>
 var owl = $('.owl-carousel');
 owl.owlCarousel({
@@ -247,7 +254,10 @@ owl.owlCarousel({
 });
 </script>
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>

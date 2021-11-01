@@ -592,5 +592,6 @@
       </div>
     </section>
  <hr>
+ 
     <!-- end main -->
     @endsection

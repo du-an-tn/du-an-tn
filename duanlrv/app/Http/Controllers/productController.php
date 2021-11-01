@@ -6,6 +6,7 @@ use App\Models\trangthai;
 use App\Models\information;
 use App\Models\category;
 use App\Models\navmenu;
+use App\Models\rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -186,6 +187,26 @@ class productController extends Controller
         $detail_product = DB::table('information_post')
         ->join('categories','categories.id','information_post.id_category')
         ->where('slug_product',$slug)->get();
-        return view('pages.sanpham.detail')->with(compact('category','category_meo','category_ca','category_chim','category_khac','detail_product'));
+        foreach($detail_product as $key => $value){
+           $product_id = $value->id_product;
+        }
+        //update view
+        $product = information::where('slug_product',$slug)->first();
+        $product->view = $product->view + 1;
+        $product->save();
+        //rating
+        $rating = rating::where('product_id',$product_id)->avg('rating_star');
+        $rating = round($rating);
+
+        return view('pages.sanpham.detail')->with(compact('category','category_meo','category_ca','category_chim','category_khac','detail_product','rating'));
+    }
+    public function insert_rating(Request $request){
+        $data= $request->all();
+        $rating = new rating();
+        $rating->product_id = $data['product_id'];
+        $rating->rating = $data['index'];
+        $rating->save;
+        
+        echo 'done';
     }
 }

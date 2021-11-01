@@ -9,24 +9,25 @@ class information extends Model
 {
     use HasFactory;
     protected $table = 'information_post';
-    protected $fillable = ['id','type_post','title','id_menu','slug_product','id_category','age','status','render','price','discount','quantity','description','image','id_status','hidden'];
+    protected $fillable = ['id_product','type_post','title','id_menu','slug_product','id_category','age','status','render','price','discount','quantity','description','image','id_status','hidden','view'];
     public $timestamps = FALSE;
+    protected $primaryKey = 'id_product';
 
     public function typepost()
     {
-       return $this->hasOne(typepost::class,'id','type_post');
+       return $this->hasOne(typepost::class,'id_product','type_post');
     }
     public function category()
     {
-       return $this->hasOne(category::class,'id','id_category');
+       return $this->hasOne(category::class,'id_product','id_category');
     }
     public function navmenu()
     {
-       return $this->hasOne(navmenu::class,'id','id_menu');
+       return $this->hasOne(navmenu::class,'id_product','id_menu');
     }
     public function hastrangthai()
     {
-       return $this->hasOne(trangthai::class,'id','id_status');
+       return $this->hasOne(trangthai::class,'id_product','id_status');
     }
     public function phandanhmuc()
     {
