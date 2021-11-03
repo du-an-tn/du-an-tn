@@ -49,7 +49,7 @@
                     <tbody>
                         @foreach($data as $dt)
                             <tr>
-                                <td>{{$dt->id}}</td>
+                                <td>{{$dt->order_id}}</td>
                                 <td>
                                     <span>{{$dt->order_code}}</span>
                                 </td>

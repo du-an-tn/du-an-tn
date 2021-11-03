@@ -63,7 +63,7 @@ return [
             [
             'iconnew' => 'fa fa-clipboard',
             'label' => 'Thêm mã giảm giá',
-            'route' => 'category.create'
+            'route' => 'coupon.create'
             ],
         ]
     ],
@@ -161,7 +161,7 @@ return [
             [
             'iconnew' => 'fa fa-rocket',
             'label' => 'Tổng hợp account',
-            'route' => 'admin.dashboard'
+            'route' => 'account.index'
             ],
         ]
     ],

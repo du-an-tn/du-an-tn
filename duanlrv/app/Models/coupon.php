@@ -9,7 +9,7 @@ class coupon extends Model
 {
     use HasFactory;
     protected $table = 'coupon';
-    protected $fillable = ['coupon_id','coupon_name','coupon_date_start','coupon_date_end','coupon_condition','coupon_code','coupon_number','id_status'];
+    protected $fillable = ['id','coupon_name','coupon_date_start','coupon_date_end','coupon_condition','coupon_qty','coupon_code','coupon_number','id_status'];
     public $timestamps = FALSE;
 
 

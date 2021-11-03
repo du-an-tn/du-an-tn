@@ -37,6 +37,7 @@
                             <th class="avatar">mã giảm giá</th>
                             <th>code mã giảm giá</th>
                             <th>số lượng</th>
+                            <th>giảm giá</th>
                             <th>tình trạng coupon</th>
                             <th>ngày bắt đầu</th>
                             <th>ngày kết thúc</th>
@@ -47,15 +48,22 @@
                     <tbody>
                         @foreach($data as  $dt)
                             <tr>
-                                <td class="serial">{{$dt->coupon_id}}</td>
-                                <td class="avatar">
+                                <td>{{$dt->id}}</td>
+                                <td>
                                     <span>{{$dt->coupon_name}}</span>
                                 </td>
-                                <td class="avatar">
+                                <td>
                                     <span>{{$dt->coupon_code}}</span>
                                 </td>
-                                <td class="avatar">
-                                    <span>{{$dt->coupon_number}}</span>
+                                <td>
+                                    <span>{{$dt->coupon_qty}}</span>
+                                </td>
+                                <td>
+                                        @if($dt->coupon_condition == 1)
+                                        <span>{{$dt->coupon_number}} %</span>
+                                        @else
+                                        <span>{{$dt->coupon_number}}</span>
+                                        @endif
                                 </td>
                                 <td>
                                     <span>
@@ -74,14 +82,14 @@
                                 </td>
                                 <td>
                                     @if($dt->id_status == 0)
-                                    <a href="{{URL::to('/active-category-product/'.$dt->id)}}"><span class="badge badge-danger">Ẩn</span></a>
+                                    <a href=""><span class="badge badge-danger">Ẩn</span></a>
                                     @else
-                                    <a href="{{URL::to('/unactive-category-product/'.$dt->id)}}"><span class="badge badge-complete">Hiện</span></a>
+                                    <a href=""><span class="badge badge-complete">Hiện</span></a>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                    <a href="" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('coupon.edit',$dt->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('coupon.destroy',$dt->id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

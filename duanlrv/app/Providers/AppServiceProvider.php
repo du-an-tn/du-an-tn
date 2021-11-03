@@ -56,6 +56,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\coupon\couponInterface::class,
             \App\Repositories\coupon\couponReponsitory::class,
         );
+        $this->app->singleton(
+            // account
+            \App\Repositories\account\accountInterface::class,
+            \App\Repositories\account\accountReponsitory::class,
+        );
     }
 
     /**
