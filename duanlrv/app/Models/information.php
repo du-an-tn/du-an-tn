@@ -9,7 +9,7 @@ class information extends Model
 {
     use HasFactory;
     protected $table = 'information_post';
-    protected $fillable = ['id','type_post','title','id_menu','id_category','age','status','render','price','discount','quantity','description','time','image','view','id_user','id_trang_thai','hidden'];
+    protected $fillable = ['id','type_post','title','id_menu','slug_product','id_category','age','status','render','price','discount','quantity','description','image','id_status','hidden'];
     public $timestamps = FALSE;
 
     public function typepost()
@@ -24,10 +24,15 @@ class information extends Model
     {
        return $this->hasOne(navmenu::class,'id','id_menu');
     }
-    public function trangthai()
+    public function hastrangthai()
     {
        return $this->hasOne(trangthai::class,'id','id_status');
     }
+    public function phandanhmuc()
+    {
+        return $this->belongsTo('App\Models\navmenu','id_menu');
+    }
+    
     public function xetduyet()
     {
        return $this->hasMany(trangthai::class,'id_status','id');
@@ -36,6 +41,15 @@ class information extends Model
     {
        return $this->hasMany(category::class,'id_category','id');
     }
+
+
+    public function menutexx()
+    {
+       return $this->hasMany(navmenu::class,'id_menu','id');
+    }
+
+
+
     public function scopeSearch($query)
     {
         if($key = request()->key){

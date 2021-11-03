@@ -50,6 +50,24 @@ return [
         ]
     ],
     [
+        'label' => 'Mã giảm giá',
+        'route' => 'coupon.index',
+        'icon' => 'fa fa-outdent',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-table',
+            'label' => 'Ds mã giảm giá',
+            'route' => 'coupon.index',
+            ],
+            [
+            'iconnew' => 'fa fa-clipboard',
+            'label' => 'Thêm mã giảm giá',
+            'route' => 'coupon.create'
+            ],
+        ]
+    ],
+    [
         'label' => 'QL sản phẩm',
         'route' => 'qlsanpham.index',
         'icon' => 'fa fa-tasks',
@@ -63,7 +81,7 @@ return [
             [
                 'iconnew' => 'fa fa-indent',
                 'label' => 'Thêm sản phẩm',
-                'route' => 'qlthucung.index'
+                'route' => 'qlsanpham.create'
             ],
             // [
             //     'iconnew' => 'fa fa-pagelines',
@@ -90,19 +108,19 @@ return [
                 ],
         ]
     ],
-    [
-        'label' => 'QL phối giống',
-        'route' => 'qlthucung.index',
-        'icon' => 'fa fa-pagelines',
-        'items' =>
-        [
-            [
-            'iconnew' => 'fa fa-indent',
-            'label' => 'Danh sách Phối giống',
-            'route' => 'qlthucung.index'
-            ],
-        ]
-    ],
+    // [
+    //     'label' => 'QL phối giống',
+    //     'route' => 'qlthucung.index',
+    //     'icon' => 'fa fa-pagelines',
+    //     'items' =>
+    //     [
+    //         [
+    //         'iconnew' => 'fa fa-indent',
+    //         'label' => 'Danh sách Phối giống',
+    //         'route' => 'qlthucung.index'
+    //         ],
+    //     ]
+    // ],
     [
         'label' => 'Tin Tức',
         'route' => 'admin.dashboard',
@@ -111,14 +129,27 @@ return [
         [
             [
             'iconnew' => 'fa fa-rss',
-            'label' => 'Xem Tin tức',
-            'route' => 'admin.dashboard'
+            'label' => 'QL Tin tức',
+            'route' => 'news.index'
             ],
             [
-            'iconnew' => 'fa fa-puzzle-piece',
-            'label' => 'Thêm tin tức',
-            'route' => 'admin.dashboard'
-            ],
+                'iconnew' => 'fa fa-rss',
+                'label' => 'Thêm Tin tức',
+                'route' => 'news.create'
+                ],
+        ]
+    ],
+    [
+        'label' => 'QL đơn hàng',
+        'route' => 'donhang.index',
+        'icon' => 'fa fa-signal',
+        'items' =>
+        [
+            [
+                'iconnew' => 'fa fa-rss',
+                'label' => 'DS đơn hàng',
+                'route' => 'donhang.index'
+                ],
         ]
     ],
     [
@@ -130,7 +161,7 @@ return [
             [
             'iconnew' => 'fa fa-rocket',
             'label' => 'Tổng hợp account',
-            'route' => 'admin.dashboard'
+            'route' => 'account.index'
             ],
         ]
     ],

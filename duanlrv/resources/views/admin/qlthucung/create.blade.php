@@ -38,10 +38,11 @@
             <label for="exampleInputEmail1">Tên thú cưng *</label>
             <input type="text" class="form-text" name="title" id="name"  placeholder="Nhập Tên thú cưng...">
         </div>
+        12321321321
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">slug thú cưng</label>
-            <input type="text" class="form-text" name="slug" id="slug"  placeholder="Nhập Tên menu...">
+            <input type="text" class="form-text" name="slug_product"   placeholder="Nhập Tên menu...">
         </div>
         <div class="form-group col-md-6">
                 <label for="exampleFormControlFile1">images</label>
@@ -57,13 +58,19 @@
         <input type="text" class="form-text" name="discount" placeholder="nhập giá giảm...">
     </div>
     <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Menu</label>
+                <select class="form-text choose input-sm city" name="id_menu" id="city">
+                  <option value="">-----{{__('Chọn menu')}}-----</option>
+                    @foreach($text as $t)
+                    <option class="op-text" value="{{$t->id}}">{{$t->name_nav}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-group col-md-6">
                 <label>Danh mục đăng tin</label>
-                <select class="form-text" name="id_category">
-
-                    @foreach($danhmuc as $muc)
-                    <option class="op-text" value="{{$muc->id}}">{{$muc->name}}</option>
-                    @endforeach
+                <select class="form-text input-sm choose province" name="id_category" id="province">
+                    <option class="op-text">-----{{__('Chọn danh mục')}}-----</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -76,17 +83,17 @@
             <label>Tình trạng sức khỏe</label>
             <input type="text" class="form-text" name="status" placeholder="nhập tình trạng sức khỏe...">
         </div>
-        <!-- <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label>Xét duyệt trạng thái</label>
-            <select class="form-text" name="id_trang_thai">
+            <select class="form-text" name="id_status">
                 @foreach($xetduyet as $xet)
                 <option class="op-text" value="{{$xet->id}}">{{$xet->name_type}}</option>
                 @endforeach
             </select>
-        </div> -->
-        <div class="form-group col-md-6">
+        </div>
+        <div class="form-group col-md-3">
             <label>Giống thú cưng</label>
-            <input type="text" class="form-text" name="render"  placeholder="chó,mèo..." >
+            <input type="text" class="form-text" name="render"  placeholder="Đực, cái..." >
         </div>
     </div>
     <div class="form-group col-md-12" style="background-color: #fff; color: #000;">
@@ -114,8 +121,9 @@
 @section('js')
 <script src="{{asset('adm/assets/js/slug.js')}}"></script>
 
+
   <!--summernote-->
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
 <script>
     jQuery(document).ready(function($) {
         // Summernote
@@ -123,5 +131,40 @@
             height:200,
         });
     });
+    
 </script>
+
+<script type="">
+jQuery(document).ready(function($) {
+
+    $('.choose').on('change', function() {
+        var action = $(this).attr('id');
+        var ma_id = $(this).val();
+        var _token = $('input[name="_token"]').val();
+
+        // alert(action);
+        // alert(ma_id);
+        // alert(_token);
+        var result = '';
+
+        if (action == 'city') {
+            result = 'province';
+        }
+        //  else {
+        //     result = 'wards';
+        // }
+        $.ajax({
+            url: '{{url('/admin/select-delivery')}}',
+            method: 'post',
+            data: {action: action, ma_id: ma_id, _token: _token},
+            success: function(data) {
+                $('#' + result).html(data);
+            }
+        });
+    });
+});
+</script>
+
+
+
 @stop()

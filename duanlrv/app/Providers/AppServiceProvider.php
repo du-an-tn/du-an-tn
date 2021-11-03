@@ -36,6 +36,31 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\qlsanpham\qlsanphamInterface::class,
             \App\Repositories\qlsanpham\qlsanphamReponsitory::class,
         );
+        $this->app->singleton(
+            // tin tức
+            \App\Repositories\news\newsInterface::class,
+            \App\Repositories\news\newsReponsitory::class,
+        );
+        $this->app->singleton(
+            // đơn hàng
+            \App\Repositories\donhang\donhangInterface::class,
+            \App\Repositories\donhang\donhangReponsitory::class,
+        );
+        $this->app->singleton(
+            // đơn hàng chi tiết
+            \App\Repositories\chitietdonhang\chitietdhInterface::class,
+            \App\Repositories\chitietdonhang\chitietdhReponsitory::class,
+        );
+        $this->app->singleton(
+            // mã giảm giá
+            \App\Repositories\coupon\couponInterface::class,
+            \App\Repositories\coupon\couponReponsitory::class,
+        );
+        $this->app->singleton(
+            // account
+            \App\Repositories\account\accountInterface::class,
+            \App\Repositories\account\accountReponsitory::class,
+        );
     }
 
     /**
