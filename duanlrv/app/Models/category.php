@@ -20,6 +20,10 @@ class category extends Model
     {
        return $this->hasMany(navmenu::class,'id_nav','id');
     }
+    public function phandanhmuc()
+    {
+        return $this->belongsTo('App\Models\navmenu','id_nav');
+    }
     public function scopeSearch($query)
     {
         if($key = request()->key){

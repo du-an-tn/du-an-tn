@@ -10,7 +10,21 @@
 @endsection
 @section('main')
     <div class="content">
-        <div class="card">
+    <div class="col-md-12">
+        <form action="">
+            @csrf
+        <div class="form-group">
+            <label><strong>quản lý danh sách</strong></label>
+            <select name="sort" id="sort" class="form-control">
+                <option value="{{Request::url()}}">Tất cả danh sách</option>
+            @foreach($danhmuc as $loc)
+            <option value="{{Request::url()}}?sort_by={{$loc->slug}}">{{$loc->name_nav}}</option>
+            @endforeach
+            </select>
+        </div>
+        </form>
+    </div>
+        <div class="card cart-bg">
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-6">
@@ -38,7 +52,7 @@
                             <th class="serial">#</th>
                             <th class="avatar">Tên bài đăng</th>
                             <th>slug</th>
-                            <th>Trạng thái bài đăng</th>
+                            <th>Trạng thái</th>
                             <th>xem chi tiết</th>
                             <th style="width:100px;">Action</th>
                             <!-- <th>Quantity</th> -->
@@ -46,66 +60,67 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $i = 1;
+                        @endphp
                         @foreach($data as $dt)
                             <tr>
-                                <td class="serial">{{$dt->id}}</td>
+                                <td class="serial">{{$i++}}</td>
                                 <td class="avatar">
                                     <span>{{$dt->title}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->slug}}</span>
+                                    <span>{{$dt->slug_product}}</span>
                                 </td>
                                 <td>
-                                    @if($dt->id_trang_thai == 1)
+                                    @if($dt->id_status == 1)
                                         <span class="badge badge-complete">thành công</span>
-                                    @elseif ($dt->id_trang_thai == 2)
+                                    @elseif ($dt->id_status == 2)
                                         <span class="badge badge-warning">đợi xét duyệt</span>
                                     @else
                                         <span class="badge badge-danger">đã hủy</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="badge badge-warning" data-toggle="modal" data-target=".bd-example-modal-lg{{$dt->id}}">chi tiết <i class="fa fa-mail-reply"></i></span>
+                                    <span class="badge badge-pending" data-toggle="modal" data-target=".bd-example-modal-lg{{$dt->id}}">chi tiết <i class="fa fa-mail-reply"></i></span>
                                 </td>
                                 <td>
-                                    <a href="{{route('qlthucung.edit',$dt->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                    <a href="{{route('qlthucung.destroy',$dt->id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('qlsanpham.edit',$dt->id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('qlsanpham.destroy',$dt->id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
                                 </td>
                                 <div class="modal fade bd-example-modal-lg{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
+                                    <div class="modal-content model-ct">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">chi tiết : {{$dt->id}} - {{$dt->title}}</h5>
                                         </div>
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <img src="" alt="" width="100%" height="150px">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <p><span style="color:blue">Danh mục đăng :</span> {{$dt->typepost->name_type}}</p>
-                                                            <p><span style="color:blue">Thuộc menu :</span> {{$dt->navmenu->name_nav}}</p>
-                                                            <p><span style="color:blue">loại :</span> {{$dt->category->name_category}}</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p><span style="color:blue">người đăng :</span> {{$dt->price}}</p>
-                                                            <p><span style="color:blue">thời gian đăng :</span> {{$dt->time}} ngày</p>
-                                                            <p><span style="color:blue">lượt xem :</span> {{$dt->view}}</p>
-                                                        </div>
+                                                    <div class="form-group form-gr-img">
+                                                        <img src="{{asset('uploads/'.$dt->image)}}" alt="" width="100%" height="200px">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea class="description_t" cols="43" rows="9" disabled>{{$dt->description}}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <textarea name="" cols="40" rows="6" disabled>{{$dt->description}}</textarea>
-                                                    <div class="row">
-                                                    <div class="col-6">
-                                                        <p><span style="color:blue">Giá :</span> {{$dt->price}}</p>
-                                                        <p><span style="color:blue">giá giảm :</span> {{$dt->discount}}</p>
-                                                        <p><span style="color:blue">trạng thái :</span> {{$dt->trangthai->name_type}}</p>
+                                                    <div class="form-group form-trum">
+                                                    <div class="col-12">
+                                                        <p><span class="text-info">Danh mục đăng :</span> {{$dt->typepost->name_type}}</p>
+                                                        <p><span class="text-info">Thuộc menu :</span> {{$dt->navmenu->name_nav}}</p>
+                                                        <p><span class="text-info">loại :</span> {{$dt->category->name}}</p>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <p><span style="color:blue">Tình trạng :</span> {{$dt->status}}</p>
-                                                        <p><span style="color:blue">Thương hiệu :</span> {{$dt->brand}}</p>
-                                                        <p><span style="color:blue">số lượng:</span> {{$dt->quantity}}/sp</p>
+                                                    <div class="col-12">
+                                                        <p><span class="text-info">Giá :</span>{{number_format($dt->price, 0, '.', '.')}} VNĐ</p>
+                                                        <p><span class="text-info">giá giảm :</span> {{number_format($dt->discount, 0, '.', '.')}} VNĐ</p>
+                                                        <p><span class="text-info">trạng thái :</span> {{$dt->typepost->name_type}}</p>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p><span class="text-info">Tình trạng :</span> {{$dt->status}}</p>
+                                                        <p><span class="text-info">Thương hiệu :</span> {{$dt->brand}}</p>
+                                                        <p><span class="text-info">số lượng:</span> {{$dt->quantity}} sản phẩm</p>
+                                                        <p><span class="text-info">lượt xem :</span> {{$dt->view}}</p>
                                                     </div>
                                                     </div>
                                                 </div>
@@ -134,6 +149,8 @@
 
 
 @section('js')
+<script src="{{asset('adm/assets/js/danhsach.js')}}"></script>
+
     <script>
         jQuery(document).ready(function($) {
             $('.btndelete').click(function(ev) {

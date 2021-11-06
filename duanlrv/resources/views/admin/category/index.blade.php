@@ -12,9 +12,9 @@
         <form action="">
             @csrf
         <div class="form-group">
-            <label><strong>lọc danh sách</strong></label>
+            <label><strong>quản lý danh sách</strong></label>
             <select name="sort" id="sort" class="form-control">
-                <option value="">lọc danh sách</option>
+                <option value="{{Request::url()}}">Tất cả danh sách</option>
             @foreach($danhmuc as $loc)
             <option value="{{Request::url()}}?sort_by={{$loc->slug}}">{{$loc->name_nav}}</option>
             @endforeach
@@ -58,7 +58,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $dt)
+                        @foreach($data as  $dt)
                             <tr>
                                 <td class="serial">{{$dt->id}}</td>
                                 <td class="avatar">
@@ -72,9 +72,9 @@
                                 </td>
                                 <td>
                                     @if($dt->hidden == 0)
-                                        <span class="badge badge-danger">Danh mục Ẩn</span>
+                                    <a href="{{URL::to('/active-category-product/'.$dt->id)}}"><span class="badge badge-danger">Danh mục Ẩn</span></a>
                                     @else
-                                        <span class="badge badge-complete">Danh mục Hiện</span>
+                                    <a href="{{URL::to('/unactive-category-product/'.$dt->id)}}"><span class="badge badge-complete">Danh mục Hiện</span></a>
                                     @endif
                                 </td>
                                 <td>
@@ -97,6 +97,7 @@
 
 
 @section('js')
+<script src="{{asset('adm/assets/js/danhsach.js')}}"></script>
     <script>
         jQuery(document).ready(function($) {
             $('.btndelete').click(function(ev) {
@@ -107,21 +108,6 @@
                     $('form#form-delete').submit();
                 }
             });
-        });
-    </script>
-    <script>
-        jQuery(document).ready(function($) {
-            $('#sort').on('change', function() {
-                var url = $(this).val();
-                // alert(url);
-                if(url){
-                    window.location = url;
-                }
-                return false;
-            });
-
-
-
         });
     </script>
 @stop()
