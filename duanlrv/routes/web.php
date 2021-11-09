@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin'], function(){
 });
 
 // Route::group(['prefix' => 'user'], function(){
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/chitiet', 'HomeController@productDetail')->name('productDetail');
     Route::get('/cua-hang', 'HomeController@products')->name('products');
     Route::get('/addToCart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
