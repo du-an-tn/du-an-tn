@@ -178,6 +178,19 @@ return [
             ],
         ]
     ],
+    [
+        'label' => 'file hình ảnh',
+        'route' => 'admin.file',
+        'icon' => 'fa fa-bar-chart-o',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-tachometer',
+            'label' => 'QL file',
+            'route' => 'admin.file'
+            ],
+        ]
+    ],
 ]
 
 

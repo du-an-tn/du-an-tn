@@ -24,6 +24,8 @@ Route::get('/unactive-category-product/{category_product_id}', [categoryControll
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
+    Route::get('/file', 'AdminController@file')->name('admin.file');
+
     Route::post("/select-delivery", "infoController@select_delivery");
     Route::get('/chi-tiet-don-hang/{slug}', 'donhangController@chitietdh');
 

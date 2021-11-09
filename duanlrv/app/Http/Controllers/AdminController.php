@@ -56,4 +56,9 @@ class AdminController extends Controller
         'traffic_total_count'
     ));
     }
+
+    public function file()
+    {
+        return view('admin.file');
+    }
 }
