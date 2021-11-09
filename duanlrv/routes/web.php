@@ -15,12 +15,7 @@ use App\Http\Controllers\productController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/danh-muc-phu-kien', [categoryController::class, 'show_category_phukien']);   
-Route::get('/danh-muc-san-pham/{slug_category_product}', [categoryController::class, 'show_category_home']);
-Route::get('/chi-tiet-san-pham/{slug}', [productController::class, 'chi_tiet_san_pham']);    
-Route::get('/', 'HomeController@index')->name('home.index');
-Route::get('/active-category-product/{category_product_id}', [categoryController::class, 'active_category_product']);
-Route::get('/unactive-category-product/{category_product_id}', [categoryController::class, 'unactive_category_product']);
+
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
@@ -44,9 +39,25 @@ Route::group(['prefix' => 'admin'], function(){
     ]);
 });
 
+// Route::group(['prefix' => 'user'], function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/chitiet', 'HomeController@productDetail')->name('productDetail');
+    Route::get('/cua-hang', 'HomeController@products')->name('products');
+    Route::get('/addToCart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
+    Route::get('/gio-hang', [HomeController::class, 'cartViews'])->name('cartViews');
+    Route::get('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
 
+
+
+    // Route::get('/danh-muc-phu-kien', [categoryController::class, 'show_category_phukien']);   
+    // Route::get('/danh-muc-san-pham/{slug_category_product}', [categoryController::class, 'show_category_home']);
+    // Route::get('/chi-tiet-san-pham/{slug}', [productController::class, 'chi_tiet_san_pham']);    
+    // Route::get('/active-category-product/{category_product_id}', [categoryController::class, 'active_category_product']);
+    // Route::get('/unactive-category-product/{category_product_id}', [categoryController::class, 'unactive_category_product']);
+
+// });
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/trang-chu', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
+// Route::get('/trang-chu', [HomeController::class, 'index']);

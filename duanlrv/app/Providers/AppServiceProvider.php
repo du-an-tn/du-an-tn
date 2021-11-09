@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use App\Models\navmenu;
 use App\Models\category;
+use App\Controllers\HomeController;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -70,9 +72,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
-
-        
+        // $carts= session()->get('cart');
+        // return View('site.layout',compact('carts'));
         Paginator::useBootstrap();
     }
 }
