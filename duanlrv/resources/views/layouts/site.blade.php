@@ -27,6 +27,10 @@
     
 </head>
 
+<style>
+
+</style>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -137,6 +141,7 @@
                                                 @endforeach
                                                 @endif
                                             </tbody>
+                                            
                                         </table>
                                         
                                     </div>

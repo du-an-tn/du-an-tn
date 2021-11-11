@@ -37,19 +37,19 @@
                         @foreach($chitiet as $dt)
                             <tr>
                                 <td>
-                                    <span>{{$dt->shiping_name}}</span>
+                                    <span>{{$dt->order_name}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->shiping_phone}}</span>
+                                    <span>{{$dt->order_phone}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->shiping_email}}</span>
+                                    <span>{{$dt->order_email}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->shiping_address}}</span>
+                                    <span>{{$dt->order_address}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->shiping_note}}</span>
+                                    <span>{{$dt->order_note}}</span>
                                 </td>
                                 <td>
                                     @if($dt->phuongthuc_thanhtoan = 1)
@@ -79,21 +79,7 @@
         <div class="card cart-bg">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-sm-6">
                     <strong class="card-title mt-3">danh sách đơn hàng</strong>
-                    </div>
-                    <div class="col-sm-6">
-                        <form class="form-inline justify-content-end" action="" method="GET" role="form">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" type="search" placeholder="tìm kiếm..." aria-label="Search" name="key">
-                            <div class="input-group-append">
-                            <button class="btn btn-success" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            </div>
-                        </div>
-                    </form>
-                    </div>
                 </div>
             </div>
             <div class="table-stats order-table ov-h">

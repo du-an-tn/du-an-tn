@@ -78,63 +78,6 @@
                     </div>
                 </div>
                 <!-- /Widgets -->
-                <!--  Traffic  -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="box-title">Traffic </h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="card-body">
-                                        <!-- <canvas id="TrafficChart"></canvas>   -->
-                                        <div id="traffic-chart" class="traffic-chart"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                @php
-                                    $pt_traffic_year = $traffic_year_count / $traffic_total_count * 100;
-                                    $pt_traffic_online = $traffic_count / $traffic_year_count * 100;
-                                    $pt_traffic_this_month = $traffic_this_month_count / $traffic_year_count * 100;
-                                @endphp
-                                    <div class="card-body">
-                                        <div class="progress-box progress-1">
-                                            <h4 class="por-title">Đang online</h4>
-                                            <div class="por-txt">{{$traffic_count}} Users ({{round($pt_traffic_online)}}%)</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: {{$pt_traffic_online}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">Tổng tháng này</h4>
-                                            <div class="por-txt">{{$traffic_this_month_count}} Users ({{round($pt_traffic_this_month)}}%)</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: {{$pt_traffic_this_month}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">Tổng năm này</h4>
-                                            <div class="por-txt">{{$traffic_year_count}} Users</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 100%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">Tổng truy cập</h4>
-                                            <div class="por-txt">{{$traffic_total_count}} Users</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 100%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- /.card-body -->
-                                </div>
-                            </div> <!-- /.row -->
-                            <div class="card-body"></div>
-                        </div>
-                    </div><!-- /# column -->
-                </div>
-                <!--  /Traffic -->
                 <div class="clearfix"></div>
                 <!-- Orders -->
                 <div class="orders">
@@ -142,7 +85,7 @@
                         <div class="col-xl-8">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="box-title">Orders </h4>
+                                    <h4 class="box-title">Đơn đặt hàng </h4>
                                 </div>
                                 <div class="card-body--">
                                     <div class="table-stats order-table ov-h">
@@ -241,8 +184,43 @@
                             </div> <!-- /.card -->
                         </div>  <!-- /.col-lg-8 -->
 
-                        <div class="col-xl-4">
-                            <div class="row">
+                        <div class="col-xl-4 card">
+                                @php
+                                    $pt_traffic_year = $traffic_year_count / $traffic_total_count * 100;
+                                    $pt_traffic_online = $traffic_count / $traffic_year_count * 100;
+                                    $pt_traffic_this_month = $traffic_this_month_count / $traffic_year_count * 100;
+                                @endphp
+                                    <div class="card-body">
+                                        <div class="progress-box progress-1">
+                                            <h4 class="por-title">Đang online</h4>
+                                            <div class="por-txt">{{$traffic_count}} Users ({{round($pt_traffic_online)}}%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: {{$pt_traffic_online}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Tổng tháng này</h4>
+                                            <div class="por-txt">{{$traffic_this_month_count}} Users ({{round($pt_traffic_this_month)}}%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: {{$pt_traffic_this_month}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Tổng năm này</h4>
+                                            <div class="por-txt">{{$traffic_year_count}} Users</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 100%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Tổng truy cập</h4>
+                                            <div class="por-txt">{{$traffic_total_count}} Users</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 100%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <!-- <div class="row">
                                 <div class="col-lg-6 col-xl-12">
                                     <div class="card br-0">
                                         <div class="card-body">
@@ -250,7 +228,7 @@
                                                 <div id="flotPie1" class="float-chart"></div>
                                             </div>
                                         </div>
-                                    </div><!-- /.card -->
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-6 col-xl-12">
@@ -263,7 +241,7 @@
                                          </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div> <!-- /.col-md-4 -->
                     </div>
                 </div>

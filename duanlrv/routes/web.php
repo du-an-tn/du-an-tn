@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post("/select-delivery", "infoController@select_delivery");
     Route::get('/chi-tiet-don-hang/{slug}', 'donhangController@chitietdh');
 
+    Route::post("/update-trangthai", "donhangController@update_trangthai");
+
     Route::resources([
         'menu' => 'menuController',
         'category' => 'categoryController',
@@ -43,9 +45,11 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/chitiet', 'HomeController@productDetail')->name('productDetail');
     Route::get('/cua-hang', 'HomeController@products')->name('products');
+    Route::get('/checkout', 'HomeController@dichvu')->name('dichvu');
     Route::get('/addToCart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
     Route::get('/gio-hang', [HomeController::class, 'cartViews'])->name('cartViews');
     Route::get('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
+    
 
 
 

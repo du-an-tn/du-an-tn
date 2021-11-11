@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\traffic;
+use App\Models\donhang;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -56,6 +57,8 @@ class AdminController extends Controller
         'traffic_total_count'
     ));
     }
+
+
 
     public function file()
     {
