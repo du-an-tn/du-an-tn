@@ -1,5 +1,4 @@
-@extends('layouts.layout')
-
+@extends('layouts.site')
 @section('main')
 
       <!-- Blog Details Section Begin -->

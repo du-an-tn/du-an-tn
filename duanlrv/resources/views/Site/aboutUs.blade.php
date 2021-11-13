@@ -1,6 +1,5 @@
 @extends('layouts.site')
 
-
 @section('main')
 
     <!-- Hero Section Begin -->

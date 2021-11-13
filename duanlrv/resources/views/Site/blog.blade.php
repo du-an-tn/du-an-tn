@@ -1,6 +1,4 @@
 @extends('layouts.site')
-
-
 @section('main')
 
       <!-- Breadcrumb Section Begin -->

@@ -38,16 +38,6 @@
             <label for="exampleInputEmail1">tiêu đề sản phẩm*</label>
             <input type="text" class="form-text" name="title" id="name"  placeholder="Nhập Tên thú cưng...">
         </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">slug sản phẩm <span style="color:red">slug được nhập tự động</span></label>
-            <input type="text" class="form-text" name="slug_product"  placeholder="Nhập Tên menu..." disabled>
-        </div>
-        <div class="form-group col-md-6">
-                <label for="exampleFormControlFile1">images</label>
-                <input type="file" class="form-text" name="file_upload" placeholder="chưa có tệp nào được chọn...">
-        </div>
-    </div>
     <div class="form-group">
         <label for="inputAddress">giá sản phẩm *</label>
         <input type="text" class="form-text" name="price"  placeholder="nhập giá sản phẩm...">
@@ -56,9 +46,20 @@
         <label for="inputAddress2">giá giảm (nếu có)</label>
         <input type="text" class="form-text" name="discount" placeholder="nhập giá giảm...">
     </div>
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6">
         <label for="inputZip">tình trạng sản phẩm</label>
         <input type="text" class="form-text" name="quantity"  placeholder="Còn hàng | hết hàng..." >
+    </div>
+        <div class="form-group col-md-6">
+            <label>Hình ảnh (*)</label>
+            <div class="input-group mt-1">
+                <input type="text" name="image" id="image" class="form-control" placeholder="nhập hình ảnh sản phẩm" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-danger" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fa fa-folder"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="form-row">
             <div class="form-group col-md-6">
@@ -116,6 +117,29 @@
         </form>
     </div>
 </div>
+
+
+<!-- modal thêm hình -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="max-width:96% !important;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">danh sách hình ảnh</h5>
+        </div>
+        <div class="modal-body">
+        <iframe src="{{url('/file/dialog.php?field_id=image')}}" width="100%" height="500px" style="over-flow-y:auto" frameborder="0"></iframe>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 @stop
 @section('js')
 <script src="{{asset('adm/assets/js/slug.js')}}"></script>

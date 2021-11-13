@@ -43,6 +43,9 @@ class HomeController extends Controller
 
        return view('Site.index',compact('products'));
     }
+    public function dichvu(){
+        return view('site.checkout');
+    }
     public function productDetail()
     {
        return view('Site.productDetail');
