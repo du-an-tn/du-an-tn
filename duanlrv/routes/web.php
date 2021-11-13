@@ -38,12 +38,16 @@ Route::group(['prefix' => 'admin'], function(){
 });
 
 // Route::group(['prefix' => 'user'], function(){
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/chitiet', 'HomeController@productDetail')->name('productDetail');
     Route::get('/cua-hang', 'HomeController@products')->name('products');
     Route::get('/addToCart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
     Route::get('/gio-hang', [HomeController::class, 'cartViews'])->name('cartViews');
     Route::get('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
+    Route::get('/delete-cart', [HomeController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('/remove-cart', [HomeController::class, 'removeCart'])->name('removeCart');
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+
 
 
 

@@ -103,52 +103,10 @@
                                              @endphp 
                                             @endforeach
                                             @endif 
-                            <li class="cart-icon">
-                                <a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span id="cart_count">{{$count}}</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items" id='ajax_cart'>
-                                        <table>
-                                            <tbody>
-                                            @php 
-                                            $total = 0;
-                                            $count=0;
-                                            @endphp
-                                            @if(session('cart'))
-                                            @foreach(session('cart') as $CartItem)
-                                            @php 
-                                            $total += $CartItem['price'] * $CartItem['quantity'];
-                                            $count += $CartItem['quantity'];
-                                            @endphp
-                                                <tr>
-                                                    <td class="si-pic"><img src="site/img/products/{{$CartItem['images']}}" width="100px" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <h6>{{$CartItem['name']}}</h6>
-                                                            <p>{{number_format($CartItem['price'])}}đ x {{ $CartItem['quantity']}}</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                        
-                                    </div>
-                                    <div class="select-total">
-                                        <span>Tổng:</span>
-                                        <h5>{{number_format($total)}}đ</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="{{route('cartViews')}}" class="primary-btn view-card">Xem giỏ hàng</a>
-                                        <a href="#" class="primary-btn checkout-btn">Thanh toán</a>
-                                    </div>
-                                </div>
+                            <li class="cart-icon" id='ajax_cart'>
+                           
+                                @include('site.cartquick')
+                               
                             </li>
                             <li class=""><a href="#" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
                             
@@ -272,6 +230,51 @@
     <script src="{{ asset('Site/js/main.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <!-- JavaScript -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
+    <script src="{{ asset('Site/js/alert.min.js') }}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+
+
 </body>
 
 </html>
+<script>
+    
+//cart
+function addToCart(event){
+
+event.preventDefault();
+let urlCart= $(this).data('url');
+$.ajax(
+  {
+    type: "GET",
+    url: urlCart,
+    dataType: 'json',
+    success: function(data){
+        $('#ajax_cart').html(data.cartquick);
+        console.log(data);
+        alertify.success('Đã thêm vào giỏ hàng!') 
+    },
+    error: function(){
+
+    }
+      
+  })
+}
+$(function(){
+$('.add_to_cart').on('click', addToCart);
+});
+
+
+</script>

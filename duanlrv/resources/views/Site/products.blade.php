@@ -1,4 +1,4 @@
-@extends('site.layout')
+@extends('layouts.layout')
 
 @section('main')
 
@@ -158,36 +158,4 @@
     </section>
     <!-- Product Shop Section End -->
 
-<script>
-    
-//cart
-function addToCart(event){
-
-event.preventDefault();
-let urlCart= $(this).data('url');
-$.ajax(
-  {
-    type: "GET",
-    url: urlCart,
-    dataType: 'json',
-    success: function(data,response){
-        // response =JSON.parse(response);
-        // $.get('layout.blade.php',function (contentCartHTML){
-        //     $('#ajax_cart').html(contentCartHTML);
-        // });
-        
-    },
-    error: function(){
-
-    }
-      
-  }
-)
-}
-$(function(){
-$('.add_to_cart').on('click', addToCart);
-});
-
-
-</script>
 @endsection
