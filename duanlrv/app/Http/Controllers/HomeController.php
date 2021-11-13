@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Session;
-use Response;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -19,7 +19,9 @@ class HomeController extends Controller
     public function __construct(qlsanphamInterface $products)
     {
         $this->products = $products;
+       
     }
+
     /**
      * Create a new controller instance.
      *
@@ -37,7 +39,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view('Site.index');
+       $products= $this-> products ->getAll();
+
+       return view('Site.index',compact('products'));
     }
     public function dichvu(){
         return view('site.checkout');
@@ -55,11 +59,11 @@ class HomeController extends Controller
     function addToCart($id){
         // session()->flush('carts');
         $product = $this-> products->find($id);
-        $cart= session()->get('cart',[]);
-        if(isset($cart[$id])){
-            $cart[$id]['quantity']=$cart[$id]['quantity']+1;
+        $carts= session()->get('cart',[]);
+        if(isset($carts[$id])){
+            $carts[$id]['quantity']=$carts[$id]['quantity']+1;
         }else{
-            $cart[$id]=[
+            $carts[$id]=[
                 'name'=>$product->title,
                 'price'=>$product->price,
                 'quantity'=>1,
@@ -67,14 +71,17 @@ class HomeController extends Controller
                 
             ];
         }
-        session()->put('cart', $cart);
+        session()->put('cart', $carts);
+        $carts =session()->get('cart');
+        $cart=View('Site.cartquick',compact('carts'))->render();
+        return response()->json(['cartquick'=> $cart]);
         // echo "<pre>";
         // print_r(session()->get('cart'));
         // return response()->json([
         //     'code'=>200,
         //     'message'=>'success'
 
-        // ], status: 200);
+        // ], 200);
         
     }
 
@@ -89,10 +96,36 @@ class HomeController extends Controller
             $carts[$request->id]['quantity']=$request->quantity;
             session()->put('cart',$carts);
             $carts =session()->get('cart');
-            
+            $cartt=View('Site.cartquick',compact('carts'))->render();
             $cart=View('Site.contentCart',compact('carts'))->render();
-            return response()->json(['contentCart'=> $cart]);
+            return response()->json(['contentCart'=> $cart,'cartquick'=> $cartt]);
         } 
-        // return view("site.cartView",compact('cartss'));
     }
-}
+    public function deleteCart(Request $request){
+        if($request->id){
+            $carts =session()->get('cart');
+            unset($carts[$request->id]);
+            session()->put('cart',$carts);
+            $carts =session()->get('cart');
+            $cart=View('Site.contentCart',compact('carts'))->render();
+            $cartt=View('Site.cartquick',compact('carts'))->render();
+            return response()->json(['contentCart'=> $cart,'cartquick'=> $cartt]);
+            
+        } 
+    }
+    public function removeCart(){
+        session()->flush('carts');
+        $carts =session()->get('cart');
+        $cart=View('Site.contentCart',compact('carts'))->render();
+        $cartt=View('Site.cartquick',compact('carts'))->render();
+        return response()->json(['contentCart'=> $cart,'cartquick'=> $cartt]);
+    } 
+    public function checkout(){
+        $carts =session()->get('cart');
+        
+        return view('site.checkout');
+
+    } 
+        
+    }
+

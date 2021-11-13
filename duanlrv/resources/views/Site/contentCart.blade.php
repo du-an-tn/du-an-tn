@@ -1,5 +1,5 @@
 
-<section class="shopping-cart spad">
+<section class="shopping-cart spad delete" data-url="{{route('deleteCart')}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -12,19 +12,29 @@
                                     <th>Đơn giá</th>
                                     <th>Số lượng</th>
                                     <th>Tổng</th>
-                                    <th><i class="ti-close"></i></th>
+                                    @php 
+                                    $count=0;
+                                    @endphp  
+                                    @if(session('cart')==true)
+                                    @foreach(session('cart') as $CartItem)
+                                    @php 
+                                    $count += $CartItem['quantity'];
+                                    @endphp 
+                                    @endforeach
+                                    @endif 
+                                    <th><a href="#" class="removeCart">Xóa Giỏ Hàng</a> ({{$count}})</th>
                                 </tr>
                             </thead>
+                            <!-- cart -->
+                            @php 
+                            $total = 0;
+                            @endphp
+                            @if(Session::has('cart')!=null)
+                            @foreach($carts as $id => $CartItem)
+                            @php 
+                            $total += $CartItem['price'] * $CartItem['quantity'];
+                            @endphp
                             <tbody>
-                                <!-- cart -->
-                                @php 
-                                $total = 0;
-                                @endphp
-                                @if(isset($carts))
-                                @foreach($carts as $id => $CartItem)
-                                @php 
-                                $total += $CartItem['price'] * $CartItem['quantity'];
-                                @endphp
                                 <tr>
                                     <td class="cart-pic first-row"><img src="Site/img/products/{{$CartItem['images']}}" width="150px"alt=""></td>
                                     <td class="cart-title first-row">
@@ -39,14 +49,15 @@
                                         </div>
                                     </td>
                                     <td class="total-price first-row">{{number_format($CartItem['quantity'] * $CartItem['price']) }}đ</td>
-                                    <td class="close-td first-row"><a href="#" class="cart_update" data-id='{{ $id }}'>cập nhật</a></td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                    <td class="close-td first-row"><a href="#" class="cart_update" data-id='{{ $id }}' onclick="">cập nhật</a></td>
+                                    <td class="close-td first-row"><i data-id='{{ $id }}' class="ti-close deleteCart"></i></td>
                                 </tr>
+                            </tbody>
                                 @endforeach
+                                
                                 @endif
                               <!-- end cart -->
                                 
-                            </tbody>
                         </table>
                     </div>
                     <div class="row">
@@ -56,10 +67,10 @@
                                 <a href="#" class="primary-btn up-cart">Cập nhật giỏ hàng</a>
                             </div>
                             <div class="discount-coupon">
-                                <h6>Discount Codes</h6>
+                                <h6>Mã giảm giá</h6>
                                 <form action="#" class="coupon-form">
-                                    <input type="text" placeholder="Enter your codes">
-                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                    <input type="text" placeholder="Nhập mã giảm giá">
+                                    <button type="submit" class="site-btn coupon-btn">Giảm ngay</button>
                                 </form>
                             </div>
                         </div>
@@ -69,7 +80,7 @@
                                     <li class="subtotal">Tổng  <span> {{ number_format($total) }}</span></li>
                                     <li class="cart-total">Thanh toán <span>{{ number_format($total) }}</span></li>
                                 </ul>
-                                <a href="#" class="proceed-btn">Thanh toán</a>
+                                <a href="{{route('checkout')}}" class="proceed-btn">Thanh toán</a>
                             </div>
                         </div>
                     </div>

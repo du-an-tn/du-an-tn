@@ -49,7 +49,10 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/addToCart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
     Route::get('/gio-hang', [HomeController::class, 'cartViews'])->name('cartViews');
     Route::get('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
-    
+    Route::get('/delete-cart', [HomeController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('/remove-cart', [HomeController::class, 'removeCart'])->name('removeCart');
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+
 
 
 

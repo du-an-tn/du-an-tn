@@ -95,6 +95,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active">
                             <div class="product-slider owl-carousel">
+                                @foreach($products as $items)
                             <div class="product-item" >
                                 <div class="pi-pic">
                                     <img src="{{ asset('site/img/products/women-1.jpg') }}" alt="">
@@ -103,7 +104,7 @@
                                         <i class="icon_heart_alt"></i>
                                     </div>
                                     <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                        <li class="w-icon active"><a href="#" data-url="{{route('addToCart', ['id'=>$items->id])}}" class=" add_to_cart"  ><i class="icon_bag_alt add_to_cart"></i></a></li>
                                         <li class="quick-view"><a href="#">+ Xem chi tiết</a></li>
                                         <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                     </ul>
@@ -111,80 +112,16 @@
                                 <div class="pi-text">
                                     <div class="catagory-name">Coat</div>
                                     <a href="#">
-                                        <h5>Pure Pineapple</h5>
+                                        <h5>{{$items->title}}</h5>
                                     </a>
                                     <div class="product-price">
-                                        $14.00
-                                        <span>$35.00</span>
+                                    {{$items->discount}} đ
+                                            <span>{{$items->price}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="{{ asset('site/img/products/women-2.jpg') }}" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Xem chi tiết</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Shoes</div>
-                                    <a href="#">
-                                        <h5>Guangzhou sweater</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $13.00
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="{{ asset('site/img/products/women-3.jpg') }}" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Xem chi tiết</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="#">
-                                        <h5>Pure Pineapple</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $34.00
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="{{ asset('site/img/products/women-4.jpg') }}" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Xem chi tiết</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="#">
-                                        <h5>Converse Shoes</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $34.00
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            
                             </div>
                         </div>
                         <!-- end -->
@@ -607,14 +544,14 @@
     <!-- Partner Logo Section End -->
   
  <script>
-     const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+     const $$ = document.querySelector.bind(document);
+const $$$ = document.querySelectorAll.bind(document);
 
-const tabs = $$(".tab-item");
-const panes = $$(".tab-pane");
+const tabs = $$$(".tab-item");
+const panes = $$$(".tab-pane");
 
-const tabActive = $(".tab-item.active");
-const line = $(".tabs .line");
+const tabActive = $$(".tab-item.active");
+const line = $$(".tabs .line");
 
 line.style.left = tabActive.offsetLeft + "px";
 line.style.width = tabActive.offsetWidth + "px";
@@ -623,8 +560,8 @@ tabs.forEach((tab, index) => {
   const pane = panes[index];
 
   tab.onclick = function () {
-    $(".tab-item.active").classList.remove("active");
-    $(".tab-pane.active").classList.remove("active");
+    $$(".tab-item.active").classList.remove("active");
+    $$(".tab-pane.active").classList.remove("active");
 
     line.style.left = this.offsetLeft + "px";
     line.style.width = this.offsetWidth + "px";
