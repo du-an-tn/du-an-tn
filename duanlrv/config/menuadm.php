@@ -108,6 +108,24 @@ return [
                 ],
         ]
     ],
+    [
+        'label' => 'QL Dịch vụ',
+        'route' => 'qldichvu.index',
+        'icon' => 'fa fa-pagelines',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-indent',
+            'label' => 'Danh sách cơ sở',
+            'route' => 'qldichvu.index'
+            ],
+            [
+                'iconnew' => 'fa fa-indent',
+                'label' => 'Thêm cơ sở',
+                'route' => 'qldichvu.create'
+                ],
+        ]
+    ],
     // [
     //     'label' => 'QL phối giống',
     //     'route' => 'qlthucung.index',
@@ -162,19 +180,6 @@ return [
             'iconnew' => 'fa fa-rocket',
             'label' => 'Tổng hợp account',
             'route' => 'account.index'
-            ],
-        ]
-    ],
-    [
-        'label' => 'Thống kê',
-        'route' => 'admin.dashboard',
-        'icon' => 'fa fa-bar-chart-o',
-        'items' =>
-        [
-            [
-            'iconnew' => 'fa fa-tachometer',
-            'label' => 'Xem Thống kê',
-            'route' => 'admin.dashboard'
             ],
         ]
     ],

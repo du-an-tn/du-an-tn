@@ -109,54 +109,7 @@
                            
                                 @include('site.cartquick')
                                
-                            <li class="cart-icon">
-                                <a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span id="cart_count">{{$count}}</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items" id='ajax_cart'>
-                                        <table>
-                                            <tbody>
-                                            @php 
-                                            $total = 0;
-                                            $count=0;
-                                            @endphp
-                                            @if(session('cart'))
-                                            @foreach(session('cart') as $CartItem)
-                                            @php 
-                                            $total += $CartItem['price'] * $CartItem['quantity'];
-                                            $count += $CartItem['quantity'];
-                                            @endphp
-                                                <tr>
-                                                    <td class="si-pic"><img src="site/img/products/{{$CartItem['images']}}" width="100px" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <h6>{{$CartItem['name']}}</h6>
-                                                            <p>{{number_format($CartItem['price'])}}đ x {{ $CartItem['quantity']}}</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                            </tbody>
-                                            
-                                        </table>
-                                        
-                                    </div>
-                                    <div class="select-total">
-                                        <span>Tổng:</span>
-                                        <h5>{{number_format($total)}}đ</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="{{route('cartViews')}}" class="primary-btn view-card">Xem giỏ hàng</a>
-                                        <a href="#" class="primary-btn checkout-btn">Thanh toán</a>
-                                    </div>
-                                </div>
-                            </li>
+
                             <li class=""><a href="#" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
                             
                         </ul>

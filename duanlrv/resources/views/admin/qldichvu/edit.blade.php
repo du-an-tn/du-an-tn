@@ -3,7 +3,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <style>
  .form-nhap{
-    background-image: linear-gradient( 135deg, #43CBFF 10%, #9708CC 100%);
+     background: linear-gradient(45deg, #020024 0%, #09793f 35%, #00d4ff 100%);
      color: rgb(252, 211, 77);
      font-weight: bold;
  }
@@ -30,31 +30,31 @@
 <div class="content" style="background:#fff;">
     <div class="col-sm-12 form-nhap" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius:15px">
         <div class="card-header">
-            <center><strong class="card-title"><h3>FORM NHẬP SẢN PHẨM</h3></strong></center>
+            <center><strong class="card-title"><h3>Nhập sản phẩm</h3></strong></center>
         </div>
-        <form action="{{route('qlsanpham.store')}}" method="POST" enctype="multipart/form-data">
-         @csrf
+        <form action="{{route('qlsanpham.update',$qlsanpham->id)}}" method="POST" enctype="multipart/form-data">
+         @csrf @method('PUT')
         <div class="form-group">
-            <label for="exampleInputEmail1">tiêu đề sản phẩm*</label>
-            <input type="text" class="form-text" name="title" id="name"  placeholder="Nhập Tên thú cưng...">
+            <label for="exampleInputEmail1">Tên sản phẩm *</label>
+            <input type="text" class="form-text" name="title" id="name" value="{{$qlsanpham->title}}" placeholder="Nhập Tên thú cưng...">
         </div>
     <div class="form-group">
         <label for="inputAddress">giá sản phẩm *</label>
-        <input type="text" class="form-text" name="price"  placeholder="nhập giá sản phẩm...">
+        <input type="text" class="form-text" name="price" value="{{$qlsanpham->price}}" placeholder="nhập giá sản phẩm...">
     </div>
     <div class="form-group">
         <label for="inputAddress2">giá giảm (nếu có)</label>
-        <input type="text" class="form-text" name="discount" placeholder="nhập giá giảm...">
+        <input type="text" class="form-text" name="discount" value="{{$qlsanpham->discount}}" placeholder="nhập giá giảm...">
     </div>
     <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="inputZip">tình trạng sản phẩm</label>
-        <input type="text" class="form-text" name="quantity"  placeholder="Còn hàng | hết hàng..." >
-    </div>
+        <div class="form-group col-md-6">
+            <label>Tình trạng sản phẩm</label>
+            <input type="text" class="form-text" name="status" value="{{$qlsanpham->status}}" placeholder="còn hàng | hết hàng...">
+        </div>
         <div class="form-group col-md-6">
             <label>Hình ảnh (*)</label>
             <div class="input-group mt-1">
-                <input type="text" id="image" name="image" class="form-control" placeholder="nhập hình ảnh sản phẩm">
+                <input type="text" name="image" id="image" value="{{$qlsanpham->image}}" class="form-control" placeholder="nhập hình ảnh phim" disabled>
                 <div class="input-group-append">
                     <button class="btn btn-danger" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fa fa-folder"></i></button>
                 </div>
@@ -62,30 +62,26 @@
         </div>
     </div>
     <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>Menu</label>
-                <select class="form-text choose input-sm city" name="id_menu" id="city">
-                  <option value="">-----{{__('Chọn menu')}}-----</option>
-                    @foreach($text as $t)
-                    <option class="op-text" value="{{$t->id}}">{{$t->name_nav}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label>Danh mục đăng tin <span style="color:red">(vui lòng chọn menu trước)</span></label>
-                <select class="form-text input-sm choose province" name="id_category" id="province">
-                    <option class="op-text">-----{{__('Chọn danh mục')}}-----</option>
-                </select>
-            </div>
+        <div class="form-group col-md-6">
+            <label>Menu</label>
+            <select class="form-text choose input-sm city" name="id_menu" id="city">
+                <option value="">-----{{__('Chọn menu')}}-----</option>
+                @foreach($text as $t)
+                <option class="op-text" value="{{$t->id}}">{{$t->name_nav}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Danh mục đăng tin</label>
+            <select class="form-text input-sm choose province" id="province" name="id_category">
+                <option class="op-text" value="">-- chọn danh mục --</option>
+            </select>
+        </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <label>nhãn hiệu</label>
-            <input type="text" class="form-text" name="brand" placeholder="nhập nhãn hiệu sản phẩm">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="inputZip">Số lượng sản phẩm</label>
-            <input type="text" class="form-text" name="quantity"  placeholder="nhập số lượng sản phẩm..." >
+            <label for="inputZip">Số lượng</label>
+            <input type="text" class="form-text" name="age" value="{{$qlsanpham->quantity}}" placeholder="nhập độ tuổi..." >
         </div>
         <div class="form-group col-md-4">
             <label>Xét duyệt trạng thái</label>
@@ -95,10 +91,14 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group col-md-4">
+            <label for="inputZip">Nhãn hiệu</label>
+            <input type="text" class="form-text" name="age" value="{{$qlsanpham->brand}}" placeholder="nhập nhãn hiệu sản phẩm..." >
+        </div>
     </div>
     <div class="form-group col-md-12" style="background-color: #fff; color: #000;">
         <label>Nhập mô tả</label>
-        <textarea class="form-control" name="description" id="content" rows="10"></textarea> 
+        <textarea class="form-control" name="description" id="content" rows="10">{{$qlsanpham->description}}</textarea> 
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="hidden" id="radio0" value="0">
@@ -119,6 +119,8 @@
 </div>
 
 
+
+
 <!-- modal thêm hình -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" style="max-width:96% !important;">
@@ -135,6 +137,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 @stop
@@ -182,32 +186,4 @@ jQuery(document).ready(function($) {
     });
 });
 </script>
-
-
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('#file').on('change', function(){
-            var error = '';
-            var files = $('#file')[0].files;
-
-            if(files.length>5){
-                error += '<p style="color:red;">tối đa chọn 5 hình</p>';
-            }else if(files.length == ""){
-                error += '<p style="color:red;">không được bỏ trống gallery</p>';
-            }else if(files.size > 2000000){
-                error+='<p style="color:red;">tối đa không quá 2MB</p>';
-            }
-
-            if(error == ''){
-
-            }else{
-                $('#file').val('');
-                $('#error_gallery').html('<strong">'+error+'</strong>');
-                return false;
-            }
-
-        });
-    });
-</script>
-
 @stop()

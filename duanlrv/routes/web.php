@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function(){
         'category' => 'categoryController',
         'qlthucung' => 'infoController',
         'qlsanpham' => 'productController',
+        'qldichvu' => 'cosoController',
         'coupon' => 'couponController',
         'news' => 'newsController',
         'donhang' => 'donhangController',

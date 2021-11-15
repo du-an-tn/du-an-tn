@@ -36,7 +36,7 @@
                             @endphp
                             <tbody>
                                 <tr>
-                                    <td class="cart-pic first-row"><img src="Site/img/products/{{$CartItem['images']}}" width="150px"alt=""></td>
+                                    <td class="cart-pic first-row"><img src="{{asset('uploads')}}/{{$CartItem['images']}}" width="150px"alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>{{$CartItem['name']}}</h5>
                                     </td>
@@ -44,7 +44,9 @@
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="number" value="{{$CartItem['quantity']}}" min="1" class="quatity">
+                                                <span class="dec qtybtn">-</span>
+                                                <input type="text" value="{{$CartItem['quantity']}}" min="1" class="quatity" disabled>
+                                                <span class="inc qtybtn">+</span>
                                             </div>
                                         </div>
                                     </td>
@@ -89,3 +91,25 @@
         </div>
     </section>
   
+<script>
+    jQuery(document).ready(function($) {
+        var proQty = $('.pro-qty');
+        proQty.addClass('dec qtybtn');
+        proQty.addClass('inc qtybtn');
+        proQty.on('click', '.qtybtn', function () {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
+            } else if($button.hasClass('dec')){
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            $button.parent().find('input').val(newVal);
+        });
+    });
+</script>
