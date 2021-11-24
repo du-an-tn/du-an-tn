@@ -9,7 +9,7 @@ class donhang extends Model
 {
     use HasFactory;
     protected $table = 'order_product';
-    protected $fillable = ['order_id','order_code','product_id','quantity','amount','status'];
+    protected $fillable = ['order_id','order_date','order_code','product_id','quantity','amount','status'];
     protected $primaryKey = 'order_id';
     public $timestamps = FALSE;
 
@@ -31,7 +31,10 @@ class donhang extends Model
     {
        return $this->hasMany(trangthai::class,'id_status','id');
     }
-
+    public function donhang()
+    {
+       return $this->hasOne(orderDetail::class,'order_id','order_id');
+    }
     public function scopeSearch($query)
     {
         if($key = request()->key){

@@ -173,6 +173,8 @@ class infoController extends Controller
      */
     public function destroy($id)
     {
-        
+        $delete = $this->qlthucung->find($id);
+        $delete->delete();
+        return redirect()->route('qlthucung.index')->with('success', 'xóa thành công');
     }
 }

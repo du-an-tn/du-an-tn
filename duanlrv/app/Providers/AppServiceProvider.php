@@ -68,6 +68,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\qldichvu\qldichvuInterface::class,
             \App\Repositories\qldichvu\qldichvuReponsitory::class,
         );
+        $this->app->singleton(
+            // quản lý dịch vụ shop 2
+            \App\Repositories\chitietdichvu\chitietdichvuInterface::class,
+            \App\Repositories\chitietdichvu\chitietdichvuReponsitory::class,
+        );
     }
 
     /**

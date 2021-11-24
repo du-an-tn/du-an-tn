@@ -52,7 +52,7 @@ return [
     [
         'label' => 'Mã giảm giá',
         'route' => 'coupon.index',
-        'icon' => 'fa fa-outdent',
+        'icon' => 'fa fa-chain-broken',
         'items' =>
         [
             [
@@ -93,7 +93,7 @@ return [
     [
         'label' => 'QL Thú cưng',
         'route' => 'qlthucung.index',
-        'icon' => 'fa fa-pagelines',
+        'icon' => 'fa fa-github-alt',
         'items' =>
         [
             [
@@ -111,34 +111,26 @@ return [
     [
         'label' => 'QL Dịch vụ',
         'route' => 'qldichvu.index',
-        'icon' => 'fa fa-pagelines',
+        'icon' => 'fa fa-calendar-o',
         'items' =>
         [
             [
-            'iconnew' => 'fa fa-indent',
+            'iconnew' => 'fa fa-heart',
             'label' => 'Danh sách cơ sở',
             'route' => 'qldichvu.index'
             ],
             [
-                'iconnew' => 'fa fa-indent',
-                'label' => 'Thêm cơ sở',
+                'iconnew' => 'fa fa-inbox',
+                'label' => 'Danh sách dịch vụ',
+                'route' => 'chitietdichvu.index'
+            ],
+            [
+                'iconnew' => 'fa fa-inbox',
+                'label' => 'Danh sách đặt lịch',
                 'route' => 'qldichvu.create'
-                ],
+            ],
         ]
     ],
-    // [
-    //     'label' => 'QL phối giống',
-    //     'route' => 'qlthucung.index',
-    //     'icon' => 'fa fa-pagelines',
-    //     'items' =>
-    //     [
-    //         [
-    //         'iconnew' => 'fa fa-indent',
-    //         'label' => 'Danh sách Phối giống',
-    //         'route' => 'qlthucung.index'
-    //         ],
-    //     ]
-    // ],
     [
         'label' => 'Tin Tức',
         'route' => 'admin.dashboard',
@@ -146,7 +138,7 @@ return [
         'items' =>
         [
             [
-            'iconnew' => 'fa fa-rss',
+            'iconnew' => 'fa fa-bookmark-o',
             'label' => 'QL Tin tức',
             'route' => 'news.index'
             ],
@@ -160,11 +152,11 @@ return [
     [
         'label' => 'QL đơn hàng',
         'route' => 'donhang.index',
-        'icon' => 'fa fa-signal',
+        'icon' => 'fa fa-truck',
         'items' =>
         [
             [
-                'iconnew' => 'fa fa-rss',
+                'iconnew' => 'fa fa-book',
                 'label' => 'DS đơn hàng',
                 'route' => 'donhang.index'
                 ],
@@ -186,7 +178,7 @@ return [
     [
         'label' => 'file hình ảnh',
         'route' => 'admin.file',
-        'icon' => 'fa fa-bar-chart-o',
+        'icon' => 'fa fa-picture-o',
         'items' =>
         [
             [

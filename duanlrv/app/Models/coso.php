@@ -13,6 +13,28 @@ class coso extends Model
     public $timestamps = FALSE;
 
 
+    public function dichvu()
+    {
+       return $this->hasMany(dichvucoso::class,'id','id_nhiemvu');
+    }
+
+    public function thanhpho()
+    {
+       return $this->hasOne(thanhpho::class,'matp','id_province');
+    }
+    public function quanhuyen()
+    {
+       return $this->hasOne(quanhuyen::class,'id','id_quanhuyen');
+    }
+    public function xaphuong()
+    {
+       return $this->hasOne(xaphuong::class,'id','id_xaphuong');
+    }
+    public function xetduyet()
+    {
+       return $this->hasOne(trangthai::class,'id','id_status');
+    }
+
     public function scopeSearch($query)
     {
         if($key = request()->key){
