@@ -49,27 +49,32 @@
                     <tbody>
                         @foreach($data as $dt)
                             <tr>
-                                <td>{{$dt->id}}</td>
+                                <td>{{$dt->order_id}}</td>
                                 <td>
                                     <span>{{$dt->order_code}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$dt->order_date}}</span>
+                                    <span>{{$dt->created_at}}</span>
                                 </td>
                                 <td>
-                                    @if($dt->status == 1)
+                                    @if($dt->id_status == 1)
                                         <span class="badge badge-complete">thành công</span>
-                                    @elseif ($dt->status == 2)
+                                    @elseif($dt->id_status == 2)
                                         <span class="badge badge-warning">chưa xét duyệt</span>
                                     @else
                                         <span class="badge badge-danger">đã hủy</span>
                                     @endif
+                                    <select class="trangthai">
+                                            <option>chọn trạng thái</option>
+                                        @foreach($xetduyet as $xd)
+                                            <option name="id_status" id="item" data-order_id="{{$dt->order_id}}" value="{{$xd->id}}">{{$xd->name_type}}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td>
                                     <a href="{{url('/admin/chi-tiet-don-hang/'.$dt->order_id)}}" class="badge badge-pending">chi tiết <i class="fa fa-mail-reply"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{route('donhang.edit',$dt->order_id)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                     <a href="{{route('donhang.destroy',$dt->order_id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -91,6 +96,16 @@
 <script src="{{asset('adm/assets/js/danhsach.js')}}"></script>
 
 
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
     <script>
         jQuery(document).ready(function($) {
             $('.btndelete').click(function(ev) {
@@ -102,5 +117,33 @@
                 }
             });
         });
+    </script>
+    <script>
+    jQuery(document).ready(function($) {
+        $(document).on('change', '.trangthai', function(){
+            var is_status = $(this).val();
+            var order_id =$('#item').data('order_id');
+            var _token = $('input[name="_token"]').val();
+            console.log(order_id);
+            console.log(is_status);
+            console.log(_token);
+            $.ajax({
+                url:'{{url('/admin/update-trangthai')}}', 
+                method:'post',
+                data:{order_id:order_id, is_status:is_status, _token: _token},
+                success: function(data) 
+                {
+                    if(data == 'done')
+                    {
+                        alertify.success('bạn đã thay đổi trạng thái');
+                    }
+                    else
+                    {
+                        alertify.error('gặp lỗi rồi !');
+                    }
+                }
+            });
+        });
+    });
     </script>
 @stop()

@@ -63,7 +63,7 @@ return [
             [
             'iconnew' => 'fa fa-clipboard',
             'label' => 'Thêm mã giảm giá',
-            'route' => 'category.create'
+            'route' => 'coupon.create'
             ],
         ]
     ],
@@ -161,7 +161,7 @@ return [
             [
             'iconnew' => 'fa fa-rocket',
             'label' => 'Tổng hợp account',
-            'route' => 'admin.dashboard'
+            'route' => 'account.index'
             ],
         ]
     ],
@@ -175,6 +175,19 @@ return [
             'iconnew' => 'fa fa-tachometer',
             'label' => 'Xem Thống kê',
             'route' => 'admin.dashboard'
+            ],
+        ]
+    ],
+    [
+        'label' => 'file hình ảnh',
+        'route' => 'admin.file',
+        'icon' => 'fa fa-bar-chart-o',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-tachometer',
+            'label' => 'QL file',
+            'route' => 'admin.file'
             ],
         ]
     ],

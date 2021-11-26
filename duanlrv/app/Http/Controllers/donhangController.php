@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\shiping;
 use App\Models\donhang;
+use App\Models\trangthai;
 use App\Models\orderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,15 +26,29 @@ class donhangController extends Controller
     public function index()
     {
         $data = $this->donhang->getAll();
-        return view('admin.donhang.index', compact('data'));
+        $xetduyet = trangthai::orderBy('id', 'ASC')->select('id','name_type')->get();
+        return view('admin.donhang.index', compact('data','xetduyet'));
     }
 
     public function chitietdh($slug){
         $donhangid = donhang::where('order_id', $slug)->first();
-        $chitiet = shiping::orderBy('shiping_id','ASC')->where('order_id', $donhangid->order_id)->paginate(10);
+        $chitiet = donhang::orderBy('order_id','ASC')->where('order_id', $donhangid->order_id)->paginate(10);
         $sanpham = orderDetail::orderBy('id','ASC')->where('order_id', $donhangid->order_id)->paginate(10);
         $hdonhang = donhang::orderBy('order_id','ASC')->where('order_id')->paginate(10);
         return view('admin.chitietdh.index', compact('chitiet','hdonhang','sanpham'));
+    }
+
+
+    public function update_trangthai(Request $request){
+        if($request){
+            dd($request);
+            $update = new donhang();
+            $update->order_id = $request['order_id'];
+            $update->id_status = $request['id_status'];
+            if ($update->update()){
+                echo 'done';
+            }
+        }
     }
 
     /**
@@ -97,8 +112,18 @@ class donhangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $donhangid = donhang::where('order_id', $id)->first();
+        $delete = $this->donhang->find($id);
+        if($donhangid){
+            // xóa đơn hàng chi tiết
+            $delete = orderDetail::orderBy('id','ASC')->where('order_id', $donhangid->order_id);
+            $delete->delete();
+            // xóa đơn hàng tổng
+            $delete = $this->donhang->find($id);
+            $delete->delete();
+        }
+        return redirect()->route('donhang.index')->with('success', 'xóa thành công');
     }
 }

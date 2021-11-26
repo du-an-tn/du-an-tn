@@ -20,15 +20,19 @@ use App\Http\Controllers\accountController;
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
+    Route::get('/file', 'AdminController@file')->name('admin.file');
+
     Route::post("/select-delivery", "infoController@select_delivery");
     Route::get('/chi-tiet-don-hang/{slug}', 'donhangController@chitietdh');
+
+    Route::post("/update-trangthai", "donhangController@update_trangthai");
 
     Route::resources([
         'menu' => 'menuController',
         'category' => 'categoryController',
-        'coupon' => 'couponController',
         'qlthucung' => 'infoController',
         'qlsanpham' => 'productController',
+        'coupon' => 'couponController',
         'news' => 'newsController',
         'donhang' => 'donhangController',
         'chitietdh' => 'shipingController',
@@ -38,28 +42,40 @@ Route::group(['prefix' => 'admin'], function(){
     ]);
 });
 
+// Route::group(['prefix' => 'user'], function(){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/chitiet', 'HomeController@productDetail')->name('productDetail');
+    Route::get('/cua-hang', 'HomeController@products')->name('products');
+    Route::get('/checkout', 'HomeController@dichvu')->name('dichvu');
+    Route::get('/addToCart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
+    Route::get('/gio-hang', [HomeController::class, 'cartViews'])->name('cartViews');
+    Route::get('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
+    Route::get('/delete-cart', [HomeController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('/remove-cart', [HomeController::class, 'removeCart'])->name('removeCart');
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+    Route::get('/danh-muc-san-pham/{id}', [categoryController::class, 'show_category_home']);
+    Route::get('/chi-tiet-san-pham/{slug_product}', [HomeController::class, 'productDetail']);
 
+
+    // Route::get('/danh-muc-phu-kien', [categoryController::class, 'show_category_phukien']);   
+    // Route::get('/danh-muc-san-pham/{slug_category_product}', [categoryController::class, 'show_category_home']);
+    // Route::get('/chi-tiet-san-pham/{slug}', [productController::class, 'chi_tiet_san_pham']);    
+    // Route::get('/active-category-product/{category_product_id}', [categoryController::class, 'active_category_product']);
+    // Route::get('/unactive-category-product/{category_product_id}', [categoryController::class, 'unactive_category_product']);
+    Route::get('/login-customer', [accountController::class, 'login_customer']);
+    Route::post('/check-login', [accountController::class, 'check_login']);
+    Route::get('/logout', [accountController::class, 'logout']);
+    Route::get('/show-profile', [accountController::class, 'show_profile'])->middleware('account');
+    Route::post('/update-profile', [accountController::class, 'update_profile'])->middleware('account');
+    Route::post('/account-rating', [accountController::class, 'account_rating'])->middleware('account');
+
+    Route::get('/register', [accountController::class, 'register']);
+    Route::post('/check-register', [accountController::class, 'check_register']);
+
+// });
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/trang-chu', [HomeController::class, 'index']);
-Route::get('/danh-muc-phu-kien', [categoryController::class, 'show_category_phukien']);   
-Route::get('/danh-muc-san-pham/{slug_category_product}', [categoryController::class, 'show_category_home']);
-
-Route::get('/chi-tiet-san-pham/{slug}', [productController::class, 'chi_tiet_san_pham']);    
-Route::post('/insert-rating', [productController::class, 'insert_rating']);   
-
-Route::get('/', 'HomeController@index')->name('home.index');
-Route::get('/active-category-product/{category_product_id}', [categoryController::class, 'active_category_product']);
-Route::get('/unactive-category-product/{category_product_id}', [categoryController::class, 'unactive_category_product']);
-//account
-Route::get('/register', [accountController::class, 'register']);
-Route::post('/check-register', [accountController::class, 'check_register']);
-
-Route::get('/login-customer', [accountController::class, 'login_customer']);
-Route::post('/check-login', [accountController::class, 'check_login']);
-Route::get('/logout', [accountController::class, 'logout']);
-Route::get('/show-profile', [accountController::class, 'show_profile'])->middleware('account');
-Route::post('/update-profile', [accountController::class, 'update_profile'])->middleware('account');
-Route::post('/account-rating', [accountController::class, 'account_rating'])->middleware('account');
+// Route::get('/', [HomeController::class, 'index']);
+// Route::get('/trang-chu', [HomeController::class, 'index']);

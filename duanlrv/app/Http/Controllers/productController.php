@@ -6,7 +6,6 @@ use App\Models\trangthai;
 use App\Models\information;
 use App\Models\category;
 use App\Models\navmenu;
-use App\Models\rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -90,14 +89,6 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->has('file_upload'))
-        {
-            $file= $request->file_upload;
-            $ext = $request->file_upload->extension();
-            $file_name = time().'-'.'sanpham.'.$ext;
-            $file->move(public_path('uploads'), $file_name);
-        }
-        $request->merge(['image'=>$file_name]);
         $request->merge(['slug_product' => \Str::slug($request->title).'-'. \Carbon\Carbon::now()->timestamp]);
         $request->merge(['type_post' => 1]);
         if($this->qlthucung->create($request->all()))
@@ -144,14 +135,6 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->has('file_upload'))
-        {
-            $file= $request->file_upload;
-            $ext = $request->file_upload->extension();
-            $file_name = time().'-'.'thucung.'.$ext;
-            $file->move(public_path('uploads'), $file_name);
-        }
-        $request->merge(['image'=>$file_name]);
         $dataslug = \Str::slug($request->title).'-'.\Carbon\Carbon::now()->timestamp;
         $request->merge(['slug_product' => $dataslug]);
         $request->merge(['type_post' => 1]);
@@ -187,26 +170,6 @@ class productController extends Controller
         $detail_product = DB::table('information_post')
         ->join('categories','categories.id','information_post.id_category')
         ->where('slug_product',$slug)->get();
-        foreach($detail_product as $key => $value){
-           $product_id = $value->id_product;
-        }
-        //update view
-        $product = information::where('slug_product',$slug)->first();
-        $product->view = $product->view + 1;
-        $product->save();
-        //rating
-        $rating = rating::where('product_id',$product_id)->avg('rating_star');
-        $rating = round($rating);
-
-        return view('pages.sanpham.detail')->with(compact('category','category_meo','category_ca','category_chim','category_khac','detail_product','rating'));
-    }
-    public function insert_rating(Request $request){
-        $data= $request->all();
-        $rating = new rating();
-        $rating->product_id = $data['product_id'];
-        $rating->rating = $data['index'];
-        $rating->save;
-        
-        echo 'done';
+        return view('pages.sanpham.detail')->with(compact('category','category_meo','category_ca','category_chim','category_khac','detail_product'));
     }
 }

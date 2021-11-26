@@ -32,7 +32,7 @@ class couponController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.coupon.create');
     }
 
     /**
@@ -43,7 +43,11 @@ class couponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($this->coupon->create($request->all())){
+            return redirect()->route('coupon.index')->with('success', 'thêm mã giảm giá thành công');
+        }else{
+            return redirect()->route('coupon.index')->with('error', 'thêm mã giảm giá thất bại');
+        }
     }
 
     /**
@@ -65,7 +69,8 @@ class couponController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coupon = $this->coupon->find($id);
+        return view('admin.coupon.edit', compact('coupon'));
     }
 
     /**
@@ -75,9 +80,15 @@ class couponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        if($this->coupon->update($id,$request->all()))
+        {
+            return redirect()->route('coupon.index')->with('success', 'sửa coupon thành công');
+        }
+        else{
+            return redirect()->route('coupon.index')->with('error', 'cập nhật không thành công');
+        }
     }
 
     /**
@@ -88,6 +99,8 @@ class couponController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $oke = $this->coupon->find($id);
+        $oke->delete();
+            return redirect()->route('coupon.index')->with('success', 'xóa thành công !!!');
     }
 }

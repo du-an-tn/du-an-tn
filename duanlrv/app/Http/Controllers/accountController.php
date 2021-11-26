@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
-use App\Models\rating;
 use Illuminate\Http\Request;
-use Auth;
-use DB;
-use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Repositories\account\accountInterface;
 class accountController extends Controller
 {
+    protected $account;
+    public function __construct(accountInterface $account)
+    {
+        $this->account = $account;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,18 @@ class accountController extends Controller
      */
     public function index()
     {
-        //
+        $data = $this->account->getAll();
+            if(isset($_GET['sort_by'])){
+                $sort_by = $_GET['sort_by'];
+
+
+                if($sort_by == 'quan-tri'){
+                    $data = account::where('id_role', 1)->orderBy('id', 'ASC')->search()->paginate(10);
+                }else{
+                    $data = account::where('id_role', 2)->orderBy('id', 'ASC')->search()->paginate(10);
+                }
+            }
+        return view('admin.account.index', compact('data'));
     }
 
     /**
@@ -87,12 +100,8 @@ class accountController extends Controller
     {
         //
     }
-
-    //fontend
-    
-    
     public function login_customer(){
-        return view('pages.account.login');
+        return view('Site.login');
     }
     public function check_login(Request $request)
     {
@@ -103,7 +112,7 @@ class accountController extends Controller
         return redirect()->back()->with('error','Tai khoan dang nhap sai');
     }
     public function register(){
-        return view('pages.account.register');
+        
     }
     public function check_register(Request $request){
         $request->validate([
@@ -150,10 +159,5 @@ class accountController extends Controller
         }
         return redirect()->back();
         
-    }
-    public function account_rating(Request $request){
-        
-        rating::create($request->only('account_id','product_id','rating_star'));
-        return redirect()->back();
     }
 }
