@@ -4,6 +4,53 @@
      .pagination{
          padding: 0;
      }
+
+
+
+
+     /* You can remove these code below*/
+  :root {
+    --primary: #08aeea;
+    --secondary: #13D2B8;
+    --purple: #bd93f9;
+    --pink: #ff6bcb;
+    --blue: #8be9fd;
+    --gray: #333;
+    --font: "Poppins", sans-serif;
+    --gradient: linear-gradient(40deg, #ff6ec4, #7873f5);
+    --shadow: 0 0 15px 0 rgba(0,0,0,0.05);
+  }*{box-sizing:border-box;}input,button,textarea{border:0;outline:none;}
+  /* Main code */
+  
+          .pagination {
+            display: flex;
+            justify-content: left;
+          }
+          .page-item {
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.2s linear;
+          }
+          .page-item.active .page-link{
+            background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%);
+            background-color:transparent;
+            border-radius:5px;
+            padding: 5px 10px;
+          }
+          .pagi-item.is-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+          .pagi-item:hover,
+          .pagi-item.is-active {
+            color: var(--secondary);
+          }
+          .page-link{
+            padding:5px 10px;
+            border:none;
+          }
  </style>
 @endsection
 @section('main')

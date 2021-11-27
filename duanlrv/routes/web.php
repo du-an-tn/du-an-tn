@@ -23,15 +23,20 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/file', 'AdminController@file')->name('admin.file');
 
     Route::post("/select-delivery", "infoController@select_delivery");
+    Route::post("/select-thanhpho", "cosoController@select_thanhpho");
     Route::get('/chi-tiet-don-hang/{slug}', 'donhangController@chitietdh');
 
     Route::post("/update-trangthai", "donhangController@update_trangthai");
-
+    Route::post("/filter-by-date", "AdminController@filter_by_date");
+    Route::post("/order-date", "AdminController@order_date");
+    Route::post("/dashboard-filter", "AdminController@dashboard_filter");
     Route::resources([
         'menu' => 'menuController',
         'category' => 'categoryController',
         'qlthucung' => 'infoController',
         'qlsanpham' => 'productController',
+        'qldichvu' => 'cosoController',
+        'chitietdichvu' => 'dichvuController',
         'coupon' => 'couponController',
         'news' => 'newsController',
         'donhang' => 'donhangController',

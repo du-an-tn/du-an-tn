@@ -32,7 +32,10 @@ class information extends Model
     {
         return $this->belongsTo('App\Models\navmenu','id_menu');
     }
-    
+    public function gallery()
+    {
+        return $this->belongsTo('App\Models\gallery','id_product');
+    }
     public function xetduyet()
     {
        return $this->hasMany(trangthai::class,'id_status','id');

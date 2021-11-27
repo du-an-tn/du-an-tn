@@ -148,7 +148,6 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                       
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
                                 <img class="product-big-img" src="img/product-single/product-1.jpg" alt="">
@@ -217,6 +216,77 @@
                             </div>
                         </div>
                         
+                                    <h3>Pure Pineapple</h3>
+                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                                </div>
+                                <div class="pd-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <span>(5)</span>
+                                </div>
+                                <div class="pd-desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
+                                        sit amet, consectetur adipisicing elit, sed do mod tempor</p>
+                                    <h4>$495.00 <span>629.99</span></h4>
+                                </div>
+                                <div class="pd-color">
+                                    <h6>Color</h6>
+                                    <div class="pd-color-choose">
+                                        <div class="cc-item">
+                                            <input type="radio" id="cc-black">
+                                            <label for="cc-black"></label>
+                                        </div>
+                                        <div class="cc-item">
+                                            <input type="radio" id="cc-yellow">
+                                            <label for="cc-yellow" class="cc-yellow"></label>
+                                        </div>
+                                        <div class="cc-item">
+                                            <input type="radio" id="cc-violet">
+                                            <label for="cc-violet" class="cc-violet"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pd-size-choose">
+                                    <div class="sc-item">
+                                        <input type="radio" id="sm-size">
+                                        <label for="sm-size">s</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="md-size">
+                                        <label for="md-size">m</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="lg-size">
+                                        <label for="lg-size">l</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="xl-size">
+                                        <label for="xl-size">xs</label>
+                                    </div>
+                                </div>
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
+                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                </div>
+                                <ul class="pd-tags">
+                                    <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
+                                    <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
+                                </ul>
+                                <div class="pd-share">
+                                    <div class="p-code">Sku : 00012</div>
+                                    <div class="pd-social">
+                                        <a href="#"><i class="ti-facebook"></i></a>
+                                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                                        <a href="#"><i class="ti-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="product-tab">
                         <div class="tab-item">
@@ -327,6 +397,44 @@
                                             
                                         
                                         <!-- <div class="personal-rating">
+                                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                                    <div class="customer-review-option">
+                                        <h4>2 Comments</h4>
+                                        <div class="comment-option">
+                                            <div class="co-item">
+                                                <div class="avatar-pic">
+                                                    <img src="img/product-single/avatar-1.png" alt="">
+                                                </div>
+                                                <div class="avatar-text">
+                                                    <div class="at-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
+                                                    <div class="at-reply">Nice !</div>
+                                                </div>
+                                            </div>
+                                            <div class="co-item">
+                                                <div class="avatar-pic">
+                                                    <img src="img/product-single/avatar-2.png" alt="">
+                                                </div>
+                                                <div class="avatar-text">
+                                                    <div class="at-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
+                                                    <div class="at-reply">Nice !</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="personal-rating">
                                             <h6>Your Ratind</h6>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
@@ -343,6 +451,13 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder="Tên bình luận" class="comment_name">
+                                        </div>
+                                        <div class="leave-comment">
+                                            <h4>Leave A Comment</h4>
+                                            <form action="#" class="comment-form">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" placeholder="Name">
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder="Email">
@@ -350,6 +465,8 @@
                                                     <div class="col-lg-12">
                                                         <textarea placeholder="Nội dung bình luận" class="comment_content"></textarea>
                                                         <button type="submit" class="site-btn send-comment">Gửi bình luận</button>
+                                                        <textarea placeholder="Messages"></textarea>
+                                                        <button type="submit" class="site-btn">Send message</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -541,3 +658,4 @@ tabs.forEach((tab, index) => {
         });
     </script>
 @stop()
+@endsection

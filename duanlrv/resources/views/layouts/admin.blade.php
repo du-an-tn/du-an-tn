@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{asset('adm/assets/css/cs-skin-elastic.css')}}">
     <link rel="stylesheet" href="{{asset('adm/assets/css/style.css')}}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -30,6 +31,7 @@
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
    <style>
     #weatherWidget .currentDesc {
         color: #ffffff!important;
@@ -91,58 +93,6 @@
                         @endif
                     </li>
                     @endforeach
-                    <!-- <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-title">Icons</li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-title">Extras</li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -300,8 +250,88 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{asset('adm/assets/js/init/fullcalendar-init.js')}}"></script>
-
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <!-- thống kê -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- end thống kê -->
     <!--Local Stuff-->
     @yield('js')
 </body>
+<script>
+jQuery(document).ready(function($) {
+    chart30day();
+  var chart = new Morris.Bar({
+        element: 'myfirstchart',
+        // option thống kê
+        barColors: ['#819C73', '#fc8710','#FF6541','#A4ADD3'],
+        gridTextColor:['#000000'],
+        // pointFillColors: ['#ffffff'],
+        // pointStrokeColors:['black'],
+        fillOpacity:0.8,
+        hideHover: 'auto',
+        parseTime: false,
+
+        xkey: 'period',
+        ykeys: ['order','sales','quantity'],
+        // behaveLikeLine: true,
+
+        labels: ['đơn hàng','doanh thu','số lượng']
+    });
+
+// autoload 30 ngày đơn hàng
+    function chart30day(){
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:'{{url('/admin/order-date')}}',
+        method:"post",
+        dataType:"JSON",
+        data:{_token:_token},
+
+        success:function(data)
+        {
+            chart.setData(data);
+        }
+    });
+}
+// change lọc theo select
+
+    $('.dashboard-filter').change(function(){
+        var dashboard_value = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            url:'{{url('/admin/dashboard-filter')}}',
+            method:"post",
+            dataType:"JSON",
+            data:{dashboard_value:dashboard_value , _token:_token},
+            success:function(data)
+            {
+                chart.setData(data);
+            }
+        });
+    });
+
+
+// onclick lọc theo ngày tháng
+    $('#btn-dashboard-filter').on('click',function(){
+            var _token = $('input[name="_token"]').val();
+            var from_date = $('#datepicker').val();
+            var to_date = $('#datepicker2').val();
+            $.ajax({
+                url:'{{url('/admin/filter-by-date')}}',
+                method:"post",
+                dataType:"JSON",
+                data:{from_date:from_date ,to_date:to_date, _token:_token },
+
+                success:function(data)
+                {
+                    chart.setData(data);
+                }
+            });
+        });
+
+});
+
+
+</script>
 </html>

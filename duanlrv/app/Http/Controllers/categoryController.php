@@ -36,11 +36,10 @@ class categoryController extends Controller
 
                 if($sort_by == $dm->slug){
                     $data = category::with('phandanhmuc')->where('id_nav', $dm->id)->orderBy('id', 'ASC')->search()->paginate(10);
+                    $data->render();
                 }
             }
         }
-
-
         return view('admin.category.index', compact('data','danhmuc'));
     }
 

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\traffic;
 use App\Models\donhang;
+use App\Models\information;
+use App\Models\coso;
+use App\Models\account;
+use App\Models\datlich;
+use App\Models\news;
+use App\Models\orderDetail;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -46,7 +52,14 @@ class AdminController extends Controller
         $traffic->date_traffic = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $traffic->save();
     }
-
+    // thống kê tổng
+    $coso = coso::all()->count();
+    $sanpham = information::all()->count();
+    $account = account::all()->count();
+    $datlich = datlich::all()->count();
+    $donhang = donhang::all()->count();
+    $ctdonhang = donhang::orderBy('order_date', 'desc')->take(5)->get();
+    $news = news::all()->count();
 
         return view('admin.dashboard', 
         compact(
@@ -55,10 +68,96 @@ class AdminController extends Controller
         'traffic_this_month_count',
         'traffic_year_count',
         'traffic_total_count'
+        'traffic_total_count',
+        'sanpham',
+        'account',
+        'datlich',
+        'donhang',
+        'news',
+        'ctdonhang',
+        'coso'
     ));
     }
 
 
+    public function filter_by_date(Request $request)
+    {
+        $data = $request->all();
+        $from_date = $data['from_date'];
+        $to_date = $data['to_date'];
+
+        $get = donhang::whereBetween('order_date',[$from_date, $to_date])->orderBy('order_date', 'ASC')->get();
+
+            foreach($get as $val)
+            {
+
+                $chart_data[] = array(
+                    'period' => $val->order_date,
+                    'order' => $val->donhang->product_price,
+                    'sales' => $val->donhang->tong_tien,
+                    'quantity' => $val->donhang->product_quantity
+                );
+            }
+            if($chart_data){
+                echo $data = json_encode($chart_data);
+            }else{
+                echo $data = 'thất bại';
+            }
+    }
+
+
+    
+    public function dashboard_filter(Request $request)
+    {
+        $data = $request->all();
+        $dauthangnay = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
+        $dauthangtruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->startOfMonth()->toDateString();
+        $cuoithangtruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
+        $sub7days = Carbon::now('Asia/Ho_Chi_Minh')->subdays(7)->toDateString();
+        $sub365day = Carbon::now('Asia/Ho_Chi_Minh')->subdays(365)->toDateString();
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+
+        if($data['dashboard_value'] == "7ngay"){
+            $get = donhang::whereBetween('order_date',[$sub7days, $now])->orderBy('order_date','ASC')->get();
+        }elseif($data['dashboard_value'] == "thangtruoc"){
+            $get = donhang::whereBetween('order_date',[$dauthangtruoc, $cuoithangtruoc])->orderBy('order_date','ASC')->get();
+            
+        }elseif ($data['dashboard_value'] == "thangnay") {
+            $get = donhang::whereBetween('order_date',[$dauthangnay, $now])->orderBy('order_date','ASC')->get();
+        }else{
+            $get = donhang::whereBetween('order_date',[$sub365day, $now])->orderBy('order_date','ASC')->get();
+        }
+        foreach($get as $val)
+        {
+
+            $chart_data[] = array(
+                'period' => $val->order_date,
+                'order' => $val->donhang->product_price,
+                'sales' => $val->donhang->tong_tien,
+                'quantity' => $val->donhang->product_quantity
+            );
+        }
+            echo $data = json_encode($chart_data);
+    }
+
+    public function order_date(Request $request){
+        $sub30day = Carbon::now('Asia/Ho_Chi_Minh')->subday(7)->toDateString();
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $get = donhang::whereBetween('order_date', [$sub30day,$now])->orderBy('order_date','ASC')->get();
+
+        foreach($get as $val)
+        {
+
+            $chart_data[] = array(
+                'period' => $val->order_date,
+                'order' => $val->donhang->product_price,
+                'sales' => $val->donhang->tong_tien,
+                'quantity' => $val->donhang->product_quantity
+            );
+        }
+            echo $data = json_encode($chart_data);
+
+    }
 
     public function file()
     {

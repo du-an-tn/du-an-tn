@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\trangthai;
 use App\Models\information;
 use App\Models\category;
+use App\Models\gallery;
 use App\Models\navmenu;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -90,14 +91,15 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
+        $uploadfile = $request->merge(['id_product' => \Str::slug($request->id)]);
         $request->merge(['slug_product' => \Str::slug($request->title).'-'. \Carbon\Carbon::now()->timestamp]);
         $request->merge(['type_post' => 1]);
-        if($this->qlthucung->create($request->all()))
+        if($this->qlsanpham->create($request->all()))
         {
-            return redirect()->route('qlthucung.index')->with('success', 'xét duyệt thành công');
+            return redirect()->route('qlsanpham.index')->with('success', 'xét duyệt thành công');
         }
         else{
-            return redirect()->route('qlthucung.index')->with('error', 'xét duyệt thất bại');
+            return redirect()->route('qlsanpham.index')->with('error', 'xét duyệt thất bại');
         }
     }
 
@@ -205,4 +207,5 @@ class productController extends Controller
         }
         echo $output;
     }
+
 }

@@ -158,6 +158,8 @@
                                 </div>
                             </li>
                             <li class=""><a href="{{URL::to('/login-customer')}}" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
+
+                            <li class=""><a href="#" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
                             
                         </ul>
                     </div>
@@ -194,6 +196,14 @@
                             @endforeach
                             </ul>
                         </li>
+                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                <li><a href="./check-out.html">Checkout</a></li>
+                                <li><a href="./faq.html">Faq</a></li>
+                                <li><a href="./register.html">Register</a></li>
+                                <li><a href="./login.html">Login</a></li>
+                            </ul>
+                    </li>
                         <li><a href="./blog.html">Tin Tức</a></li>
                         <li><a href="./contact.html">Liên Hệ</a></li>
                         <!-- <li><a href="#">Cửa hàng</a></li>-->
@@ -334,6 +344,7 @@ $('.add_to_cart').on('click', addToCart);
 
 
 </script>
+
 <script>
     $(document).ready(function(){
         $('.send-comment').click(function{
@@ -343,7 +354,6 @@ $('.add_to_cart').on('click', addToCart);
 </script>
 
 @yield('js')
-=======
 </body>
 
 </html>

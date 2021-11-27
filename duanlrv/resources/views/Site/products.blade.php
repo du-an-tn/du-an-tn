@@ -28,6 +28,9 @@
                             @foreach ($categoryNav as $key => $cate)
                             <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->id)}}">{{$cate->name_nav}}</a></li>
                             @endforeach
+                            <li><a href="#">Men</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Kids</a></li>
                         </ul>
                     </div>
                     <div class="filter-widget">
@@ -96,7 +99,6 @@
                 </div>
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="product-show-option">
-                        
                         <div class="row">
                             <div class="col-lg-7 col-md-7">
                                 <div class="select-option">
@@ -106,6 +108,7 @@
                                             <option  value="">{{$cate_id->name}}</option>
                                             </a>
                                         @endforeach
+                                        <option value="">Default Sorting</option>
                                     </select>
                                     <select class="p-show">
                                         <option value="">Show:</option>
@@ -133,11 +136,13 @@
                                             <li class="w-icon active"><a href="#"  data-url="{{route('addToCart', ['id'=>$products->id])}}" class=" add_to_cart"  ><i class="icon_bag_alt add_to_cart"></i></a></li>
                                             <!-- <li class="quick-view add_to_cart"><a href="{{URL::to('chi-tiet-san-pham/'.$products->slug_product)}}">Xem chi tiết</a></li> -->
                                             <a href="{{URL::to('chi-tiet-san-pham/'.$products->slug_product)}}">Xem chi tiết</a>
+                                            <li class="quick-view add_to_cart"><a href="#">Xem chi tiết</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
                                         <div class="catagory-name"></div>
+                                        <div class="catagory-name">{{$products-> id_navMenu}}</div>
                                         <a href="#">
                                             <h5>{{$products-> title}}</h5>
                                         </a>

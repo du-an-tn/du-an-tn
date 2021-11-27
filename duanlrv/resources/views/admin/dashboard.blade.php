@@ -1,4 +1,56 @@
 @extends('layouts.admin')
+@section('js')
+    <script>
+        // jquery lấy ngày tháng năm
+        jQuery(document).ready(function($) {    
+            $( function() {
+                $( "#datepicker" ).datepicker({
+                    prevText:"Tháng trước",
+                    nextText:"Tháng sau",
+                    dateFormat:"yy-mm-dd",
+                    dayNamesMin:["thứ 2", "thứ 3", "thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"],
+                });
+            });
+            $( function() {
+                $( "#datepicker2" ).datepicker({
+                    prevText:"Tháng trước",
+                    nextText:"Tháng sau",
+                    dateFormat:"yy-mm-dd",
+                    dayNamesMin:["thứ 2", "thứ 3", "thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"],
+                });
+            });
+        });
+    </script>
+<!-- thống kê sản phẩm (donut) -->
+<script>
+    jQuery(document).ready(function($) {
+        var colorDanger = "#FF1744";
+          var donut = Morris.Donut({
+            element: 'donut',
+            resize: true,
+            colors: [
+                '#E0F7FA',
+                '#B2EBF2',
+                '#80DEEA',
+                '#4DD0E1',
+                '#00ACC1',
+                '#0097A7',
+                '#00838F',
+                '#006064'
+            ],
+            //labelColor:"#cccccc", // text color
+            //backgroundColor: '#333333', // border color
+            data: [
+                {label:"Sản phẩm", value:<?php echo $sanpham ?>},
+                {label:"Bài viết", value:<?php echo $news ?>},
+                {label:"Đơn hàng", value:<?php echo $donhang ?>},
+                {label:"Đặt lịch", value:<?php echo $datlich ?>},
+                {label:"user", value:<?php echo $account ?>}
+            ]
+        });
+    });
+</script>
+@stop
 @section('main')
 <div class="content">
             <!-- Animated -->
@@ -10,12 +62,12 @@
                             <div class="card-body">
                                 <div class="stat-widget-five">
                                     <div class="stat-icon dib flat-color-1">
-                                        <i class="pe-7s-cash"></i>
+                                        <i class="fa fa-hospital-o"></i>
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text">$<span class="count">23569</span></div>
-                                            <div class="stat-heading">Revenue</div>
+                                            <div class="stat-text count">{{$coso}}</div>
+                                            <div class="stat-heading">Cơ sở Thú Y</div>
                                         </div>
                                     </div>
                                 </div>
@@ -32,8 +84,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">3435</span></div>
-                                            <div class="stat-heading">Sales</div>
+                                            <div class="stat-text"><span class="count">{{$donhang}}</span></div>
+                                            <div class="stat-heading">đơn hàng</div>
                                         </div>
                                     </div>
                                 </div>
@@ -50,8 +102,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">349</span></div>
-                                            <div class="stat-heading">Templates</div>
+                                            <div class="stat-text"><span class="count">{{$sanpham}}</span></div>
+                                            <div class="stat-heading">sản phẩm</div>
                                         </div>
                                     </div>
                                 </div>
@@ -68,8 +120,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">2986</span></div>
-                                            <div class="stat-heading">Clients</div>
+                                            <div class="stat-text"><span class="count">{{$account}}</span></div>
+                                            <div class="stat-heading">users</div>
                                         </div>
                                     </div>
                                 </div>
@@ -185,6 +237,55 @@
                         </div>  <!-- /.col-lg-8 -->
 
                         <div class="col-xl-4 card">
+
+                <div class="col-sm-12 card">
+                    <div class="card-body">
+                        <center><strong class="box-title">Thống kê doanh số đơn hàng</strong></center>
+                    </div>
+                    <div class="row">
+                        <form autocomplete="off" class="card-body">
+                            @csrf
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Từ ngày<input type="text" id="datepicker" class="form-control"></p>
+                                <input type="button" id="btn-dashboard-filter" class="btn btn-info btn-sm" value="lọc kết quả">
+                            </div>
+                            <div class="col-md-3">
+                                <p>Đến ngày <input type="text" id="datepicker2" class="form-control"></p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Lọc theo
+                                    <select class="dashboard-filter custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                        <option>-- chọn --</option>
+                                        <option value="7ngay">7 ngày qua</option>
+                                        <option value="thangtruoc">Tháng trước</option>
+                                        <option value="thangnay">Tháng này</option>
+                                        <option value="365ngayqua">365 ngày</option>
+                                    </select>
+                                </p>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="col-sm-12">
+                            <div id="myfirstchart" style="height:250px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- Orders -->
+                <div class="orders">
+                    <div class="row">  <!-- /.col-lg-8 -->
+                    <div class="col-lg-7 col-md-8">
+                        <div class="card ov-h" style="min-height:400px">
+                            <div class="card-body">
+                                <center><strong>Thống kê tổng bài viết, sản phẩm, dịch vụ shop...</strong></center>
+                                <hr>
+                            <div id="donut" class="morris-donut-inverse"></div>
+                            </div>
+                        </div><!-- /.card -->
+                    </div>
+                        <div class="col-md-5">
+                            <div class="card" style="min-height:440px">
                                 @php
                                     $pt_traffic_year = $traffic_year_count / $traffic_total_count * 100;
                                     $pt_traffic_online = $traffic_count / $traffic_year_count * 100;
@@ -242,218 +343,65 @@
                                     </div>
                                 </div>
                             </div> -->
+                                    </div>
+                                </div>
                         </div> <!-- /.col-md-4 -->
                     </div>
                 </div>
                 <!-- /.orders -->
-                <!-- To Do and Live Chat -->
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title box-title">To Do List</h4>
-                                <div class="card-content">
-                                    <div class="todo-list">
-                                        <div class="tdl-holder">
-                                            <div class="tdl-content">
-                                                <ul>
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox"><i class="check-box"></i><span>Conveniently fabricate interactive technology for ....</span>
-                                                            <a href='#' class="fa fa-times"></a>
-                                                            <a href='#' class="fa fa-pencil"></a>
-                                                            <a href='#' class="fa fa-check"></a>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox"><i class="check-box"></i><span>Creating component page</span>
-                                                            <a href='#' class="fa fa-times"></a>
-                                                            <a href='#' class="fa fa-pencil"></a>
-                                                            <a href='#' class="fa fa-check"></a>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox" checked><i class="check-box"></i><span>Follow back those who follow you</span>
-                                                            <a href='#' class="fa fa-times"></a>
-                                                            <a href='#' class="fa fa-pencil"></a>
-                                                            <a href='#' class="fa fa-check"></a>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox" checked><i class="check-box"></i><span>Design One page theme</span>
-                                                            <a href='#' class="fa fa-times"></a>
-                                                            <a href='#' class="fa fa-pencil"></a>
-                                                            <a href='#' class="fa fa-check"></a>
-                                                        </label>
-                                                    </li>
-
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox" checked><i class="check-box"></i><span>Creating component page</span>
-                                                            <a href='#' class="fa fa-times"></a>
-                                                            <a href='#' class="fa fa-pencil"></a>
-                                                            <a href='#' class="fa fa-check"></a>
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div> <!-- /.todo-list -->
-                                </div>
-                            </div> <!-- /.card-body -->
-                        </div><!-- /.card -->
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title box-title">Live Chat</h4>
-                                <div class="card-content">
-                                    <div class="messenger-box">
-                                        <ul>
-                                            <li>
-                                                <div class="msg-received msg-container">
-                                                    <div class="avatar">
-                                                       <img src="images/avatar/64-1.jpg" alt="">
-                                                       <div class="send-time">11.11 am</div>
-                                                    </div>
-                                                    <div class="msg-box">
-                                                        <div class="inner-box">
-                                                            <div class="name">
-                                                                John Doe
-                                                            </div>
-                                                            <div class="meg">
-                                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sunt placeat velit ad reiciendis ipsam
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.msg-received -->
-                                            </li>
-                                            <li>
-                                                <div class="msg-sent msg-container">
-                                                    <div class="avatar">
-                                                       <img src="images/avatar/64-2.jpg" alt="">
-                                                       <div class="send-time">11.11 am</div>
-                                                    </div>
-                                                    <div class="msg-box">
-                                                        <div class="inner-box">
-                                                            <div class="name">
-                                                                John Doe
-                                                            </div>
-                                                            <div class="meg">
-                                                                Hay how are you doing?
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.msg-sent -->
-                                            </li>
-                                        </ul>
-                                        <div class="send-mgs">
-                                            <div class="yourmsg">
-                                                <input class="form-control" type="text">
-                                            </div>
-                                            <button class="btn msg-send-btn">
-                                                <i class="pe-7s-paper-plane"></i>
-                                            </button>
-                                        </div>
-                                    </div><!-- /.messenger-box -->
-                                </div>
-                            </div> <!-- /.card-body -->
-                        </div><!-- /.card -->
-                    </div>
-                </div>
-                <!-- /To Do and Live Chat -->
                 <!-- Calender Chart Weather  -->
                 <div class="row">
-                    <div class="col-md-12 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <!-- <h4 class="box-title">Chandler</h4> -->
-                                <div class="calender-cont widget-calender">
-                                    <div id="calendar"></div>
-                                </div>
-                            </div>
-                        </div><!-- /.card -->
-                    </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="box-title">Đơn đặt hàng </h4>
+                        </div>
+                        <div class="card-body--">
+                            <div class="table-stats order-table ov-h">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th class="serial">#</th>
+                                            <th>mã đơn hàng</th>
+                                            <th>name - order</th>
+                                            <th>Email</th>
+                                            <th>số điện thoại</th>
+                                            <th>trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                        $i = 1;
+                                        @endphp
+                                        @foreach($ctdonhang as $dt)
+                                        <tr>
+                                            <td class="serial">{{$i++}}</td>
+                                            <td>{{$dt->order_code}}</td>
+                                            <td><span class="name">{{$dt->order_name}}</span> </td>
+                                            <td><span class="product">{{$dt->order_email}}</span> </td>
+                                            <td><span class="">{{$dt->order_phone}}</span></td>
+                                            <td>
+                                                <span class="badge badge-thongbao">
+                                                    @if($dt->id_status == 1)
+                                                        hoàn thành
+                                                    @elseif($dt->id_status == 2)
+                                                        chưa hoàn thành
+                                                    @else
+                                                        đã hủy
+                                                    @endif
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div> <!-- /.table-stats -->
+                        </div>
+                    </div> <!-- /.card -->
+                </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card ov-h">
-                            <div class="card-body bg-flat-color-2">
-                                <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
-                            </div>
-                            <div id="cellPaiChart" class="float-chart"></div>
-                        </div><!-- /.card -->
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card weather-box">
-                            <h4 class="weather-title box-title">Weather</h4>
-                            <div class="card-body">
-                                <div class="weather-widget">
-                                    <div id="weather-one" class="weather-one"></div>
-                                </div>
-                            </div>
-                        </div><!-- /.card -->
-                    </div>
+                    <!-- thống kê sản phẩm -->
                 </div>
-                <!-- /Calender Chart Weather -->
-                <!-- Modal - Calendar - Add New Event -->
-                <div class="modal fade none-border" id="event-modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><strong>Add New Event</strong></h4>
-                            </div>
-                            <div class="modal-body"></div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
-                                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /#event-modal -->
-                <!-- Modal - Calendar - Add Category -->
-                <div class="modal fade none-border" id="add-category">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><strong>Add a category </strong></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="control-label">Category Name</label>
-                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name"/>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="control-label">Choose Category Color</label>
-                                            <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
-                                                <option value="success">Success</option>
-                                                <option value="danger">Danger</option>
-                                                <option value="info">Info</option>
-                                                <option value="pink">Pink</option>
-                                                <option value="primary">Primary</option>
-                                                <option value="warning">Warning</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- /#add-category -->
             </div>
             <!-- .animated -->
         </div>

@@ -32,7 +32,7 @@
         <div class="card-header">
             <center><strong class="card-title"><h3>FORM NHẬP SẢN PHẨM</h3></strong></center>
         </div>
-        <form action="{{route('qlthucung.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('qlsanpham.store')}}" method="POST" enctype="multipart/form-data">
          @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">tiêu đề sản phẩm*</label>
@@ -55,6 +55,7 @@
             <label>Hình ảnh (*)</label>
             <div class="input-group mt-1">
                 <input type="text" name="image" id="image" class="form-control" placeholder="nhập hình ảnh sản phẩm" disabled>
+                <input type="text" id="image" name="image" class="form-control" placeholder="nhập hình ảnh sản phẩm">
                 <div class="input-group-append">
                     <button class="btn btn-danger" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fa fa-folder"></i></button>
                 </div>
@@ -137,9 +138,6 @@
 </div>
 
 
-
-
-
 @stop
 @section('js')
 <script src="{{asset('adm/assets/js/slug.js')}}"></script>
@@ -184,6 +182,33 @@ jQuery(document).ready(function($) {
         });
     });
 });
+</script>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#file').on('change', function(){
+            var error = '';
+            var files = $('#file')[0].files;
+
+            if(files.length>5){
+                error += '<p style="color:red;">tối đa chọn 5 hình</p>';
+            }else if(files.length == ""){
+                error += '<p style="color:red;">không được bỏ trống gallery</p>';
+            }else if(files.size > 2000000){
+                error+='<p style="color:red;">tối đa không quá 2MB</p>';
+            }
+
+            if(error == ''){
+
+            }else{
+                $('#file').val('');
+                $('#error_gallery').html('<strong">'+error+'</strong>');
+                return false;
+            }
+
+        });
+    });
 </script>
 
 @stop()

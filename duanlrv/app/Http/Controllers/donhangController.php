@@ -50,7 +50,16 @@ class donhangController extends Controller
             }
         }
     }
-
+    // public function update_trangthai(Request $request){
+    //     if($request){
+    //         dd($request);
+    //         $update = new donhang();
+    //         $update->order_id = $request['order_id'];
+    //         $update->id_status = $request['id_status'];
+    //         $update->update();
+    //             echo 'done';
+    //     }
+    // }
     /**
      * Show the form for creating a new resource.
      *
