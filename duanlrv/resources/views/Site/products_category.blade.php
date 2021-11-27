@@ -28,9 +28,6 @@
                             @foreach ($categoryNav as $key => $cate)
                             <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->id)}}">{{$cate->name_nav}}</a></li>
                             @endforeach
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
                         </ul>
                     </div>
                     <div class="filter-widget">
@@ -103,11 +100,6 @@
                             <div class="col-lg-7 col-md-7">
                                 <div class="select-option">
                                     <select class="sorting">
-                                        @foreach($category_by_id as $key =>$cate_id)
-                                            <a href="{{URL::to('/show-category/'.$cate_id->slug)}}">
-                                            <option  value="">{{$cate_id->name}}</option>
-                                            </a>
-                                        @endforeach
                                         <option value="">Default Sorting</option>
                                     </select>
                                     <select class="p-show">
@@ -123,7 +115,7 @@
                     <div class="product-list">
                         <div class="row">
                             <!-- products -->
-                            @foreach($products as $products)
+                            @foreach($category_by_id as $category_by_id)
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
@@ -134,21 +126,18 @@
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="#"  data-url="{{route('addToCart', ['id'=>$products->id])}}" class=" add_to_cart"  ><i class="icon_bag_alt add_to_cart"></i></a></li>
-                                            <!-- <li class="quick-view add_to_cart"><a href="{{URL::to('chi-tiet-san-pham/'.$products->slug_product)}}">Xem chi tiết</a></li> -->
-                                            <a href="{{URL::to('chi-tiet-san-pham/'.$products->slug_product)}}">Xem chi tiết</a>
                                             <li class="quick-view add_to_cart"><a href="#">Xem chi tiết</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name"></div>
-                                        <div class="catagory-name">{{$products-> id_navMenu}}</div>
+                                        <div class="catagory-name">{{$category_by_id-> id_navMenu}}</div>
                                         <a href="#">
-                                            <h5>{{$products-> title}}</h5>
+                                            <h5>{{$category_by_id-> title}}</h5>
                                         </a>
                                         <div class="product-price">
-                                        {{$products-> discount}} đ
-                                            <span>{{$products-> price}}</span>
+                                        {{$category_by_id-> discount}} đ
+                                            <span>{{$category_by_id-> price}}</span>
                                         </div>
                                     </div>
                                 </div>

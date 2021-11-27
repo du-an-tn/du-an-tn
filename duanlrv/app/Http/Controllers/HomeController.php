@@ -40,12 +40,31 @@ class HomeController extends Controller
     public function index()
     {
        $products= $this-> products ->getAll();
+       $categoryNav = DB::Table('nav_menu')->orderby('id')->get();
+       return view('Site.index',compact('products','categoryNav'));
+=======
 
        return view('Site.index',compact('products'));
     }
     public function dichvu(){
         return view('site.checkout');
     }
+
+    public function productDetail($slug)
+    {   
+        $categoryNav = DB::Table('nav_menu')->orderby('id')->get();
+        $detail_product = DB::table('information_post')
+        ->join('categories','categories.id_category','information_post.id_category')
+        ->where('slug_product',$slug)->get();
+       return view('Site.productDetail',compact('detail_product','categoryNav'));
+    }
+    public function products()
+    {
+        $categoryNav = DB::Table('nav_menu')->orderby('id')->get();
+       $products= $this-> products ->getAll();
+       $category_by_id = DB::table('categories')->get();
+       return view('Site.products',compact('products','categoryNav','category_by_id'));
+
     public function productDetail()
     {
        return view('Site.productDetail');
@@ -55,6 +74,7 @@ class HomeController extends Controller
        $products= $this-> products ->getAll();
        
        return view('Site.products',compact('products'));
+
     }
     function addToCart($id){
         // session()->flush('carts');

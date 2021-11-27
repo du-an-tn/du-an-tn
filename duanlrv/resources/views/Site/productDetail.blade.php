@@ -20,6 +20,7 @@
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
+    @foreach($detail_product as $key => $value)
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -171,6 +172,50 @@
                             <div class="product-details">
                                 <div class="pd-title">
                                     <span>oranges</span>
+                                    <h3>{{$value->title}}</h3>
+                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                                </div>
+                                <div id="rateYo"></div>
+                                
+                                <div class="pd-desc">
+                                    <p>{{$value->description}}</p>
+                                    <h4>{{number_format($value->price,0,',','.')}}VND</h4>
+                                </div>
+                                
+                                
+                                <div class="quantity">
+                                    
+                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                </div>
+                                
+                                <ul class="pd-tags">
+                                    <li><span>Danh muc</span>:{{$value->name}}</li>
+                                    
+                                </ul>
+                                <?php
+                                    if($value->render == Null){?>
+                                    
+                                    <p class="card-text">Thuong Hieu: {{$value->brand}}</p>
+                                    <?php }else{ ?>
+                                        <p class="card-text">Giới tính: {{$value->render}}</p>
+                                        <?php } ?>
+                                
+                                        <?php
+                                    if($value->render == Null){?>
+                                    
+                                    <p class="card-text">So Luong: {{$value->quantity}}</p>
+                                    <?php }else{ ?>
+                                        <p class="card-text">Tuổi:{{$value->age}}</p>
+                                        <?php } ?>
+                                
+                                <p class="card-text">Tình trạng:{{$value->status}}</p>
+                                <p class="card-text">Vận chuyển: có phí</p>
+                                
+                                <p class="card-text">Mô tả thêm: {{$value->description}}</p>
+                               
+                            </div>
+                        </div>
+                        
                                     <h3>Pure Pineapple</h3>
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
@@ -339,6 +384,19 @@
                                         </table>
                                     </div>
                                 </div>
+                                
+                                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                                    <div class="customer-review-option">
+                                        <form action="">
+                                            @csrf
+                                            <input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->id}}">
+                                            <div class="comment_show"></div>
+                                        <h4>2 Comments</h4>
+                                        
+                                            
+                                            
+                                        
+                                        <!-- <div class="personal-rating">
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
                                         <h4>2 Comments</h4>
@@ -385,6 +443,14 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
                                             </div>
+                                        </div> -->
+                                        </form>
+                                        <div class="leave-comment">
+                                            <h4>Viết đánh giá của bạn</h4>
+                                            <form action="#" class="comment-form">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" placeholder="Tên bình luận" class="comment_name">
                                         </div>
                                         <div class="leave-comment">
                                             <h4>Leave A Comment</h4>
@@ -397,6 +463,8 @@
                                                         <input type="text" placeholder="Email">
                                                     </div>
                                                     <div class="col-lg-12">
+                                                        <textarea placeholder="Nội dung bình luận" class="comment_content"></textarea>
+                                                        <button type="submit" class="site-btn send-comment">Gửi bình luận</button>
                                                         <textarea placeholder="Messages"></textarea>
                                                         <button type="submit" class="site-btn">Send message</button>
                                                     </div>
@@ -411,6 +479,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
     </section>
     <!-- Product Shop Section End -->
 
@@ -556,4 +625,37 @@ tabs.forEach((tab, index) => {
 });
 
  </script>
+ 
+
+@endsection
+
+@section('js')
+<script>
+    jQuery(document).ready(function($) {
+ 
+        $("#rateYo").rateYo({
+        rating: 3.6
+        });
+
+    });
+</script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            load_comment();
+            function load_comment(){
+                var product_id = $('.comment_product_id').val();
+                var _tokent = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{url('/load-comment')}}",
+                    method:"POST";
+                    data:{product_id:product_id,_token=_token},
+                    success:function(data){
+                        
+                        $('#comment_show').html(data);
+                    }
+                });
+            }
+        });
+    </script>
+@stop()
 @endsection

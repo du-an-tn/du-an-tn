@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\accountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,8 +58,9 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/delete-cart', [HomeController::class, 'deleteCart'])->name('deleteCart');
     Route::get('/remove-cart', [HomeController::class, 'removeCart'])->name('removeCart');
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
-
-
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+    Route::get('/danh-muc-san-pham/{id}', [categoryController::class, 'show_category_home']);
+    Route::get('/chi-tiet-san-pham/{slug_product}', [HomeController::class, 'productDetail']);
 
 
     // Route::get('/danh-muc-phu-kien', [categoryController::class, 'show_category_phukien']);   
@@ -66,7 +68,18 @@ Route::group(['prefix' => 'admin'], function(){
     // Route::get('/chi-tiet-san-pham/{slug}', [productController::class, 'chi_tiet_san_pham']);    
     // Route::get('/active-category-product/{category_product_id}', [categoryController::class, 'active_category_product']);
     // Route::get('/unactive-category-product/{category_product_id}', [categoryController::class, 'unactive_category_product']);
+    Route::get('/login-customer', [accountController::class, 'login_customer']);
+    Route::post('/check-login', [accountController::class, 'check_login']);
+    Route::get('/logout', [accountController::class, 'logout']);
+    Route::get('/show-profile', [accountController::class, 'show_profile'])->middleware('account');
+    Route::post('/update-profile', [accountController::class, 'update_profile'])->middleware('account');
+    Route::post('/account-rating', [accountController::class, 'account_rating'])->middleware('account');
 
+    Route::get('/register', [accountController::class, 'register']);
+    Route::post('/check-register', [accountController::class, 'check_register']);
+
+    Route::post('/load-comment', [productController::class, 'load_comment']);
+    
 // });
 
 Auth::routes();

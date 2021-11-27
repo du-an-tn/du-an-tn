@@ -9,6 +9,7 @@ class donhang extends Model
 {
     use HasFactory;
     protected $table = 'order_product';
+    protected $fillable = ['order_id','order_code','product_id','quantity','amount','status'];
     protected $fillable = ['order_id','order_date','order_code','product_id','quantity','amount','status'];
     protected $primaryKey = 'order_id';
     public $timestamps = FALSE;

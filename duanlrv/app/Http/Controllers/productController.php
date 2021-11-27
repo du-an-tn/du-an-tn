@@ -7,6 +7,7 @@ use App\Models\information;
 use App\Models\category;
 use App\Models\gallery;
 use App\Models\navmenu;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -160,6 +161,51 @@ class productController extends Controller
         $delete = $this->qlsanpham->find($id);
         $delete->delete();
         return redirect()->route('qlsanpham.index')->with('success', 'xóa thành công');
+    }
+
+    //font-end
+    public function chi_tiet_san_pham($slug){
+        $category = DB::table('categories')->where('hidden','1')->where('id_nav','1')->orderby('id','desc')->get();
+        $category_meo= DB::table('categories')->where('hidden','1')->where('id_nav','6')->orderby('id','desc')->get();
+        $category_ca= DB::table('categories')->where('hidden','1')->where('id_nav','3')->orderby('id','desc')->get();
+        $category_chim= DB::table('categories')->where('hidden','1')->where('id_nav','4')->orderby('id','desc')->get();
+        $category_khac= DB::table('categories')->where('hidden','1')->where('id_nav','5')->orderby('id','desc')->get();
+        $detail_product = DB::table('information_post')
+        ->join('categories','categories.id','information_post.id_category')
+        ->where('slug_product',$slug)->get();
+        return view('pages.sanpham.detail')->with(compact('category','category_meo','category_ca','category_chim','category_khac','detail_product'));
+    }
+    public function load_comment(Request $request){
+        $product_id = $request->product_id;
+        $comment = Comment::where('comment_product_id',$product_id)->get();
+        $output = '';
+        foreach($comment as $key => $comm){
+            $output.= '
+            <div class="comment-option">
+
+            <div class="co-item">
+                                                <div class="avatar-pic">
+                                                    
+                                                    <img src="img/product-single/avatar-1.png" alt="">
+                                                </div>
+                                                <div class="avatar-text">
+                                                    <div class="at-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <h5>'.$comm->comment_name.' <span>27 Aug 2019</span></h5>
+                                                    <div class="at-reply">'.$comm->comment.'</div>
+                                                </div>
+                                            </div>
+                                            </div>
+            
+            
+            ';
+        }
+        echo $output;
     }
 
 }

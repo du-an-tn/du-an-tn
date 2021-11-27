@@ -54,6 +54,7 @@
         <div class="form-group col-md-6">
             <label>Hình ảnh (*)</label>
             <div class="input-group mt-1">
+                <input type="text" name="image" id="image" class="form-control" placeholder="nhập hình ảnh sản phẩm" disabled>
                 <input type="text" id="image" name="image" class="form-control" placeholder="nhập hình ảnh sản phẩm">
                 <div class="input-group-append">
                     <button class="btn btn-danger" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fa fa-folder"></i></button>

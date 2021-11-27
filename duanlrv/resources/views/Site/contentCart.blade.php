@@ -36,6 +36,7 @@
                             @endphp
                             <tbody>
                                 <tr>
+                                    <td class="cart-pic first-row"><img src="Site/img/products/{{$CartItem['images']}}" width="150px"alt=""></td>
                                     <td class="cart-pic first-row"><img src="{{asset('uploads')}}/{{$CartItem['images']}}" width="150px"alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>{{$CartItem['name']}}</h5>
@@ -44,6 +45,7 @@
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
+                                                <input type="number" value="{{$CartItem['quantity']}}" min="1" class="quatity">
                                                 <span class="dec qtybtn">-</span>
                                                 <input type="text" value="{{$CartItem['quantity']}}" min="1" class="quatity" disabled>
                                                 <span class="inc qtybtn">+</span>

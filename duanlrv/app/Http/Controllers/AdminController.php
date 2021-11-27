@@ -67,6 +67,7 @@ class AdminController extends Controller
         'traffic_of_last_month_count',
         'traffic_this_month_count',
         'traffic_year_count',
+        'traffic_total_count'
         'traffic_total_count',
         'sanpham',
         'account',

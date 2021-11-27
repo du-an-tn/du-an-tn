@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('Site/css/jquery-ui.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('Site/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('Site/css/style.css') }}" type="text/css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 </head>
 <style>
 
@@ -109,6 +109,55 @@
                            
                                 @include('site.cartquick')
                                
+                            <li class="cart-icon">
+                                <a href="#">
+                                    <i class="icon_bag_alt"></i>
+                                    <span id="cart_count">{{$count}}</span>
+                                </a>
+                                <div class="cart-hover">
+                                    <div class="select-items" id='ajax_cart'>
+                                        <table>
+                                            <tbody>
+                                            @php 
+                                            $total = 0;
+                                            $count=0;
+                                            @endphp
+                                            @if(session('cart'))
+                                            @foreach(session('cart') as $CartItem)
+                                            @php 
+                                            $total += $CartItem['price'] * $CartItem['quantity'];
+                                            $count += $CartItem['quantity'];
+                                            @endphp
+                                                <tr>
+                                                    <td class="si-pic"><img src="site/img/products/{{$CartItem['images']}}" width="100px" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <h6>{{$CartItem['name']}}</h6>
+                                                            <p>{{number_format($CartItem['price'])}}đ x {{ $CartItem['quantity']}}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="ti-close"></i>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                            
+                                        </table>
+                                        
+                                    </div>
+                                    <div class="select-total">
+                                        <span>Tổng:</span>
+                                        <h5>{{number_format($total)}}đ</h5>
+                                    </div>
+                                    <div class="select-button">
+                                        <a href="{{route('cartViews')}}" class="primary-btn view-card">Xem giỏ hàng</a>
+                                        <a href="#" class="primary-btn checkout-btn">Thanh toán</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class=""><a href="{{URL::to('/login-customer')}}" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
 
                             <li class=""><a href="#" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
                             
@@ -141,6 +190,12 @@
                         <li><a href="./shop.html">Giới thiệu</a></li>
                         <li><a href="{{route('products')}}">Cửa hàng</a>
                             <ul class="dropdown">
+                            @foreach ($categoryNav as $key => $cate)
+                                <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->id)}}">{{$cate->name_nav}}</a></li>
+                                
+                            @endforeach
+                            </ul>
+                        </li>
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>
                                 <li><a href="./check-out.html">Checkout</a></li>
@@ -254,7 +309,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 
 </body>
@@ -289,7 +344,16 @@ $('.add_to_cart').on('click', addToCart);
 
 
 </script>
-=======
+
+<script>
+    $(document).ready(function(){
+        $('.send-comment').click(function{
+            var comment_name = 
+        });
+    });
+</script>
+
+@yield('js')
 </body>
 
 </html>
