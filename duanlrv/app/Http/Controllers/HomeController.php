@@ -50,7 +50,7 @@ class HomeController extends Controller
     {   
         $categoryNav = DB::Table('nav_menu')->orderby('id')->get();
         $detail_product = DB::table('information_post')
-        ->join('categories','categories.id','information_post.id_category')
+        ->join('categories','categories.id_category','information_post.id_category')
         ->where('slug_product',$slug)->get();
        return view('Site.productDetail',compact('detail_product','categoryNav'));
     }

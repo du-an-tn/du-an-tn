@@ -73,6 +73,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/register', [accountController::class, 'register']);
     Route::post('/check-register', [accountController::class, 'check_register']);
 
+    Route::post('/load-comment', [productController::class, 'load_comment']);
+    
 // });
 
 Auth::routes();

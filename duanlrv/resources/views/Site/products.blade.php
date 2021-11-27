@@ -25,7 +25,7 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Danh mục</h4>
                         <ul class="filter-catagories">
-                            @foreach ($category as $key => $cate)
+                            @foreach ($categoryNav as $key => $cate)
                             <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->id)}}">{{$cate->name_nav}}</a></li>
                             @endforeach
                         </ul>

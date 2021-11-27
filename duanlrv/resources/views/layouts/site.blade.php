@@ -342,6 +342,7 @@ $('.add_to_cart').on('click', addToCart);
     });
 </script>
 
+@yield('js')
 =======
 </body>
 

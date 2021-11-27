@@ -20,6 +20,7 @@
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
+    @foreach($detail_product as $key => $value)
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -147,7 +148,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        @foreach($detail_product as $key => $value)
+                       
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
                                 <img class="product-big-img" src="img/product-single/product-1.jpg" alt="">
@@ -215,7 +216,7 @@
                                
                             </div>
                         </div>
-                        @endforeach
+                        
                     </div>
                     <div class="product-tab">
                         <div class="tab-item">
@@ -313,44 +314,19 @@
                                         </table>
                                     </div>
                                 </div>
+                                
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
+                                        <form action="">
+                                            @csrf
+                                            <input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->id}}">
+                                            <div class="comment_show"></div>
                                         <h4>2 Comments</h4>
-                                        <div class="comment-option">
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-2.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="personal-rating">
+                                        
+                                            
+                                            
+                                        
+                                        <!-- <div class="personal-rating">
                                             <h6>Your Ratind</h6>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
@@ -359,7 +335,8 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        </form>
                                         <div class="leave-comment">
                                             <h4>Viết đánh giá của bạn</h4>
                                             <form action="#" class="comment-form">
@@ -385,6 +362,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
     </section>
     <!-- Product Shop Section End -->
 
@@ -530,8 +508,13 @@ tabs.forEach((tab, index) => {
 });
 
  </script>
- <script>
-    $(function () {
+ 
+
+@endsection
+
+@section('js')
+<script>
+    jQuery(document).ready(function($) {
  
         $("#rateYo").rateYo({
         rating: 3.6
@@ -539,5 +522,22 @@ tabs.forEach((tab, index) => {
 
     });
 </script>
-
-@endsection
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            load_comment();
+            function load_comment(){
+                var product_id = $('.comment_product_id').val();
+                var _tokent = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{url('/load-comment')}}",
+                    method:"POST";
+                    data:{product_id:product_id,_token=_token},
+                    success:function(data){
+                        
+                        $('#comment_show').html(data);
+                    }
+                });
+            }
+        });
+    </script>
+@stop()
