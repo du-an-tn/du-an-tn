@@ -2,7 +2,7 @@
 return [
     [
         'label' => 'trang chủ',
-        'route' => 'admin.dashboard',
+        'routes' => 'admin.dashboard',
         'icon' => 'fa fa-laptop',
         'items' =>
         [
@@ -15,7 +15,7 @@ return [
     ],
     [
         'label' => 'menu',
-        'route' => 'menu.index',
+        'routes' => 'menu.index',
         'icon' => 'fa fa-th-list',
         'items' =>
             [
@@ -33,7 +33,7 @@ return [
     ],
     [
         'label' => 'Danh mục',
-        'route' => 'category.index',
+        'routes' => 'category.index',
         'icon' => 'fa fa-outdent',
         'items' =>
         [
@@ -50,8 +50,26 @@ return [
         ]
     ],
     [
+        'label' => 'slide website',
+        'routes' => 'slide.index',
+        'icon' => 'fa fa-outdent',
+        'items' =>
+        [
+            [
+            'iconnew' => 'fa fa-table',
+            'label' => 'Xem slide',
+            'route' => 'slide.index',
+            ],
+            [
+            'iconnew' => 'fa fa-clipboard',
+            'label' => 'Thêm slide',
+            'route' => 'slide.create'
+            ],
+        ]
+    ],
+    [
         'label' => 'Mã giảm giá',
-        'route' => 'coupon.index',
+        'routes' => 'coupon.index',
         'icon' => 'fa fa-chain-broken',
         'items' =>
         [
@@ -69,7 +87,7 @@ return [
     ],
     [
         'label' => 'QL sản phẩm',
-        'route' => 'qlsanpham.index',
+        'routes' => 'qlsanpham.index',
         'icon' => 'fa fa-tasks',
         'items' =>
         [
@@ -92,7 +110,7 @@ return [
     ],
     [
         'label' => 'QL Thú cưng',
-        'route' => 'qlthucung.index',
+        'routes' => 'qlthucung.index',
         'icon' => 'fa fa-github-alt',
         'items' =>
         [
@@ -110,7 +128,7 @@ return [
     ],
     [
         'label' => 'QL Dịch vụ',
-        'route' => 'qldichvu.index',
+        'routes' => 'qldichvu.index',
         'icon' => 'fa fa-calendar-o',
         'items' =>
         [
@@ -127,13 +145,13 @@ return [
             [
                 'iconnew' => 'fa fa-inbox',
                 'label' => 'Danh sách đặt lịch',
-                'route' => 'qldichvu.create'
+                'route' => 'datlich.index'
             ],
         ]
     ],
     [
         'label' => 'Tin Tức',
-        'route' => 'admin.dashboard',
+        'routes' => 'admin.dashboard',
         'icon' => 'fa fa-signal',
         'items' =>
         [
@@ -151,7 +169,7 @@ return [
     ],
     [
         'label' => 'QL đơn hàng',
-        'route' => 'donhang.index',
+        'routes' => 'donhang.index',
         'icon' => 'fa fa-truck',
         'items' =>
         [
@@ -164,7 +182,7 @@ return [
     ],
     [
         'label' => 'account',
-        'route' => 'admin.dashboard',
+        'routes' => 'admin.dashboard',
         'icon' => 'fa fa-user',
         'items' =>
         [
@@ -177,7 +195,7 @@ return [
     ],
     [
         'label' => 'file hình ảnh',
-        'route' => 'admin.file',
+        'routes' => 'admin.file',
         'icon' => 'fa fa-picture-o',
         'items' =>
         [
@@ -187,20 +205,7 @@ return [
             'route' => 'admin.file'
             ],
         ]
-    ],
-    [
-        'label' => 'file hình ảnh',
-        'route' => 'admin.file',
-        'icon' => 'fa fa-bar-chart-o',
-        'items' =>
-        [
-            [
-            'iconnew' => 'fa fa-tachometer',
-            'label' => 'QL file',
-            'route' => 'admin.file'
-            ],
-        ]
-    ],
+    ]
 ]
 
 

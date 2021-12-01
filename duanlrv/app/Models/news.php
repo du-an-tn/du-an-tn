@@ -9,7 +9,7 @@ class news extends Model
 {
     use HasFactory;
     protected $table = 'news';
-    protected $fillable = ['id','name_post','slug','description','view','hidden'];
+    protected $fillable = ['id','name_post','slug','description','view','image','hidden'];
     public $timestamps = FALSE;
 
 

@@ -27,7 +27,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 </head>
 <style>
+    #myInput {
+        box-sizing: border-box;
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
 
+    #myInput:focus {outline: 3px solid #ddd;}
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 10;
+        right:10%;
+    }
+
+    .dropdown-content a {
+        color: black;
+    
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {background-color: #ddd;}
+
+    .show {display: block;}
+    @media only screen and (max-width: 768px) { 
+        .dropdown-content {
+            min-width: 100%;
+            right:0;
+        }
+    }
 </style>
 <body>
     <!-- Page Preloder -->
@@ -109,58 +154,31 @@
                            
                                 @include('site.cartquick')
                                
-                            <li class="cart-icon">
-                                <a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span id="cart_count">{{$count}}</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items" id='ajax_cart'>
-                                        <table>
-                                            <tbody>
-                                            @php 
-                                            $total = 0;
-                                            $count=0;
-                                            @endphp
-                                            @if(session('cart'))
-                                            @foreach(session('cart') as $CartItem)
-                                            @php 
-                                            $total += $CartItem['price'] * $CartItem['quantity'];
-                                            $count += $CartItem['quantity'];
-                                            @endphp
-                                                <tr>
-                                                    <td class="si-pic"><img src="site/img/products/{{$CartItem['images']}}" width="100px" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <h6>{{$CartItem['name']}}</h6>
-                                                            <p>{{number_format($CartItem['price'])}}đ x {{ $CartItem['quantity']}}</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                            </tbody>
-                                            
-                                        </table>
-                                        
-                                    </div>
-                                    <div class="select-total">
-                                        <span>Tổng:</span>
-                                        <h5>{{number_format($total)}}đ</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="{{route('cartViews')}}" class="primary-btn view-card">Xem giỏ hàng</a>
-                                        <a href="#" class="primary-btn checkout-btn">Thanh toán</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class=""><a href="{{URL::to('/login-customer')}}" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
-
-                            <li class=""><a href="#" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
-                            
+                        @if(Route::has('login'))
+                        @auth
+                        @if(Auth::user()->id_role == 1)
+                            <li class=""><a onclick="myFunction()" class="login-panel abc"><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="{{route('admin.dashboard')}}">chuyển trang admin</a>
+                                <a href="#base">lịch sử mua hàng</a>
+                                <a href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
+                                <form action="{{ route('logout')}}" method="post" id="logout-form" style="display:none">
+                                    @csrf
+                                </form>
+                            </div>
+                        @else
+                            <li class=""><a onclick="myFunction()" class="login-panel abc"><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#about">Thông tin tài khoản</a>
+                                <a href="#base">lịch sử mua hàng</a>
+                                <!-- đăng xuất -->
+                                <a href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
+                            </div>
+                        @endif
+                        @else
+                            <li class=""><a href="{{route('login')}}" class="login-panel abc"><i class="fa fa-user"></i>Đăng nhập</a></li>
+                        @endif
+                        @endif
                         </ul>
                     </div>
                 </div>
@@ -189,21 +207,7 @@
                         <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
                         <li><a href="./shop.html">Giới thiệu</a></li>
                         <li><a href="{{route('products')}}">Cửa hàng</a>
-                            <ul class="dropdown">
-                            @foreach ($categoryNav as $key => $cate)
-                                <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->id)}}">{{$cate->name_nav}}</a></li>
-                                
-                            @endforeach
-                            </ul>
-                        </li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
-                            </ul>
-                    </li>
+
                         <li><a href="./blog.html">Tin Tức</a></li>
                         <li><a href="./contact.html">Liên Hệ</a></li>
                         <!-- <li><a href="#">Cửa hàng</a></li>-->
@@ -355,6 +359,26 @@ $('.add_to_cart').on('click', addToCart);
 
 @yield('js')
 </body>
+<script>
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+    }
 
+    function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+        } else {
+        a[i].style.display = "none";
+        }
+    }
+    }
+</script>
 </html>
 

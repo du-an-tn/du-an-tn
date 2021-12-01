@@ -40,26 +40,14 @@ class donhangController extends Controller
 
 
     public function update_trangthai(Request $request){
-        if($request){
-            dd($request);
-            $update = new donhang();
-            $update->order_id = $request['order_id'];
-            $update->id_status = $request['id_status'];
-            if ($update->update()){
-                echo 'done';
-            }
-        }
+        $id = $request->order_id;
+        $id_status = $request->id_status;
+        $update = donhang::find($id);
+        $update->id_status = $id_status;
+        $update->save();
+        echo 'done';
     }
-    // public function update_trangthai(Request $request){
-    //     if($request){
-    //         dd($request);
-    //         $update = new donhang();
-    //         $update->order_id = $request['order_id'];
-    //         $update->id_status = $request['id_status'];
-    //         $update->update();
-    //             echo 'done';
-    //     }
-    // }
+
     /**
      * Show the form for creating a new resource.
      *

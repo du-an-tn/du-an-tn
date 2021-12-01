@@ -39,6 +39,7 @@
                         <tr>
                             <th class="serial">#</th>
                             <th class="avatar">Tên bài đăng</th>
+                            <th class="avatar">feauter image</th>
                             <th>slug</th>
                             <th>Trạng thái</th>
                             <th>xem chi tiết</th>
@@ -51,6 +52,7 @@
                         @foreach($data as $dt)
                             <tr>
                                 <td class="serial">{{$dt->id}}</td>
+                                <td class="serial"><img src="{{asset('uploads')}}/{{$dt->image}}" alt="{{$dt->image}}" height="50px"></td>
                                 <td class="avatar">
                                     <span>{{$dt->name_post}}</span>
                                 </td>
@@ -73,7 +75,7 @@
                                 </td>
                                 <div class="modal fade bd-example-modal-lg{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
-                                    <div class="modal-content model-ct">
+                                    <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">chi tiết : {{$dt->id}} - {{$dt->name_post}}</h5>
                                         </div>
@@ -81,7 +83,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <p class="">{{$dt->description}}</p>
+                                                        <p class="">{!!$dt->description!!}</p>
                                                     </div>
                                                 </div>
                                             </div>

@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\slide;
+use App\Models\navmenu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use App\Repositories\slide\slideInterface;
 
 class slideController extends Controller
 {
+    protected $slide;
+    public function __construct(slideInterface $slide)
+    {
+        $this->slide = $slide;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class slideController extends Controller
      */
     public function index()
     {
-        //
+        $data = $this->slide->getAll();
+        $danhmuc = navmenu::orderBy('id', 'ASC')->select('id','name_nav')->get();
+        return view('admin.slide.index', compact('data','danhmuc'));
     }
 
     /**
@@ -24,7 +35,8 @@ class slideController extends Controller
      */
     public function create()
     {
-        //
+        $danhmuc = navmenu::orderBy('id', 'ASC')->select('id','name_nav')->get();
+        return view('admin.slide.create', compact('danhmuc'));
     }
 
     /**
@@ -35,7 +47,13 @@ class slideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($this->slide->create($request->all()))
+        {
+            return redirect()->route('slide.index')->with('success', 'xét duyệt thành công');
+        }
+        else{
+            return redirect()->route('slide.index')->with('error', 'xét duyệt thất bại');
+        }
     }
 
     /**
@@ -55,9 +73,11 @@ class slideController extends Controller
      * @param  \App\Models\slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function edit(slide $slide)
+    public function edit($id)
     {
-        //
+        $slide = $this->slide->find($id);
+        $danhmuc = navmenu::orderBy('id', 'ASC')->select('id','name_nav')->get();
+        return view('admin.slide.edit', compact('danhmuc','slide'));
     }
 
     /**
@@ -67,9 +87,15 @@ class slideController extends Controller
      * @param  \App\Models\slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, slide $slide)
+    public function update(Request $request, $id)
     {
-        //
+        if($this->slide->update($id,$request->all()))
+        {
+            return redirect()->route('slide.index')->with('success', 'xét duyệt thành công');
+        }
+        else{
+            return redirect()->route('slide.index')->with('error', 'xét duyệt thất bại');
+        }
     }
 
     /**

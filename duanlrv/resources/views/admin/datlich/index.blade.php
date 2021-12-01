@@ -36,7 +36,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-6">
-                        <strong class="card-title mt-3">Danh sách dịch vụ</strong>
+                        <strong class="card-title mt-3">Danh sách đặt lịch</strong>
                     </div>
                     <div class="col-sm-6">
                         <form class="form-inline justify-content-end" action="" method="GET" role="form">
@@ -54,8 +54,54 @@
             </div>
             <x-alert></x-alert>
             <div class="table-stats order-table ov-h">
-                <table id="loadjs" class="table" data-load_id="{{route('loadajax')}}">
-                    @include('admin.chitietdichvu.loadajax')
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="serial">#</th>
+                            <th class="serial">Tên người đặt</th>
+                            <th class="serial">Tên cơ sở</th>
+                            <th>Nhu cầu</th>
+                            <th>thời gian hẹn</th>
+                            <th>Trạng thái</th>
+                            <th style="width:100px;">Action</th>
+                            <!-- <th>Quantity</th> -->
+                            <!-- <th>Status</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $i = 1;
+                        @endphp
+                        @foreach($data as $dt)
+                            <tr>
+                                <td class="serial">{{$i++}}</td>
+                                <td>
+                                    <span>{{$dt->user->name}}</span>
+                                </td>
+                                <td class="edit_name">
+                                    <span>{{$dt->coso->name_coso}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$dt->nhucau->name_dichvu}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$dt->set_time}}</span>
+                                </td>
+                                <td>
+                                    @if($dt->id_status == 1)
+                                        <span class="badge badge-complete">thành công</span>
+                                    @elseif ($dt->id_status == 2)
+                                        <span class="badge badge-warning">đợi xét duyệt</span>
+                                    @else
+                                        <span class="badge badge-danger">đã hủy</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('datlich.destroy',$dt->id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i> Xóa</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
                 <form method="POST" action="" id="form-delete">
                 @method('DELETE')
@@ -127,12 +173,9 @@
                 ev.preventDefault();
                 var _href = $(this).attr('href');
                 $('form#form-delete').attr('action',_href);
-                alertify.confirm('Confirm Title', 'Confirm Message', function(confirm_xoa){ 
-                if(confirm_xoa){
+                if(confirm('bạn muốn xóa chứ ?')){
                     $('form#form-delete').submit();
                 }
-                alertify.success('Bạn đã xóa') }
-                , function(){ alertify.error('Bạn đã không xóa')});
             });
         });
     </script>
@@ -141,7 +184,6 @@
 <script>
     jQuery(document).ready(function($) {
         $(document).on('click', '#submitajax', function(){
-            var load = $('#loadjs').data('load_id');
             var name = $('#name_dichvu').val();
             var trangthai = $('#id_status').val();
             var dis = $(this).data('dismiss');
@@ -156,9 +198,8 @@
                 {
                     if(data == 'done')
                     {
-                        $("#loadjs").load(load);
+                        $(".content").load("{{url('/admin/chitietdichvu')}}");
                         alertify.success('thành công !');
-                        console.log('đã load');
                     }
                     else
                     {
@@ -169,7 +210,7 @@
             });
         });
     });
-</script>
+    </script>
     
     <script>
     jQuery(document).ready(function($) {

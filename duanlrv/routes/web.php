@@ -17,7 +17,8 @@ use App\Http\Controllers\accountController;
 |
 */
 
-Route::group(['prefix' => 'admin'], function(){
+// Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin','middleware'=>['checkAdmin','auth']], function(){
     Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 
     Route::get('/file', 'AdminController@file')->name('admin.file');
@@ -25,11 +26,14 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post("/select-delivery", "infoController@select_delivery");
     Route::post("/select-thanhpho", "cosoController@select_thanhpho");
     Route::get('/chi-tiet-don-hang/{slug}', 'donhangController@chitietdh');
-
+    Route::post('/updateajax', 'dichvuController@update_ajax');
     Route::post("/update-trangthai", "donhangController@update_trangthai");
     Route::post("/filter-by-date", "AdminController@filter_by_date");
     Route::post("/order-date", "AdminController@order_date");
     Route::post("/dashboard-filter", "AdminController@dashboard_filter");
+    Route::get("/loadajax", "dichvuController@loadajax")->name('loadajax');
+    Route::get("/thongtin", "accountController@showaccount")->name('thongtin');
+    Route::get("/updateaccount", "accountController@update_thongtin")->name('updateaccount');
     Route::resources([
         'menu' => 'menuController',
         'category' => 'categoryController',
@@ -37,6 +41,7 @@ Route::group(['prefix' => 'admin'], function(){
         'qlsanpham' => 'productController',
         'qldichvu' => 'cosoController',
         'chitietdichvu' => 'dichvuController',
+        'datlich' => 'datlichController',
         'coupon' => 'couponController',
         'news' => 'newsController',
         'donhang' => 'donhangController',
@@ -48,6 +53,8 @@ Route::group(['prefix' => 'admin'], function(){
 });
 
 // Route::group(['prefix' => 'user'], function(){
+Route::group(['prefix' => '/', 'checkUser'=>'auth'], function(){
+
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/chitiet', 'HomeController@productDetail')->name('productDetail');
     Route::get('/cua-hang', 'HomeController@products')->name('products');
@@ -59,8 +66,9 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/remove-cart', [HomeController::class, 'removeCart'])->name('removeCart');
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
-    Route::get('/danh-muc-san-pham/{id}', [categoryController::class, 'show_category_home']);
+    Route::get('/danh-muc-san-pham/{slug}', [categoryController::class, 'show_category_home']);
     Route::get('/chi-tiet-san-pham/{slug_product}', [HomeController::class, 'productDetail']);
+    Route::get('/chi-tiet-san-pham/{slug}', [HomeController::class, 'productDetail']);
 
 
     // Route::get('/danh-muc-phu-kien', [categoryController::class, 'show_category_phukien']);   
@@ -80,7 +88,7 @@ Route::group(['prefix' => 'admin'], function(){
 
     Route::post('/load-comment', [productController::class, 'load_comment']);
     
-// });
+});
 
 Auth::routes();
 

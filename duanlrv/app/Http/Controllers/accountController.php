@@ -34,6 +34,11 @@ class accountController extends Controller
             }
         return view('admin.account.index', compact('data'));
     }
+    public function showaccount()
+    {
+        $data = $this->account->getAll();
+        return view('admin.profile.index', compact('data'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -88,6 +93,19 @@ class accountController extends Controller
     public function update(Request $request, account $account)
     {
         //
+    }
+
+    public function update_thongtin(Request $request)
+    {
+        $id = $request->id;
+        $data = $request->all();
+        $update = account::find($id);
+        $update->name = $data['name'];
+        $update->email = $data['email'];
+        $update->phone = $data['phone'];
+        $update->address = $data['address'];
+        $update->save();
+        echo 'done';
     }
 
     /**

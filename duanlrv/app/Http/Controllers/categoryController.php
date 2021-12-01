@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\navmenu;
 use App\Models\category;
+use App\Models\information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -141,13 +142,14 @@ class categoryController extends Controller
     }
 
     //fontend
-    public function show_category_home($id){
+    public function show_category_home($slug){
         // $category_by_id = DB::table('information_post')
         // ->join('categories','categories.id','information_post.id_category')->where('categories.slug',$slug_category_product)
         // ->where('information_post.hidden','1')->where('type_post','2')->get();
-        $category = DB::Table('nav_menu')->orderby('id')->get();
-        $products = DB::table('information_post')->where('id_menu',$id)->where('type_post',2)->get();
-        $category_by_id = DB::table('categories')->where('id_nav',$id)->get();
+        $category_id = navmenu::where('slug', $slug)->first();
+        $category = navmenu::where('id', $category_id->id)->get();
+        $products = information::where('id_menu',$category_id->id)->where('type_post',2)->search()->paginate(9);
+        $category_by_id = DB::table('categories')->where('id_nav',$category_id->id)->get();
         return view('Site.products')->with(compact('products','category','category_by_id'));
     }
     // public function show_category_phukien(){

@@ -10,11 +10,21 @@
         </div>
         <form action="{{route('news.update', $news->id)}}" method="POST" role="form" enctype="multipart/form-data">
          @csrf @method('PUT')
-        <div class="form-group">
-            <label>Tên menu</label>
-            <input type="text" class="form-control" value="{{$news->name_post}}" name="name_post" id="name" placeholder="Nhập Tên tin tức">
-
-        </div>
+         <div class="row">
+            <div class="form-group col-md-6">
+                <label>Tên tin tức</label>
+                <input type="text" class="form-control" name="name_post" value="{{$news->name_post}}" id="name" placeholder="Nhập Tên tin tức">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Hình ảnh (*)</label>
+                <div class="input-group mt-1">
+                    <input type="text" id="image" name="image" value="{{$news->image}}" class="form-control" placeholder="nhập hình ảnh sản phẩm">
+                    <div class="input-group-append">
+                        <button class="btn btn-danger" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fa fa-folder"></i></button>
+                    </div>
+                </div>
+            </div>
+         </div>
         <div class="form-group" style="display: none;">
             <label>Tên slug</label>
             <input type="text" class="form-control" value="{{$news->slug}}" name="slug" placeholder="Nhập slug">
@@ -41,6 +51,26 @@
         </form>
     </div>
 </div>
+
+<!-- modal thêm hình -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="max-width:96% !important;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">danh sách hình ảnh</h5>
+        </div>
+        <div class="modal-body">
+        <iframe src="{{url('/file/dialog.php?field_id=image')}}" width="100%" height="500px" style="over-flow-y:auto" frameborder="0"></iframe>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
 @stop()
 
 @section('js')

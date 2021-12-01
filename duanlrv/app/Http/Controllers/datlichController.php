@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dichvucoso;
+use App\Models\datlich;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use App\Repositories\chitietdichvu\chitietdichvuInterface;
-
-class dichvuController extends Controller
+use App\Repositories\datlich\datlichInterface;
+class datlichController extends Controller
 {
-    protected $chitietdichvu;
-    public function __construct(chitietdichvuInterface $chitietdichvu)
+    protected $datlich;
+    public function __construct(datlichInterface $datlich)
     {
-        $this->chitietdichvu = $chitietdichvu;
-    } 
+        $this->datlich = $datlich;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +21,8 @@ class dichvuController extends Controller
      */
     public function index()
     {
-        $data = $this->chitietdichvu->getAll();
-        return view('admin.chitietdichvu.index', compact('data'));
+        $data = $this->datlich->getAll();
+        return view('admin.datlich.index', compact('data'));
     }
 
     /**
@@ -33,8 +32,7 @@ class dichvuController extends Controller
      */
     public function create()
     {
-        return view('admin.chitietdichvu.create');
-
+        //
     }
 
     /**
@@ -45,17 +43,7 @@ class dichvuController extends Controller
      */
     public function store(Request $request)
     {
-        if($request){
-            $them = new dichvucoso();
-            $them->name_dichvu = $request['name'];
-            $them->id_status = $request['trangthai'];
-            $them->save();
-            echo 'done';
-        }
-    }
-    public function loadajax(){
-        $data = $this->chitietdichvu->getAll();
-        return view('admin.chitietdichvu.loadajax', compact('data'));
+        //
     }
 
     /**
@@ -77,7 +65,7 @@ class dichvuController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.chitietdichvu.edit');
+        //
     }
 
     /**
@@ -92,18 +80,6 @@ class dichvuController extends Controller
         //
     }
 
-    public function update_ajax(Request $request){
-        $id = $request->id;
-        $text_dichvu = $request->text_dichvu;
-        $update = dichvucoso::find($id);
-        $update->name_dichvu = $text_dichvu;
-        $update->save();
-        if($update->save()){
-        echo 'done';
-        }else{
-            echo '';
-        }
-    }
     /**
      * Remove the specified resource from storage.
      *
@@ -112,9 +88,6 @@ class dichvuController extends Controller
      */
     public function destroy($id)
     {
-        $delete = $this->chitietdichvu->find($id);
-        if($delete->delete()){
-            return redirect()->route('chitietdichvu.index');
-        }
+        //
     }
 }

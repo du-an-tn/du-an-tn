@@ -57,17 +57,9 @@
                                     <span>{{$dt->created_at}}</span>
                                 </td>
                                 <td>
-                                    @if($dt->id_status == 1)
-                                        <span class="badge badge-complete">thành công</span>
-                                    @elseif($dt->id_status == 2)
-                                        <span class="badge badge-warning">chưa xét duyệt</span>
-                                    @else
-                                        <span class="badge badge-danger">đã hủy</span>
-                                    @endif
-                                    <select class="trangthai">
-                                            <option>chọn trạng thái</option>
+                                    <select class="trangthai badge" style="background-color:#50C7C7">
                                         @foreach($xetduyet as $xd)
-                                            <option name="id_status" id="item" data-order_id="{{$dt->order_id}}" value="{{$xd->id}}">{{$xd->name_type}}</option>
+                                            <option name="id_status" {{($xd->id == $dt->id_status) ? 'selected':'' }} id="item" data-order_id="{{$dt->order_id}}" value="{{$xd->id}}">{{$xd->name_type}}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -75,7 +67,7 @@
                                     <a href="{{url('/admin/chi-tiet-don-hang/'.$dt->order_id)}}" class="badge badge-pending">chi tiết <i class="fa fa-mail-reply"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{route('donhang.destroy',$dt->order_id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('donhang.destroy',$dt->order_id)}}" class="btn btn-sm btn-danger btndelete"><i class="fa fa-trash"></i> Xóa</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -121,16 +113,13 @@
     <script>
     jQuery(document).ready(function($) {
         $(document).on('change', '.trangthai', function(){
-            var is_status = $(this).val();
+            var id_status = $(this).val();
             var order_id =$('#item').data('order_id');
             var _token = $('input[name="_token"]').val();
-            console.log(order_id);
-            console.log(is_status);
-            console.log(_token);
             $.ajax({
                 url:'{{url('/admin/update-trangthai')}}', 
                 method:'post',
-                data:{order_id:order_id, is_status:is_status, _token: _token},
+                data:{order_id:order_id, id_status:id_status, _token: _token},
                 success: function(data) 
                 {
                     if(data == 'done')

@@ -67,7 +67,6 @@ class AdminController extends Controller
         'traffic_of_last_month_count',
         'traffic_this_month_count',
         'traffic_year_count',
-        'traffic_total_count'
         'traffic_total_count',
         'sanpham',
         'account',
@@ -141,9 +140,9 @@ class AdminController extends Controller
     }
 
     public function order_date(Request $request){
-        $sub30day = Carbon::now('Asia/Ho_Chi_Minh')->subday(7)->toDateString();
+        $sub14day = Carbon::now('Asia/Ho_Chi_Minh')->subDays(14)->toDateString();
         $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-        $get = donhang::whereBetween('order_date', [$sub30day,$now])->orderBy('order_date','ASC')->get();
+        $get = donhang::whereBetween('order_date', [$sub14day,$now])->orderBy('order_date','ASC')->get();
 
         foreach($get as $val)
         {
