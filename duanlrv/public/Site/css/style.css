@@ -4345,3 +4345,8 @@ ol {
   .abc i{
 	  padding-right: 5px;
   }
+  .radio{
+	width: 15px !important;
+    height: 15px !important;
+    margin: 4px -20px !important;
+  }

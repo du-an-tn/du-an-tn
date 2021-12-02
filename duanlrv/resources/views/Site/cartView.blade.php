@@ -110,11 +110,3 @@
    
 </script>
 @endsection
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            alert('sadsadsada');
-        });
-    </script>
-@stop

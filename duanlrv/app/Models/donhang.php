@@ -27,7 +27,6 @@ class donhang extends Model
     {
        return $this->hasOne(account::class,'id','id_user');
     }
-
     public function xetduyet()
     {
        return $this->hasMany(trangthai::class,'id_status','id');

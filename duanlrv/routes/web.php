@@ -87,6 +87,10 @@ Route::group(['prefix' => '/', 'checkUser'=>'auth'], function(){
     Route::post('/check-register', [accountController::class, 'check_register']);
 
     Route::post('/load-comment', [productController::class, 'load_comment']);
+    Route::post("/select-thanhpho", "HomeController@select_thanhpho");
+    Route::post("/save_checkout", "HomeController@save_checkout")->name('save_checkout');
+    Route::post("/payment/online", "HomeController@createpayment")->name('payment.online');
+    Route::get("/return-vnpay", "HomeController@return")->name('payment.return');
     
 });
 
